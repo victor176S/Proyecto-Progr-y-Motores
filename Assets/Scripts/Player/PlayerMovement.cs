@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -16,24 +17,32 @@ public class PlayerMovement : MonoBehaviour
 
     public bool mirandoDerecha = true;
 
-    [Header("Salto")] [SerializeField] private float fuerzaSalto = 7f;
+    [Header("Salto")][SerializeField] private float fuerzaSalto = 7f;
+
+    private float fuerzaSaltoOriginal;
 
     public bool enSuelo = true;
 
     public UnityEvent OnHold;
-    bool OnPressed;
     public float y;
 
     public float tiempo;
 
+    public bool botonSaltoPresionado;
+
 
     [Header("Sonidos")] [SerializeField] private AudioSource sonidoSalto;
     [SerializeField] private AudioSource sonidoAndar;
+    private bool botonSaltoMantenido;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (enSuelo)
+        {
+            fuerzaSaltoOriginal = fuerzaSalto;
+        }
         // rb = GetComponent<Rigidbody2D>();
         if (!sprite)
             sprite = GetComponent<SpriteRenderer>();
@@ -47,28 +56,25 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJump(InputValue valor)
     {
-        if (valor.isPressed)
-        {
 
-            fuerzaSalto += tiempo;
-        }
-
-        tiempo = 0f;
-
-        if (!enSuelo)
-            return;
+            if (!enSuelo)
+                return;
 
 
-        var v = rb.linearVelocity;
-        v.y = 0f;
-        rb.linearVelocity = v;
-
+            var v = rb.linearVelocity;
+            v.y = 0f;
+            rb.linearVelocity = v;
+        rb.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
         
 
-        rb.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
-
-        tiempo = 0f;
     }
+    
+    public void Salto()
+    {
+        
+    }
+        
+    
 
     public void OnMove(InputValue valor)
     {
@@ -90,8 +96,65 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
+        DetectarTecla();
+        
     }
+
+    void DetectarTecla()
+    {
+        {
+            // Detectar si se presiona la tecla "E"
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+
+                botonSaltoPresionado = true;
+                botonSaltoMantenido = true;
+
+                Debug.Log($"Pulsado = {botonSaltoPresionado}");
+                // Aquí puedes agregar la lógica que deseas ejecutar
+            }
+            else
+            {
+
+                botonSaltoPresionado = false;
+                Debug.Log($"Pulsado = {botonSaltoPresionado}");
+
+            }
+
+
+            // Detectar si se mantiene presionada la tecla "E"
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                botonSaltoMantenido = true;
+
+                Debug.Log($"Mantenido = {botonSaltoMantenido}");
+            }
+
+            else
+            {
+
+                botonSaltoMantenido = false;
+                Debug.Log($"Mantenido = {botonSaltoMantenido}");
+
+            }
+        }
+
+        if (botonSaltoMantenido == true)
+        {
+            tiempo += Time.deltaTime;
+
+            fuerzaSalto += tiempo / 60;
+        }
+
+        else
+        {
+            tiempo = 0f;
+            fuerzaSalto = fuerzaSaltoOriginal;
+        }
+    }
+
+            
 
 
     private void Girar(bool aIzquierda)
@@ -117,15 +180,5 @@ public class PlayerMovement : MonoBehaviour
         {
             enSuelo = true;
         }
-    }
-
-    public void OnPointerDown( PointerEventData eventData )
-    {
-        OnPressed = true;
-    }
-
-    public void OnPointerUp( PointerEventData eventData )
-    {
-        OnPressed = false;
     }
 }

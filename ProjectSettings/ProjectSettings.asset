@@ -834,8 +834,8 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Proyecto Progr y Motores
-  metroPackageVersion: 
+  metroPackageName: ProyectoProgryMotores
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -843,7 +843,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Proyecto Progr y Motores
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Proyecto Progr y Motores
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
@@ -910,7 +910,7 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 1
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: 2ff515b6-0362-47ca-ae0f-fa791329a7dd
   framebufferDepthMemorylessMode: 0
