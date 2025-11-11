@@ -1,18 +1,22 @@
 using UnityEngine;
 
-public class Menu_Principal : MonoBehaviour
+public class Generator : MonoBehaviour
 {
-    public static Menu_Principal menu_Principal;
 
-    public GameObject pantallaPrincipal;
-
-    public GameObject pantallaOpciones;
+    public int random;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        GenerarPlataformasRandom();
+    }
 
-        pantallaOpciones.SetActive(false);
+    public void GenerarPlataformasRandom()
+    {
+
+        random = Random.Range(0, 10);
+
+        
 
     }
 
