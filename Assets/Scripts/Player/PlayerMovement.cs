@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,9 +8,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Movimiento")] [SerializeField]
-    private float velocidadMovimiento = 6f;
+    Queue<KeyCode> inputBuffer;
 
+    [Header("Movimiento")] [SerializeField]
+    public float velocidadMovimiento = 12f;
+
+    public float velocidadMovimientoOriginal = 12f;
     private Vector2 entradaMovimiento;
 
     public Rigidbody2D rb;
@@ -17,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool mirandoDerecha = true;
 
-    [Header("Salto")][SerializeField] private float fuerzaSalto = 7f;
+    [Header("Salto")][SerializeField] private float fuerzaSalto = 28f;
 
     private float fuerzaSaltoOriginal;
 
@@ -26,20 +31,27 @@ public class PlayerMovement : MonoBehaviour
     public UnityEvent OnHold;
     public float y;
 
+    public float tiempoSalto;
+
     public float tiempo;
 
     public bool botonSaltoPresionado;
 
     public bool comesFromJumping;
 
+    private bool botonSaltoMantenido;
+    public bool maxJumpCapacity;
+
     [Header("Sonidos")] [SerializeField] private AudioSource sonidoSalto;
     [SerializeField] private AudioSource sonidoAndar;
-    private bool botonSaltoMantenido;
+    
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
+
         if (enSuelo)
         {
             fuerzaSaltoOriginal = fuerzaSalto;
@@ -62,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
             if (!enSuelo)
                 return;
 
-            comesFromJumping = true;
+            
             var v = rb.linearVelocity;
             v.y = 0f;
             rb.linearVelocity = v;
@@ -79,6 +91,8 @@ public class PlayerMovement : MonoBehaviour
             Girar(false);
         else if (entradaMovimiento.x < 0 && mirandoDerecha)
             Girar(true);
+
+            
     }
 
 
@@ -87,6 +101,24 @@ public class PlayerMovement : MonoBehaviour
         var v = rb.linearVelocity;
         v.x = entradaMovimiento.x * velocidadMovimiento;
         rb.linearVelocity = v;
+
+        if (botonSaltoMantenido && enSuelo && fuerzaSalto < 60)
+        {
+            velocidadMovimiento = velocidadMovimiento /1.02f;
+        }
+
+        else
+        {
+
+            if (fuerzaSalto >= 60)
+            {
+                
+            }
+            else
+            {
+                velocidadMovimiento = velocidadMovimientoOriginal;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -94,7 +126,17 @@ public class PlayerMovement : MonoBehaviour
     {
 
         DetectarTecla();
+
+        if (comesFromJumping)
+        {
+            
+        }
         
+    }
+
+    IEnumerator EsperarSegundos(float segundos)
+    {
+        yield return new WaitForSeconds(segundos);
     }
 
     void DetectarTecla()
@@ -136,19 +178,29 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (botonSaltoMantenido == true && !comesFromJumping)
-        {
-            tiempo += Time.deltaTime;
+        
+            if (botonSaltoMantenido == true && !comesFromJumping)
+            {
+                    tiempoSalto += Time.deltaTime;
 
-            fuerzaSalto += (tiempo / 60);
+                    fuerzaSalto += (tiempoSalto / 15);
+
+                    if (fuerzaSalto >= 60f)
+                    {
+                        fuerzaSalto = 60;
+
+                    }
+
+            }
+
+            else
+            {
+                    tiempoSalto = 0f;
+                    fuerzaSalto = fuerzaSaltoOriginal;
+            }
         }
 
-        else
-        {
-            tiempo = 0f;
-            fuerzaSalto = fuerzaSaltoOriginal;
-        }
-    }
+    
 
             
 
