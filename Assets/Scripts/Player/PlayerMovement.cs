@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool botonSaltoPresionado;
 
+    public bool comesFromJumping;
 
     [Header("Sonidos")] [SerializeField] private AudioSource sonidoSalto;
     [SerializeField] private AudioSource sonidoAndar;
@@ -56,21 +57,16 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJump(InputValue valor)
     {
+        comesFromJumping = true;
 
             if (!enSuelo)
                 return;
 
-
+            comesFromJumping = true;
             var v = rb.linearVelocity;
             v.y = 0f;
             rb.linearVelocity = v;
         rb.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
-        
-
-    }
-    
-    public void Salto()
-    {
         
     }
         
@@ -140,11 +136,11 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (botonSaltoMantenido == true)
+        if (botonSaltoMantenido == true && !comesFromJumping)
         {
             tiempo += Time.deltaTime;
 
-            fuerzaSalto += tiempo / 60;
+            fuerzaSalto += (tiempo / 60);
         }
 
         else
@@ -166,11 +162,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D other)
     {
+
+        
         var v = rb.linearVelocity;
         if (other.gameObject.CompareTag("Suelo") && v.y > 1)
         {
             enSuelo = false;
         }
+
+        
+        
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -180,5 +181,7 @@ public class PlayerMovement : MonoBehaviour
         {
             enSuelo = true;
         }
+
+        comesFromJumping = false;
     }
 }
