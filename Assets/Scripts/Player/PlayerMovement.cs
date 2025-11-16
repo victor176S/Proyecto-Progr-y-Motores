@@ -8,43 +8,49 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Queue<KeyCode> inputBuffer;
+
+    public static PlayerMovement instance;
+
+
+    //variables salto
+    [Header("Salto")][SerializeField] private float fuerzaSalto = 28f;
+    private float fuerzaSaltoOriginal;
+    public float tiempoSalto;
+    public bool comesFromJumping;
+    public float porcentajesalto = 0f;
+    public bool enSuelo = true;
+    public bool maxJumpCapacity;
+    float fuerzaSaltoMaxima = 60f;
+
 
     [Header("Movimiento")] [SerializeField]
-    public float velocidadMovimiento = 12f;
-
-    public float velocidadMovimientoOriginal = 12f;
-    private Vector2 entradaMovimiento;
-
-    public Rigidbody2D rb;
-
-    private SpriteRenderer sprite;
-
-    public bool mirandoDerecha = true;
-
-    [Header("Salto")][SerializeField] private float fuerzaSalto = 28f;
-
-    private float fuerzaSaltoOriginal;
-
-    public bool enSuelo = true;
-
-    public UnityEvent OnHold;
+    public float velocidadMovimiento = 18f;
+    public float velocidadMovimientoOriginal = 18f;
     public float y;
 
-    public float tiempoSalto;
+    [Header("Rigidbody")]
+    public Rigidbody2D rb;
 
+    [Header("Input System")]
+    private bool botonSaltoMantenido;
+    private Vector2 entradaMovimiento;
+    public UnityEvent OnHold;
+    public bool botonSaltoPresionado;
+    Queue<KeyCode> inputBuffer;
+
+
+    [Header("Sprite")]
+    private SpriteRenderer sprite;
+    public bool mirandoDerecha = true;
+
+    [Header("Valores de tiempo")]
     public float tiempo;
 
-    public bool botonSaltoPresionado;
 
-    public bool comesFromJumping;
-
-    private bool botonSaltoMantenido;
-    public bool maxJumpCapacity;
-
-    [Header("Sonidos")] [SerializeField] private AudioSource sonidoSalto;
+    [Header("Sonidos")] 
+    [SerializeField] private AudioSource sonidoSalto;
     [SerializeField] private AudioSource sonidoAndar;
-    
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -102,15 +108,23 @@ public class PlayerMovement : MonoBehaviour
         v.x = entradaMovimiento.x * velocidadMovimiento;
         rb.linearVelocity = v;
 
-        if (botonSaltoMantenido && enSuelo && fuerzaSalto < 60)
+        if (botonSaltoMantenido && enSuelo && fuerzaSalto < fuerzaSaltoMaxima)
         {
             velocidadMovimiento = velocidadMovimiento /1.02f;
+
+            porcentajesalto = (fuerzaSalto / fuerzaSaltoMaxima) * 100;
+
+            if (porcentajesalto >= 99f)
+            {
+                porcentajesalto = 100f;
+            }
+
         }
 
         else
         {
 
-            if (fuerzaSalto >= 60)
+            if (fuerzaSalto >= fuerzaSaltoMaxima)
             {
                 
             }
@@ -185,9 +199,9 @@ public class PlayerMovement : MonoBehaviour
 
                     fuerzaSalto += (tiempoSalto / 15);
 
-                    if (fuerzaSalto >= 60f)
+                    if (fuerzaSalto >= fuerzaSaltoMaxima)
                     {
-                        fuerzaSalto = 60;
+                        fuerzaSalto = fuerzaSaltoMaxima;
 
                     }
 
@@ -197,6 +211,7 @@ public class PlayerMovement : MonoBehaviour
             {
                     tiempoSalto = 0f;
                     fuerzaSalto = fuerzaSaltoOriginal;
+                    porcentajesalto = 0f;
             }
         }
 
