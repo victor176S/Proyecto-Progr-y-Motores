@@ -7,7 +7,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
-{
+{   
+
+    public GameManager gameManager;
 
     public static PlayerMovement instance;
 
@@ -57,6 +59,11 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         
+        GameObject datosObject = GameObject.Find("GameManager");
+
+        gameManager = datosObject.GetComponent<GameManager>();
+
+        RestaurarPosicion();
 
         if (enSuelo)
         {
@@ -65,6 +72,15 @@ public class PlayerMovement : MonoBehaviour
         // rb = GetComponent<Rigidbody2D>();
         if (!sprite)
             sprite = GetComponent<SpriteRenderer>();
+    }
+
+    private void RestaurarPosicion()
+    {
+        GameData datosLeidos = gameManager.CargarDatosJuego();
+
+        rb.linearVelocity = Vector2.zero;
+
+        rb.MovePosition(new Vector3(datosLeidos.x, datosLeidos.y));
     }
 
 
@@ -99,6 +115,24 @@ public class PlayerMovement : MonoBehaviour
             Girar(true);
 
             
+    }
+
+    private void GuardarPosicion()
+    {
+        GameData datosAGuardar = new GameData();
+
+        datosAGuardar.x = rb.position.x;
+
+        datosAGuardar.y = rb.position.y;
+
+        gameManager.GuardarDatos(datosAGuardar);
+    }
+
+    private void OnDestroy()
+    {
+
+        GuardarPosicion();
+        
     }
 
 
@@ -156,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
     void DetectarTecla()
     {
         {
-            // Detectar si se presiona la tecla "E"
+            // Detectar si se presiona la tecla "flecha arriba"
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
 
