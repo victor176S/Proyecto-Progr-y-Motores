@@ -59,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         
+        inputBuffer = new Queue<KeyCode>();
+
         GameObject datosObject = GameObject.Find("GameManager");
 
         gameManager = datosObject.GetComponent<GameManager>();
@@ -173,6 +175,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
+        RayCastInputBuffer();
+
         DetectarTecla();
 
         if (comesFromJumping)
@@ -180,6 +184,35 @@ public class PlayerMovement : MonoBehaviour
             
         }
         
+    }
+
+    void RayCastInputBuffer()
+    {
+        RaycastHit2D raycastsuelo = Physics2D.Raycast(transform.position, Vector2.down, 0.8f, 0);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            inputBuffer.Enqueue(KeyCode.Space);
+            Invoke(nameof(quitarAccion), 0.5f);
+        }
+
+        if (raycastsuelo)
+        {
+            if(inputBuffer.Count > 0)
+            {
+                if (inputBuffer.Peek() == KeyCode.Space)
+                {
+                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, fuerzaSalto);
+                    
+                    inputBuffer.Dequeue();
+                }
+            }
+        }
+    }
+
+    void quitarAccion()
+    {
+        inputBuffer.Dequeue();
     }
 
     IEnumerator EsperarSegundos(float segundos)
