@@ -15,6 +15,8 @@ public class PlayerDash : MonoBehaviour
 
     public float timerDashDuracion = 0.7f;
 
+    public float tiempoCooldownDash = 2f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,13 +42,24 @@ public class PlayerDash : MonoBehaviour
 
         DetectarTecla();
 
-        DashLogic();
+        if (tiempoCooldownDash > 0f)
+        {
+            tiempoCooldownDash -= Time.deltaTime;
+        }
+
+        if (tiempoCooldownDash <= 0f)
+        {
+            DashLogic();
+        }
         
     }
 
     public void DashLogic()
     {
-            if (timerDashDuracion > 0f)
+
+        Debug.Log($"Debug DashLogic {timerDashDuracion}, {tiempoCooldownDash}");
+
+            if ((timerDashDuracion + tiempoCooldownDash) > 0f)
             {
 
             Debug.Log("Entrada al if de gravedad");
@@ -55,27 +68,39 @@ public class PlayerDash : MonoBehaviour
             //congela la rotacion y la posicion en Y
             player.gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezePositionY;
             player.gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            //player.gameObject.GetComponent<PlayerMovement>().velocidadMovimiento += 24f;
+            
+            player.gameObject.GetComponent<PlayerMovement>().velocidadMovimiento += 24f;
+
+            puedeDashear = false;
 
             }
             
         
 
         else
-        {
+        {   
             player.gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            if (player.gameObject.GetComponent<PlayerMovement>().enSuelo == true && tiempoCooldownDash <= 0f)
+            {
+                puedeDashear = true;
+            }
         }
 
-        //player.gameObject.GetComponent<PlayerMovement>().velocidadMovimiento -= 24;
+        
 
     }
 
+    
+
     void DetectarTecla()
     {
+        if (puedeDashear)
         {
             // Detectar si se presiona la tecla "flecha arriba"
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
+
+                tiempoCooldownDash = 2f;
 
                 botonDashPresionado = true;
 
@@ -95,7 +120,7 @@ public class PlayerDash : MonoBehaviour
 
                 botonDashMantenido = true;
 
-                timerDashDuracion = 1f;
+                timerDashDuracion = 0.7f;
 
                 Debug.Log($"Dash Pulsado = {botonDashPresionado}");
                 // Aquí puedes agregar la lógica que deseas ejecutar

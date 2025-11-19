@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public float tiempoSalto;
     public bool comesFromJumping;
     public float porcentajesalto = 0f;
-    public bool enSuelo = true;
+    public bool enSuelo = false;
     public bool maxJumpCapacity;
     float fuerzaSaltoMaxima = 60f;
 
@@ -264,9 +264,9 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionExit2D(Collision2D other)
     {
 
-        
+        //arreglo de bug salto infinito al chocar con paredes con el dash
         var v = rb.linearVelocity;
-        if (other.gameObject.CompareTag("Suelo") && v.y > 1)
+        if (other.gameObject.CompareTag("Suelo") && v.y > 1 || other.gameObject.CompareTag("Suelo") && v.x > 1)
         {
             enSuelo = false;
         }
@@ -277,8 +277,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+
+        //arreglo de bug salto infinito al chocar con paredes con el dash
         var v = rb.linearVelocity;
-        if (other.gameObject.CompareTag("Suelo") && v.y < 1)
+        if (other.gameObject.CompareTag("Suelo") && v.y < 1 || other.gameObject.CompareTag("Suelo") && v.x < 1)
         {
             enSuelo = true;
         }
