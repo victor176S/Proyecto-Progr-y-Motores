@@ -57,8 +57,6 @@ public class PlayerDash : MonoBehaviour
     public void DashLogic()
     {
 
-        Debug.Log($"Debug DashLogic {timerDashDuracion}, {tiempoCooldownDash}");
-
             if ((timerDashDuracion + tiempoCooldownDash) > 0f)
             {
 
