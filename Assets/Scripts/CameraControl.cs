@@ -1,8 +1,11 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
+
+    public GameObject player;
 
     public GameObject camara;
 
@@ -13,6 +16,8 @@ public class CameraControl : MonoBehaviour
     public List<GameObject> puntosControl;
 
     public List<Transform> puntosControlTransform;
+
+    public bool scrollActivo;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -26,14 +31,15 @@ public class CameraControl : MonoBehaviour
     void FixedUpdate()
     {
 
-        //scroll de camara ahh bloque
-       Vector3 moveCam = new Vector3 (0,0,0);
+        if (scrollActivo)
+        {
+            //scroll de camara ahh bloque
+        Vector3 moveCamScroll = new Vector3 (0,0,0);
 
-       moveCam.x = + 2f;
+        moveCamScroll.x = + 2.5f;
 
-       camara.gameObject.transform.position += moveCam * velocidad * Time.deltaTime;
-        
-        
+        camara.gameObject.transform.position += moveCamScroll * velocidad * Time.deltaTime;
+        }
 
     }
 

@@ -911,7 +911,7 @@ MonoBehaviour:
   Composition:
     ScreenPosition: {x: 0, y: 0}
     DeadZone:
-      Enabled: 1
+      Enabled: 0
       Size: {x: 2, y: 0}
     HardLimits:
       Enabled: 0
@@ -1012,12 +1012,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7c55ab9b6aaaa4b94c02536dfeda3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraControl
+  player: {fileID: 0}
   camara: {fileID: 985888950}
   puntoEjemplo: {fileID: 1117750686}
   velocidad: 6
   puntosControl:
   - {fileID: 1117750686}
   puntosControlTransform: []
+  scrollActivo: 0
 --- !u!4 &1034248308
 Transform:
   m_ObjectHideFlags: 0
