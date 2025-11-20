@@ -310,6 +310,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "madeyellow.input-buffer": {
+      "version": "https://github.com/madeyellow/InputBuffer.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "fb59500eb68f0a8df5df9f04400594315f8579c0"
+    },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
       "depth": 0,

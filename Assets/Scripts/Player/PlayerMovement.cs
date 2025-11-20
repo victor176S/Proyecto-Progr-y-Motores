@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using MadeYellow.InputBuffer.Abstractions;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -38,7 +39,11 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 entradaMovimiento;
     public UnityEvent OnHold;
     public bool botonSaltoPresionado;
-    Queue<KeyCode> inputBuffer;
+
+    public bool inputBuffer;
+
+    public float inputBufferCooldown = 0.3f;
+
 
 
     [Header("Sprite")]
@@ -54,12 +59,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioSource sonidoAndar;
 
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-        inputBuffer = new Queue<KeyCode>();
 
         GameObject datosObject = GameObject.Find("GameManager");
 
@@ -71,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         {
             fuerzaSaltoOriginal = fuerzaSalto;
         }
-        // rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         if (!sprite)
             sprite = GetComponent<SpriteRenderer>();
     }
@@ -93,19 +95,27 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnJump(InputValue valor)
     {
+
+        inputBuffer = true;
+
+        Invoke("QuitarBuffer", inputBufferCooldown);
+
         comesFromJumping = true;
 
             if (!enSuelo)
                 return;
 
-            
             var v = rb.linearVelocity;
             v.y = 0f;
             rb.linearVelocity = v;
         rb.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
         
     }
-        
+
+    public void QuitarBuffer()
+    {
+        inputBuffer = false;
+    }
     
 
     public void OnMove(InputValue valor)
@@ -140,6 +150,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         var v = rb.linearVelocity;
         v.x = entradaMovimiento.x * velocidadMovimiento;
         rb.linearVelocity = v;
@@ -175,44 +186,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        RayCastInputBuffer();
-
         DetectarTecla();
-
-        if (comesFromJumping)
-        {
-            
-        }
         
-    }
-
-    void RayCastInputBuffer()
-    {
-        RaycastHit2D raycastsuelo = Physics2D.Raycast(transform.position, Vector2.down, 0.8f, 0);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            inputBuffer.Enqueue(KeyCode.Space);
-            Invoke(nameof(quitarAccion), 0.5f);
-        }
-
-        if (raycastsuelo)
-        {
-            if(inputBuffer.Count > 0)
-            {
-                if (inputBuffer.Peek() == KeyCode.Space)
-                {
-                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, fuerzaSalto);
-                    
-                    inputBuffer.Dequeue();
-                }
-            }
-        }
-    }
-
-    void quitarAccion()
-    {
-        inputBuffer.Dequeue();
     }
 
     IEnumerator EsperarSegundos(float segundos)
@@ -311,11 +286,19 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
 
+        
+
         //arreglo de bug salto infinito al chocar con paredes con el dash
         var v = rb.linearVelocity;
         if (other.gameObject.CompareTag("Suelo") && v.y < 1 || other.gameObject.CompareTag("Suelo") && v.x < 1)
         {
-            enSuelo = true;
+
+            //input buffer jump logic
+            if (inputBuffer)
+            {
+                rb.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
+            }
+            enSuelo = true; 
         }
 
         comesFromJumping = false;
