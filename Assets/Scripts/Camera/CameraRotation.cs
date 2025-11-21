@@ -66,20 +66,41 @@ public class CameraRotation : MonoBehaviour
         if (TiltAnimation)
         {
 
-            if (TiltRight)
+            if (TiltRightTime > 0)
             {
 
-            Target += 0.2f;
+            Target -= 0.2f;
+            TiltRightTime -= 0.05f * Time.deltaTime;
 
             }
 
-            if (TiltLeft)
+            if (TiltRightTime <= 0)
             {
                 
-            Target -= 0.2f;
+                TiltLeftTime = 1f;
+
+            }
+            //se acaba arriba la animacion hacia la der
+            if (TiltLeftTime > 0)
+            {
+                
+            Target += 0.2f;
+            TiltLeftTime -= 0.05f * Time.deltaTime;
+
 
             }
 
+            if (TiltLeftTime <= 0)
+            {
+                
+                TiltRightTime = 1f;
+
+            }
+
+            //se acaba arriba la animacion hacia la izq
+
+        float AngleAnimation = Mathf.SmoothDampAngle(transform.eulerAngles.z, Target, ref r, 0.1f);
+        transform.rotation = Quaternion.Euler(0,0,AngleAnimation);
 
         }
 

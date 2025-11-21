@@ -711,6 +711,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraRotation
   activateClockwise: 0
   activateCounterClockwise: 0
+  TiltAnimation: 0
+  TiltRight: 0
+  TiltLeft: 0
+  TiltRightTime: 1
+  TiltLeftTime: 0
   z: 0
   zOffset: 0
   smoothTimeZ: 0.1
