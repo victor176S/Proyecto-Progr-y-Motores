@@ -10,6 +10,16 @@ public class CameraRotation : MonoBehaviour
 
     public bool activateCounterClockwise;
 
+    public bool TiltAnimation;
+
+    public bool TiltRight;
+
+    public bool TiltLeft;
+
+    public float TiltRightTime = 1f;
+
+    public float TiltLeftTime;
+
     public float z;
 
     [SerializeField] private float zOffset = 0f;
@@ -48,10 +58,30 @@ public class CameraRotation : MonoBehaviour
         transform.eulerAngles = transform.eulerAngles - rotateValue;
         */
 
-        
-
         float Angle = Mathf.SmoothDampAngle(transform.eulerAngles.z, Target, ref r, 0.1f);
         transform.rotation = Quaternion.Euler(0,0,Angle);
+
+        //animacion tilt
+
+        if (TiltAnimation)
+        {
+
+            if (TiltRight)
+            {
+
+            Target += 0.2f;
+
+            }
+
+            if (TiltLeft)
+            {
+                
+            Target -= 0.2f;
+
+            }
+
+
+        }
 
     }
 }
