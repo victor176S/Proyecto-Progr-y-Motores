@@ -278,9 +278,6 @@ public class PlayerMovement : MonoBehaviour
         {
             enSuelo = false;
         }
-
-        
-        
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -293,7 +290,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Suelo") && v.y < 1 || other.gameObject.CompareTag("Suelo") && v.x < 1)
         {
 
-            //input buffer jump logic
+            //input buffer jump logicdd
             if (inputBuffer)
             {
                 rb.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
@@ -302,5 +299,23 @@ public class PlayerMovement : MonoBehaviour
         }
 
         comesFromJumping = false;
+
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            for(int i = 0; i < 20; i++)
+            {
+                
+            }
+            
+
+        }
+        
+    }
+
+    public void EnemyBumpOnHit()
+    {
+        gameObject.transform.position += 2f * Vector3.right;
+
+        gameObject.transform.position += 0.05f * Vector3.up;
     }
 }
