@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class CameraAutoScroll2D : MonoBehaviour
 {
+
+    public static CameraAutoScroll2D instance;
+
     [Header("Jugador a seguir en Y")]
     [SerializeField] private Transform player;
     [SerializeField] private float yOffset = 0f;

@@ -1,4 +1,6 @@
+using System;
 using System.IO.Compression;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class CameraRotation : MonoBehaviour
@@ -8,17 +10,15 @@ public class CameraRotation : MonoBehaviour
 
     public bool activateCounterClockwise;
 
-    public float cameraClockwiseRotation;
+    public float z;
 
-    public float cameraCounterClockwiseRotation;
+    [SerializeField] private float zOffset = 0f;
 
-    public float velocidadRotacion = 1f;
+    [SerializeField] private float smoothTimeZ = 0.1f;
 
-    private float x;
-    private float y;
+    float r;
 
-    private float z;
-    private Vector3 rotateValue;
+    public float Target;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,6 +29,16 @@ public class CameraRotation : MonoBehaviour
     // Update is called once per frame
     private void LateUpdate()
     {
+
+        if (activateClockwise)
+        {
+            Target += 0.2f;
+        }
+
+        if (activateCounterClockwise)
+        {
+            Target -= 0.2f;
+        }
         /*mover con el raton xd
 
         y = Input.GetAxis("Mouse X");
@@ -37,12 +47,11 @@ public class CameraRotation : MonoBehaviour
         rotateValue = new Vector3(x, y * -1, 0);
         transform.eulerAngles = transform.eulerAngles - rotateValue;
         */
-        z = 0.05f;
-        y = 0f;
-        x = 0f;
-        Debug.Log(x + ":" + y);
-        rotateValue = new Vector3(x, y * -1, z);
-        transform.eulerAngles = transform.eulerAngles - rotateValue;
+
+        
+
+        float Angle = Mathf.SmoothDampAngle(transform.eulerAngles.z, Target, ref r, 0.1f);
+        transform.rotation = Quaternion.Euler(0,0,Angle);
 
     }
 }
