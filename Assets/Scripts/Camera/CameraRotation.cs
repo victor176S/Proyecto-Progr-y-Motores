@@ -6,6 +6,8 @@ using UnityEngine;
 public class CameraRotation : MonoBehaviour
 {
 
+    public static CameraRotation instance;
+
     public bool activateClockwise;
 
     public bool activateCounterClockwise;
@@ -27,6 +29,13 @@ public class CameraRotation : MonoBehaviour
     public float target;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    //"instance = this" en awake me deja usar valores de este script en otros
+    void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         

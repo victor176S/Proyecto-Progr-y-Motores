@@ -21,7 +21,7 @@ public class CameraAutoScroll2D : MonoBehaviour
 
     public GameObject puntoDeControl;
 
-    //me permite usar valores de este script en otros
+    //"instance = this" en awake me deja usar valores de este script en otros
     private void Awake()
     {
         instance = this;
