@@ -1,15 +1,18 @@
-using System.Collections;
 using System.Collections.Generic;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
-public class CameraEventTrigger : MonoBehaviour
+public class PlayerEventTrigger : MonoBehaviour
 {
-
-    public static CameraEventTrigger instance;
+   public static PlayerEventTrigger instance;
 
     public List<GameObject> puntosDeControl;
 
+    [SerializeField] private float speedY = -12f;
+
     private int i;
+
+    public bool enCaida = false;
 
     void Awake()
     {
@@ -24,16 +27,32 @@ public class CameraEventTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+            if(enCaida)
+            {
         
+                Vector3 pos = transform.position;
+
+                pos.y += speedY * Time.deltaTime;
+
+                transform.position = pos;
+
+                if (PlayerMovement.instance.enSuelo)
+                {
+                    enCaida = false;
+                }
+
+            }
+        
+
     }
     //el objeto al que le afecta el trigger, tiene que tener un rigidbody
     //si quieres que su comportamiento original no cambie (en este caso, la camara)
     //pon gravedad 0 en el rigidbody
     void OnTriggerEnter2D(Collider2D other) {
 
-        if (other.gameObject.CompareTag("cameraTrigger"))
+        if (other.gameObject.CompareTag("playerTrigger"))
         {
-            Debug.Log("camara colision");
+            Debug.Log("player colision");
 
             i = puntosDeControl.IndexOf(other.gameObject);
 
@@ -49,9 +68,14 @@ public class CameraEventTrigger : MonoBehaviour
 
             case 0:
 
-                CameraAutoScroll2D.instance.scrollActivo = false;
+                //ESTO SI CAMBIA LA GRAVEDAD
 
-                
+                PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
+                PlayerMovement.instance.rb.gravityScale = 0f;
+
+                Debug.Log($"Gravedad: {PlayerMovement.instance.rb.gravityScale}");
+
+                enCaida = true;
 
                 break;
 
