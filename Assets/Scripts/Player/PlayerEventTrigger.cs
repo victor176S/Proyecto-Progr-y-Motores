@@ -8,7 +8,7 @@ public class PlayerEventTrigger : MonoBehaviour
 
     public List<GameObject> puntosDeControl;
 
-    [SerializeField] private float speedY = -12f;
+    [SerializeField] private float speedY = -18f;
 
     private int i;
 
@@ -38,6 +38,9 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 if (PlayerMovement.instance.enSuelo)
                 {
+                    PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
+                    PlayerMovement.instance.rb.gravityScale = 4f;
+
                     enCaida = false;
                 }
 
