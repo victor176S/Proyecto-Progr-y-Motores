@@ -3,10 +3,20 @@ using UnityEngine;
 public class EnemyMove : MonoBehaviour
 {
 
+    public static EnemyMove instance;
+
     [Header("Scroll automático en X")]
-    [SerializeField] private float speedX = 2f;   // velocidad del scroll
-    public bool scrollActivo = false;             // por si quieres activarlo/desactivarlo
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] private float speedX = 2f;
+
+    [SerializeField] private bool scrollActivo = false;
+
+    public bool cameraDependent = true;
+    // velocidad del scroll
+
+    void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         
@@ -15,12 +25,29 @@ public class EnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (cameraDependent)
+        {
+            scrollActivo = CameraAutoScroll2D.instance.scrollActivo;
+        }
+
+        else
+        {
+            scrollActivo = false;
+        }
+
+        
+
+        if (scrollActivo)
+        {
+
         Vector3 pos = transform.position;
 
-        // X: auto-scroll si está activo
-        
-  
-            pos.x += speedX * Time.deltaTime;
+        pos.x += speedX * Time.deltaTime;
+
+        transform.position = pos;
+
+        }
 
     }
 }

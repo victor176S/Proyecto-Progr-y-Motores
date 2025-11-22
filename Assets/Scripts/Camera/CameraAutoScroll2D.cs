@@ -11,7 +11,7 @@ public class CameraAutoScroll2D : MonoBehaviour
 
     [Header("Scroll automático en X")]
     [SerializeField] private float speedX = 2f;   // velocidad del scroll
-    public bool scrollActivo = false;             // por si quieres activarlo/desactivarlo
+    public bool scrollActivo = true;             // por si quieres activarlo/desactivarlo
 
     // Para suavizar la Y (opcional)
     [SerializeField] private float smoothTimeY = 0.1f;
@@ -20,6 +20,12 @@ public class CameraAutoScroll2D : MonoBehaviour
     [Header("Jugador a seguir en Y")]
 
     public GameObject puntoDeControl;
+
+    //me permite usar valores de este script en otros
+    private void Awake()
+    {
+        instance = this;
+    }
 
 
     private void LateUpdate()

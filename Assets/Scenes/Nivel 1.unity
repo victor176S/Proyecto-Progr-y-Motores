@@ -283,8 +283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 012f539bce1a6f3499e2f9998d7a2b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMove
-  speedX: 2
+  speedX: 16
   scrollActivo: 0
+  cameraDependent: 1
 --- !u!1 &138271525
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,10 +505,10 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420035}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420034}
-  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -648,7 +649,7 @@ MonoBehaviour:
   player: {fileID: 1560553185}
   yOffset: 0
   speedX: 16
-  scrollActivo: 0
+  scrollActivo: 1
   smoothTimeY: 0.2
   puntoDeControl: {fileID: 0}
 --- !u!61 &519420034
@@ -711,15 +712,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraRotation
   activateClockwise: 0
   activateCounterClockwise: 0
-  TiltAnimation: 0
-  TiltRight: 0
-  TiltLeft: 0
-  TiltRightTime: 1
-  TiltLeftTime: 0
-  z: 0
-  zOffset: 0
-  smoothTimeZ: 0.1
-  Target: 0
+  tiltAnimation: 0
+  tiltToTheLeft: 0
+  tiltToTheRight: 1
+  maxTiltRight: -20
+  maxTiltLeft: 20
+  intervalosCamaraAnimation: 0
+  target: 0
 --- !u!1 &771234620
 GameObject:
   m_ObjectHideFlags: 0
