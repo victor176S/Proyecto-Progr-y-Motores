@@ -296,10 +296,11 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Suelo") && v.y < 1 || other.gameObject.CompareTag("Suelo") && v.x < 1)
         {
 
-            //input buffer jump logicdd
+            //input buffer jump logic
             if (inputBuffer)
-            {
-                rb.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
+            { 
+                //si no se divide entre dos, en el input buffer salta demasiado
+                rb.AddForce(Vector2.up * fuerzaSalto/2, ForceMode2D.Impulse);
             }
             enSuelo = true; 
         }

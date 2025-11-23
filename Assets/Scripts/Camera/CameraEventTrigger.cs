@@ -50,6 +50,10 @@ public class CameraEventTrigger : MonoBehaviour
             case 0:
 
                 CameraAutoScroll2D.instance.scrollActivo = false;
+                
+                break;
+
+            case 1:
 
                 
 
@@ -68,12 +72,6 @@ public class CameraEventTrigger : MonoBehaviour
                 break;
 
             case 4:
-
-                puntosDeControl[i].gameObject.SetActive(false);
-
-                break;
-
-            case 6:
 
                 puntosDeControl[i].gameObject.SetActive(false);
 

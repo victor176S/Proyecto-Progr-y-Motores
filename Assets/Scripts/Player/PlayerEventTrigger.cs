@@ -78,13 +78,23 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 Debug.Log($"Gravedad: {PlayerMovement.instance.rb.gravityScale}");
 
+                CameraRotation.instance.tiltAnimation = true;
+
                 enCaida = true;
+
+                break;
+
+            case 1:
+
+                CameraRotation.instance.tiltAnimation = false;
+                CameraRotation.instance.target = 0f;
+                CameraRotation.instance.tiltToTheRight = true;
 
                 break;
 
             case 2:
 
-                puntosDeControl[i].gameObject.SetActive(false);
+                
 
                 break;
 
@@ -95,12 +105,6 @@ public class PlayerEventTrigger : MonoBehaviour
                 break;
 
             case 4:
-
-                puntosDeControl[i].gameObject.SetActive(false);
-
-                break;
-
-            case 6:
 
                 puntosDeControl[i].gameObject.SetActive(false);
 

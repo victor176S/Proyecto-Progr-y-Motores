@@ -18,9 +18,9 @@ public class CameraRotation : MonoBehaviour
 
     public bool tiltToTheRight = true;
 
-    public float maxTiltRight = -20f;
+    public float maxTiltRight = -12.5f;
 
-    public float maxTiltLeft = 20f;
+    public float maxTiltLeft = 12.5f;
     //wip, no se si lo voy a usar
     public int intervalosCamaraAnimation;
 
@@ -102,76 +102,76 @@ public class CameraRotation : MonoBehaviour
 
     public void CamtiltAnimationLogic()
     {
-            // de 20 hacia 15 (->)
+            // de 12.5 hacia 10 (->)
         
-        if (tiltToTheRight && target <= maxTiltLeft && target > 15f)
+        if (tiltToTheRight && target <= maxTiltLeft && target > 10f)
+            {
+                target -= 0.075f;
+            }
+
+            //de 10 hacia 7.5 (->)
+
+            if (tiltToTheRight && target <= 10f && target > 7.5f)
             {
                 target -= 0.10f;
             }
 
-            //de 15 hacia 10 (->)
+            // de 7.5 hacia -7.5 (->)
 
-            if (tiltToTheRight && target <= 15f && target > 10f)
+            if (tiltToTheRight && target <= 7.5f && target >= -7.5f)
             {
-                target -= 0.15f;
+                target -= 0.125f;
             }
 
-            // de 10 hacia -10 (->)
+            //de -7.5 hacia -10(->)
 
-            if (tiltToTheRight && target <= 10f && target >= -10f)
-            {
-                target -= 0.20f;
-            }
-
-            //de -10 hacia -15 (->)
-
-            if (tiltToTheRight && target < -10 && target >= -15f)
-            {
-                target -= 0.15f;
-            }
-
-            //de -15 hacia -20 (->)
-
-            if (tiltToTheRight && target < -15f && target >= maxTiltRight)
+            if (tiltToTheRight && target < -7.5 && target >= -10f)
             {
                 target -= 0.10f;
+            }
+
+            //de -10 hacia -12.5 (->)
+
+            if (tiltToTheRight && target < -10f && target >= maxTiltRight)
+            {
+                target -= 0.075f;
             }
             //se acaba arriba la animacion hacia la derecha
 
 
-            //de -20 hacia -15 (<-)
+            //de -12.5 hacia -10 (<-)
 
-            if (tiltToTheLeft && target >= maxTiltRight && target < -15f)
+            if (tiltToTheLeft && target >= maxTiltRight && target < -10f)
+            {
+                target += 0.075f;
+            }
+
+            //de -10 hacia -7.5 (<-)
+
+            if (tiltToTheLeft && target >= -10f && target < -7.5f)
             {
                 target += 0.10f;
             }
 
-            //de -15 hacia -10 (<-)
+            // de -7.5 hacia 7.5 (<-)
 
-            if (tiltToTheLeft && target >= -15f && target < -10f)
+            if (tiltToTheLeft && target >= -7.5f && target < 7.5f)
             {
-                target += 0.15f;
+                target += 0.125f;
             }
 
-            // de -10 hacia 10 (<-)
+            // de 7.5 hacia 10 (<-)
 
-            if (tiltToTheLeft && target >= -10f && target < 10f)
-            {
-                target += 0.20f;
-            }
-
-            // de 10 hacia 15 (<-)
-
-            if (tiltToTheLeft && target >= 10f && target < 15f)
-            {
-                target += 0.15f;
-            }
-
-            //de 15 hacia 20 (<-)
-
-            if (tiltToTheLeft && target >= 15f && target <= maxTiltLeft)
+            if (tiltToTheLeft && target >= 7.5f && target < 10f)
             {
                 target += 0.10f;
+            }
+
+            //de 10 hacia 12.5 (<-)
+
+            if (tiltToTheLeft && target >= 10f && target <= maxTiltLeft)
+            {
+                target += 0.075f;
             }
             //se acaba arriba la animacion hacia la izq
 
