@@ -55,7 +55,7 @@ public class CameraEventTrigger : MonoBehaviour
 
             case 1:
 
-                
+                //CameraRotation.instance.target = 0f;
 
                 break;
 

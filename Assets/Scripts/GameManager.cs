@@ -19,7 +19,11 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI porcentajeSaltoText;
 
-    [SerializeField] public GameObject player;
+    public GameObject player;
+
+    public GameObject LivesUI;
+
+    public TextMeshProUGUI DashCharge;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -35,7 +39,7 @@ public class GameManager : MonoBehaviour
 
         else
         {
-            instance =this;
+            instance = this;
 
             DontDestroyOnLoad(gameObject);
         }

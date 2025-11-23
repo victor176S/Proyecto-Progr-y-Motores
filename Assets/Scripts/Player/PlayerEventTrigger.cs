@@ -12,6 +12,8 @@ public class PlayerEventTrigger : MonoBehaviour
 
     private int i;
 
+    private bool alreadyActivated = false;
+
     public bool enCaida = false;
 
     void Awake()
@@ -94,13 +96,17 @@ public class PlayerEventTrigger : MonoBehaviour
 
             case 2:
 
+                if (!alreadyActivated)
+                {
+                    StartCoroutine(CameraShake.instance.ShakeLogic());
+                    alreadyActivated = true;
+                }
                 
-
                 break;
 
             case 3:
 
-                puntosDeControl[i].gameObject.SetActive(false);
+                StartCoroutine(PlatformMovement.instance.PlatformGoingUp());
 
                 break;
 
