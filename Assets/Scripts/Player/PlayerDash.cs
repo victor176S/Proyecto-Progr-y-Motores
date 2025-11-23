@@ -18,6 +18,11 @@ public class PlayerDash : MonoBehaviour
     public float tiempoCooldownDash = 2f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    void Awake()
+    {
+        instance =this;
+    }
     void Start()
     {
         

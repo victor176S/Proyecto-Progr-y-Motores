@@ -32,17 +32,7 @@ public class GameManager : MonoBehaviour
         //en este caso como quiero llamar a una clase que cambia los valores de manera externa
         //(aunque el codigo del cambio esté en el mismo script) necesito usar esto aquí, yo que los cambios
         //en codigo los hago aqui
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-        }
-
-        else
-        {
-            instance = this;
-
-            DontDestroyOnLoad(gameObject);
-        }
+        instance = this;
     }
 
     void Start()
@@ -103,6 +93,28 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate()
     {
+
+        LogicVidas();
+        
+        SaltoText();
+        
+        DashText();
+        
+
+
+
+    }
+
+    
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    void LogicVidas()
+    {
         Debug.Log($"Vidas jugador (Fixed update): {vidasJugador}");
         if (vidasJugador >= 3)
         {
@@ -127,16 +139,24 @@ public class GameManager : MonoBehaviour
             Debug.Log($"Vidas jugador: {vidasJugador}");
             corazon3.gameObject.SetActive(false);
         }
+    }
 
+    void SaltoText()
+    {
         Debug.Log($"Porcentaje salto: {player.gameObject.GetComponent<PlayerMovement>().porcentajesalto}%");
         porcentajeSaltoText.text = $"Porcentaje de fuerza de salto: {player.gameObject.GetComponent<PlayerMovement>().porcentajesalto}%";
     }
 
-    
-
-    // Update is called once per frame
-    void Update()
+    void DashText()
     {
-        
+       if (PlayerDash.instance.tiempoCooldownDash < 0f)
+        {
+            DashCharge.text = $"Dash disponible";
+        }
+
+        else
+        {
+            DashCharge.text = $"Dash cargandose";
+        } 
     }
 }

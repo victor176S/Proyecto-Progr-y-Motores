@@ -72,6 +72,8 @@ public class PlayerEventTrigger : MonoBehaviour
         {
 
             case 0:
+            
+                StartCoroutine(ReOrganizeUI.instance.UIFromRightToTop());
 
                 //ESTO SI CAMBIA LA GRAVEDAD
 
