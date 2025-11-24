@@ -118,11 +118,13 @@ public class PlayerEventTrigger : MonoBehaviour
                 StartCoroutine(ReOrganizeUI.instance.UIFromTopToLeft());
                 StartCoroutine(ReOrganizeUI.instance.UIFromLeftToBottom());
                 
+                
                 break;
 
             case 5:
 
                 
+
                 break;
 
             case 6:

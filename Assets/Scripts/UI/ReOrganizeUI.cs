@@ -8,7 +8,9 @@ public class ReOrganizeUI : MonoBehaviour
 
     public static ReOrganizeUI instance;
 
-    public int veces = 1;
+    public int vecesQueSeMueve = 1;
+    
+    private float velocidad; //esto no hace nada, poner desde el editor
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Awake()
@@ -33,15 +35,17 @@ public class ReOrganizeUI : MonoBehaviour
 
     public IEnumerator UIFromRightToTop()
     {
+        velocidad = 50/vecesQueSeMueve;
+
         //X = 550 Y = -90 con respecto a la pantalla?
 
-        for (int i = 0; i < veces; i++)
+        for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.LivesUI.transform.position += new Vector3 (-8, 0.5f, 0);
+            GameManager.instance.LivesUI.transform.position += new Vector3 (-8, 0.5f, 0) *velocidad;
 
-            GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (-15, 2.5f, 0);
+            GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (-15, 2.5f, 0) *velocidad;
 
-            GameManager.instance.DashCharge.transform.position += new Vector3 (0, 5, 0);
+            GameManager.instance.DashCharge.transform.position += new Vector3 (0, 5, 0) *velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
@@ -52,13 +56,15 @@ public class ReOrganizeUI : MonoBehaviour
     public IEnumerator UIFromTopToRight()
     {
 
-        for (int i = 0; i < veces; i++)
+        velocidad = 50/vecesQueSeMueve;
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
         {
-        GameManager.instance.LivesUI.transform.position += new Vector3 (8, -2.5f, 0);
+        GameManager.instance.LivesUI.transform.position += new Vector3 (8, -2.5f, 0) *velocidad;
 
-        GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (15, -2.5f, 0);
+        GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (15, -2.5f, 0) *velocidad;
 
-        GameManager.instance.DashCharge.transform.position += new Vector3 (0, -5, 0);
+        GameManager.instance.DashCharge.transform.position += new Vector3 (0, -5, 0) *velocidad;
 
         yield return new WaitForSeconds (0.02f);
 
@@ -68,13 +74,15 @@ public class ReOrganizeUI : MonoBehaviour
     public IEnumerator UIFromTopToLeft()
     {
 
-        for (int i = 0; i < veces; i++)
+        velocidad = 50/vecesQueSeMueve;
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
         {
-        GameManager.instance.LivesUI.transform.position += new Vector3 (-8, -0.5f, 0);
+        GameManager.instance.LivesUI.transform.position += new Vector3 (-8, -0.5f, 0) *velocidad;
 
-        GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (-1, -2.5f, 0);
+        GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (-1, -2.5f, 0) *velocidad;
 
-        GameManager.instance.DashCharge.transform.position += new Vector3 (-17f, -5.5f, 0);
+        GameManager.instance.DashCharge.transform.position += new Vector3 (-17f, -5.5f, 0) *velocidad;
 
         yield return new WaitForSeconds (0.02f);
 
@@ -84,13 +92,15 @@ public class ReOrganizeUI : MonoBehaviour
     public IEnumerator UIFromLeftToBottom()
     {
 
-        for (int i = 0; i < veces; i++)
+        velocidad = 50/vecesQueSeMueve;
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
         {
-        GameManager.instance.LivesUI.transform.position += new Vector3 (8, -10f, 0);
+        GameManager.instance.LivesUI.transform.position += new Vector3 (8, -10f, 0) *velocidad;
 
-        GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (1, -6.5f, 0);
+        GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (1, -6.5f, 0) *velocidad;
 
-        GameManager.instance.DashCharge.transform.position += new Vector3 (17f, -5f, 0);
+        GameManager.instance.DashCharge.transform.position += new Vector3 (15f, -5f, 0) *velocidad;
 
         yield return new WaitForSeconds (0.02f);
 
@@ -101,13 +111,15 @@ public class ReOrganizeUI : MonoBehaviour
     public IEnumerator UIFromBottomToRight()
     {
 
-        for (int i = 0; i < veces; i++)
+        velocidad = 50/vecesQueSeMueve;
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
         {
-        GameManager.instance.LivesUI.transform.position += new Vector3 (8, 10f, 0);
+        GameManager.instance.LivesUI.transform.position += new Vector3 (8, 10f, 0) *velocidad;
 
-        GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (15, 6.5f, 0);
+        GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (15, 6.5f, 0) *velocidad;
 
-        GameManager.instance.DashCharge.transform.position += new Vector3 (0f, 5.5f, 0);
+        GameManager.instance.DashCharge.transform.position += new Vector3 (2f, 5.5f, 0) *velocidad;
 
         yield return new WaitForSeconds (0.02f);
 

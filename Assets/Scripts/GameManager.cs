@@ -25,6 +25,12 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI DashCharge;
 
+    public GameObject TopToBottomArrows;
+
+    public GameObject BottomToTopArrows;
+
+    public GameObject LeftToRightArrows;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Awake()
