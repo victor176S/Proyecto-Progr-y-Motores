@@ -73,7 +73,7 @@ public class PlayerEventTrigger : MonoBehaviour
 
             case 0:
             
-                StartCoroutine(ReOrganizeUI.instance.UIFromRightToTop());
+                
 
                 //ESTO SI CAMBIA LA GRAVEDAD
 
@@ -114,10 +114,22 @@ public class PlayerEventTrigger : MonoBehaviour
 
             case 4:
 
-                puntosDeControl[i].gameObject.SetActive(false);
-
+                StartCoroutine(ReOrganizeUI.instance.UIFromRightToTop());
+                StartCoroutine(ReOrganizeUI.instance.UIFromTopToLeft());
+                StartCoroutine(ReOrganizeUI.instance.UIFromLeftToBottom());
+                
                 break;
-            
+
+            case 5:
+
+                
+                break;
+
+            case 6:
+
+               
+                break;
+
             default:
 
             break;
