@@ -6,9 +6,9 @@ public class PlatformMovement : MonoBehaviour
 
     public static PlatformMovement instance;
 
-    public Vector3 valorDeIncremento = new Vector3(0,1,0);
+    public Vector3 valorDeIncremento = new Vector3(0,0.5f,0);
 
-    public int veces = 400;
+    public int veces = 400; //cambiar desde el inspector (duracion)
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -24,13 +24,13 @@ public class PlatformMovement : MonoBehaviour
     public IEnumerator PlatformGoingUp()
     {
 
-        for (int i = 0; i <= veces; i++)
+        for (int i = 0; i <= veces*10; i++)
         {
-            gameObject.transform.localPosition += valorDeIncremento * Time.deltaTime * 100;
+            gameObject.transform.localPosition += valorDeIncremento * Time.deltaTime * 10;
 
-            GameManager.instance.player.GetComponent<Transform>().position += valorDeIncremento * Time.deltaTime * 100;
+            GameManager.instance.player.GetComponent<Transform>().position += valorDeIncremento * Time.deltaTime * 10;
 
-            yield return new WaitForSeconds (0.05f);
+            yield return new WaitForSeconds (0.001f);
         }
         
     }

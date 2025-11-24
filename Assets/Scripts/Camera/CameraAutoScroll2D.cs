@@ -41,7 +41,7 @@ public class CameraAutoScroll2D : MonoBehaviour
         // Y: sigue al jugador
         if (player != null)
         {
-            float targetY = player.position.y + yOffset;
+            float targetY = player.position.y + CameraMovement.instance.camYextra + yOffset;
             pos.y = Mathf.SmoothDamp(pos.y, targetY, ref velY, smoothTimeY);
         }
 

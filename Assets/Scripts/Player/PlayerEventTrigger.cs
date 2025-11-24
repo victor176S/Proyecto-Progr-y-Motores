@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Unity.Android.Gradle.Manifest;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerEventTrigger : MonoBehaviour
@@ -85,7 +86,7 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 enCaida = true;
 
-                StartCoroutine(ArrowsAnim.instance.BottomToRightArrowsAnim());
+                StartCoroutine(ArrowsAnim.instance.TopToBottomArrowsAnim());
 
                 break;
 
@@ -125,13 +126,14 @@ public class PlayerEventTrigger : MonoBehaviour
 
             case 5:
 
-                
-
+                CameraAutoScroll2D.instance.scrollActivo = false;
+                CameraMovement.instance.Movement(0);
                 break;
 
             case 6:
 
-               
+                CameraMovement.instance.Movement(1);
+
                 break;
 
             default:
