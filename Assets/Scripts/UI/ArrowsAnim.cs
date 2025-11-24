@@ -3,7 +3,23 @@ using UnityEngine;
 
 public class ArrowsAnim : MonoBehaviour
 {
+
+    public static ArrowsAnim instance;
+
+    private float velocidad;
+
+    public int vecesQueSeMueve;
+
+    float r;
+
+    float target;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         
@@ -15,14 +31,194 @@ public class ArrowsAnim : MonoBehaviour
         
     }
 
-    public IEnumerator TopToBottomArrowsAnim()
+    public IEnumerator TopToBottomArrowsAnim() //works
     {
-        GameManager.instance.TopToBottomArrows.transform.position += new Vector3 (0,- 0.5f, 0);
 
-        GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (-15, 2.5f, 0);
+        velocidad = 50/vecesQueSeMueve;
 
-        GameManager.instance.DashCharge.transform.position += new Vector3 (0, 5, 0);
+        for (int i = 0; i < vecesQueSeMueve; i++) //works
+        {
+            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -3f, 0) * velocidad;
+            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -3f, 0) * velocidad;
 
-        yield return new WaitForSeconds (0.02f);
+            yield return new WaitForSeconds (0.02f);
+        }
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+
+            yield return new WaitForSeconds (0.02f);
+
+        }
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -0.5f, 0) * velocidad;
+            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -0.5f, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 0.5f, 0) * velocidad;
+            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 0.5f, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -0.5f, 0) * velocidad;
+            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -0.5f, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 0.5f, 0) * velocidad;
+            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 0.5f, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
+
+        //las flechas vuelven y se recolocan
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 3f, 0) * velocidad;
+            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 3f, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
     }
+
+    public IEnumerator LeftToRightArrowsAnim() //works
+    {
+        velocidad = 50/vecesQueSeMueve;
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (5f, 0, 0) * velocidad;
+            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (5f, 0, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+
+            yield return new WaitForSeconds (0.02f);
+
+        }
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (0.5f, 0, 0) * velocidad;
+            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (0.5f, 0, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (-0.5f, 0, 0) * velocidad;
+            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (-0.5f, 0, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (0.5f, 0, 0) * velocidad;
+            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (0.5f, 0, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (-0.5f, 0, 0) * velocidad;
+            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (-0.5f, 0, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
+
+        //las flechas vuelven y se recolocan
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (-5f, 0, 0) * velocidad;
+            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (-5f, 0, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
+
+    }
+
+    public IEnumerator BottomToRightArrowsAnim() 
+    {
+
+        velocidad = 50/vecesQueSeMueve;
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 3f, 0) * velocidad;
+            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 3f, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+
+            yield return new WaitForSeconds (0.02f);
+
+        }
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 0.5f, 0) * velocidad;
+            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 0.5f, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -0.5f, 0) * velocidad;
+            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -0.5f, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 0.5f, 0) * velocidad;
+            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 0.5f, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -0.5f, 0) * velocidad;
+            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -0.5f, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
+
+        //las flechas vuelven y se recolocan
+
+        for (int i = 0; i < vecesQueSeMueve; i++)
+        {
+            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -3f, 0) * velocidad;
+            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -3f, 0) * velocidad;
+
+            yield return new WaitForSeconds (0.02f);
+        }
+    }
+
+    
 }

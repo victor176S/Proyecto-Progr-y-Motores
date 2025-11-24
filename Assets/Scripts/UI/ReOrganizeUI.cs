@@ -96,11 +96,11 @@ public class ReOrganizeUI : MonoBehaviour
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-        GameManager.instance.LivesUI.transform.position += new Vector3 (8, -10f, 0) *velocidad;
+        GameManager.instance.LivesUI.transform.position += new Vector3 (9, -9f, 0) *velocidad;
 
         GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (1, -6.5f, 0) *velocidad;
 
-        GameManager.instance.DashCharge.transform.position += new Vector3 (15f, -5f, 0) *velocidad;
+        GameManager.instance.DashCharge.transform.position += new Vector3 (18f, -4f, 0) *velocidad;
 
         yield return new WaitForSeconds (0.02f);
 
@@ -115,11 +115,11 @@ public class ReOrganizeUI : MonoBehaviour
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-        GameManager.instance.LivesUI.transform.position += new Vector3 (8, 10f, 0) *velocidad;
+        GameManager.instance.LivesUI.transform.position += new Vector3 (7, 9f, 0) *velocidad;
 
         GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (15, 6.5f, 0) *velocidad;
 
-        GameManager.instance.DashCharge.transform.position += new Vector3 (2f, 5.5f, 0) *velocidad;
+        GameManager.instance.DashCharge.transform.position += new Vector3 (-1f, 4.5f, 0) *velocidad;
 
         yield return new WaitForSeconds (0.02f);
 

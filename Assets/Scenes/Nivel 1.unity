@@ -516,7 +516,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 144, y: 295}
-  m_SizeDelta: {x: 100, y: 101.1}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &253483077
 MonoBehaviour:
@@ -2181,9 +2181,9 @@ MonoBehaviour:
   player: {fileID: 1560553181}
   LivesUI: {fileID: 912421890}
   DashCharge: {fileID: 284413853}
-  TopToBottomArrows: {fileID: 0}
-  BottomToTopArrows: {fileID: 0}
-  LeftToRightArrows: {fileID: 0}
+  TopToBottomArrows: {fileID: 691561270}
+  BottomToTopArrows: {fileID: 519767651}
+  LeftToRightArrows: {fileID: 752734248}
 --- !u!4 &771234622
 Transform:
   m_ObjectHideFlags: 0
@@ -2680,37 +2680,6 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!1 &1034248306
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1034248308}
-  m_Layer: 0
-  m_Name: CameraManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1034248308
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1034248306}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1117750686
 GameObject:
   m_ObjectHideFlags: 0
@@ -5653,6 +5622,7 @@ GameObject:
   - component: {fileID: 2036819877}
   - component: {fileID: 2036819876}
   - component: {fileID: 2036819879}
+  - component: {fileID: 2036819880}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5760,6 +5730,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf3ca0094c324941a95e6cfc6d756ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReOrganizeUI
+  vecesQueSeMueve: 10
+--- !u!114 &2036819880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036819874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9bb3efe9abf88b4d87d5fe956535b12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ArrowsAnim
   vecesQueSeMueve: 10
 --- !u!1 &2102404354
 GameObject:
@@ -6109,7 +6092,6 @@ SceneRoots:
   - {fileID: 2036819875}
   - {fileID: 976869718}
   - {fileID: 771234622}
-  - {fileID: 1034248308}
   - {fileID: 92458605}
   - {fileID: 533878578}
   - {fileID: 666050713}

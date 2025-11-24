@@ -74,7 +74,6 @@ public class PlayerEventTrigger : MonoBehaviour
             case 0:
             
                 
-
                 //ESTO SI CAMBIA LA GRAVEDAD
 
                 PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
@@ -85,6 +84,8 @@ public class PlayerEventTrigger : MonoBehaviour
                 CameraRotation.instance.tiltAnimation = true;
 
                 enCaida = true;
+
+                StartCoroutine(ArrowsAnim.instance.BottomToRightArrowsAnim());
 
                 break;
 
@@ -117,6 +118,7 @@ public class PlayerEventTrigger : MonoBehaviour
                 StartCoroutine(ReOrganizeUI.instance.UIFromRightToTop());
                 StartCoroutine(ReOrganizeUI.instance.UIFromTopToLeft());
                 StartCoroutine(ReOrganizeUI.instance.UIFromLeftToBottom());
+                StartCoroutine(ReOrganizeUI.instance.UIFromBottomToRight());
                 
                 
                 break;
