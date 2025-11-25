@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     public bool maxJumpCapacity;
     float fuerzaSaltoMaxima = 60f;
 
+    public bool touchedFloorFirstTime = false;
+
 
     [Header("Movimiento")] [SerializeField]
     public float velocidadMovimiento = 18f;
@@ -69,6 +71,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
 
+        
+
         GameObject datosObject = GameObject.Find("GameManager");
 
         gameManager = datosObject.GetComponent<GameManager>();
@@ -102,11 +106,13 @@ public class PlayerMovement : MonoBehaviour
     public void OnJump(InputValue valor)
     {
 
-        inputBuffer = true;
+        if (touchedFloorFirstTime)
+        {
+            inputBuffer = true;
 
-        Invoke("QuitarBuffer", inputBufferCooldown);
+            Invoke("QuitarBuffer", inputBufferCooldown);
 
-        comesFromJumping = true;
+            comesFromJumping = true;
 
             if (!enSuelo)
                 return;
@@ -115,7 +121,8 @@ public class PlayerMovement : MonoBehaviour
             v.y = 0f;
             rb.linearVelocity = v;
         rb.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
-        
+        }
+ 
     }
 
     public void QuitarBuffer()
@@ -289,7 +296,10 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
 
-        
+        if (!touchedFloorFirstTime)
+        {
+            touchedFloorFirstTime = true;
+        }
 
         //arreglo de bug salto infinito al chocar con paredes con el dash
         var v = rb.linearVelocity;

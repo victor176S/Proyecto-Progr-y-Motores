@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     public int puntos;
 
-    public GameObject fallingProp;
+    public GameObject fallingProp, fallingProp2, FallingProp3;
 
     private bool haPerdido;
 
