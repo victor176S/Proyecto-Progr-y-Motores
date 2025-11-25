@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.Android.Gradle.Manifest;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -100,11 +99,13 @@ public class PlayerEventTrigger : MonoBehaviour
 
             case 2:
 
-                if (!alreadyActivated)
-                {
+                
+                
                     StartCoroutine(CameraShake.instance.ShakeLogic());
-                    alreadyActivated = true;
-                }
+                    puntosDeControl[i].gameObject.SetActive(false);
+                    
+                   
+                
                 
                 break;
 
@@ -116,11 +117,12 @@ public class PlayerEventTrigger : MonoBehaviour
 
             case 4:
 
-                StartCoroutine(ReOrganizeUI.instance.UIFromRightToTop());
-                StartCoroutine(ReOrganizeUI.instance.UIFromTopToLeft());
-                StartCoroutine(ReOrganizeUI.instance.UIFromLeftToBottom());
-                StartCoroutine(ReOrganizeUI.instance.UIFromBottomToRight());
                 
+
+                StartCoroutine(ReOrganizeUI.instance.UIFromRightToTop());
+
+                puntosDeControl[i].gameObject.SetActive(false);
+
                 
                 break;
 
@@ -140,9 +142,11 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 Debug.Log("se activo el trigger del prefab");
 
-                
+                //var es un tipo de variable global, osea, guarda de todo, pero se borra en la primera asignacion que haces
 
-                Instantiate(GameManager.instance.fallingProp, transform.position + new Vector3 (0,10,0), Quaternion.identity);
+                var objeto = Instantiate(GameManager.instance.fallingProp, transform.position + new Vector3 (0,20,0), Quaternion.identity);
+
+                objeto.gameObject.GetComponent<Rigidbody2D>().AddTorque(90, ForceMode2D.Impulse);
 
                 break;
 
