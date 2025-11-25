@@ -136,6 +136,16 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 break;
 
+            case 7:
+
+                Debug.Log("se activo el trigger del prefab");
+
+                
+
+                Instantiate(GameManager.instance.fallingProp, transform.position + new Vector3 (0,10,0), Quaternion.identity);
+
+                break;
+
             default:
 
             break;

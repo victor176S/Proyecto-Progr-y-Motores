@@ -7,7 +7,8 @@ public class DamageToPlayer : MonoBehaviour
     public static DamageToPlayer instance;
     public float hurtCoolDownTimer = 0f;
 
-    public Vector3 valorDeIncremento = new Vector3(8f, 6f, 0);
+    public bool fallingObject;
+    public Vector3 valorDeIncremento = new Vector3(0.2f, 0.1f, 0);
 
     public int veces = 40;
 
@@ -41,8 +42,10 @@ public class DamageToPlayer : MonoBehaviour
 
                 StartCoroutine(HurtPlayer());
 
-                StartCoroutine(PlayerImpulseOnHurt());
-
+                if (!fallingObject)
+                {
+                    StartCoroutine(PlayerImpulseOnHurt());
+                }
         }
     }
 
@@ -59,6 +62,7 @@ public class DamageToPlayer : MonoBehaviour
 
     private IEnumerator PlayerImpulseOnHurt()
     {
+        
         
         for (int i = 0; i <= (veces*5); i++)
         {

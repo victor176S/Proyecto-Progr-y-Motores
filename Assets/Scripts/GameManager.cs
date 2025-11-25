@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
 
     public int puntos;
 
+    public GameObject fallingProp;
+
     private bool haPerdido;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
