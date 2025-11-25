@@ -7,6 +7,10 @@ public class DamageToPlayer : MonoBehaviour
     public static DamageToPlayer instance;
     public float hurtCoolDownTimer =0f;
 
+    public Vector3 valorDeIncremento = new Vector3(8f, 6f, 0);
+
+    public int veces = 40;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,6 +41,8 @@ public class DamageToPlayer : MonoBehaviour
 
                 StartCoroutine(HurtPlayer());
 
+                StartCoroutine(PlayerImpulseOnHurt());
+
         }
     }
 
@@ -49,5 +55,26 @@ public class DamageToPlayer : MonoBehaviour
         hurtCoolDownTimer = 2f;
         yield return new WaitForSeconds(0.2f);
        
+    }
+
+    private IEnumerator PlayerImpulseOnHurt()
+    {
+        
+        for (int i = 0; i <= (veces*5); i++)
+        {
+            
+            GameManager.instance.player.gameObject.transform.position += valorDeIncremento * Time.deltaTime * 200;
+
+            PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
+            PlayerMovement.instance.rb.gravityScale = 0f;
+
+            yield return new WaitForSeconds (0.001f);
+        }
+
+        PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
+        PlayerMovement.instance.rb.gravityScale = 4f;
+
+        yield return new WaitForSeconds (0.001f);
+
     }
 }

@@ -306,16 +306,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         comesFromJumping = false;
-
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            for(int i = 0; i < 20; i++)
-            {
-                
-            }
-            
-
-        }
         
     }
 

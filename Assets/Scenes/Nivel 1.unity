@@ -167,6 +167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageToPlayer
   hurtCoolDownTimer: 0
+  valorDeIncremento: {x: 0.2, y: 0.1, z: 0}
+  veces: 40
 --- !u!61 &92458607
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5915,6 +5917,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageToPlayer
   hurtCoolDownTimer: 0
+  valorDeIncremento: {x: 0.1, y: 0.1, z: 0}
+  veces: 40
 --- !u!61 &2122260096
 BoxCollider2D:
   m_ObjectHideFlags: 0
