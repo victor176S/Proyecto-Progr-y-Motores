@@ -7,7 +7,7 @@ public class DamageToPlayer : MonoBehaviour
     public static DamageToPlayer instance;
     public float hurtCoolDownTimer = 0f;
 
-    public bool fallingObject;
+    public bool fallingObject = false;
     public Vector3 valorDeIncremento = new Vector3(0.2f, 0.1f, 0);
 
     public int veces = 40;
