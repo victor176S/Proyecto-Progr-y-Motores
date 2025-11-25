@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,7 +35,11 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI textoPuntos;
 
+    public GameObject panelDerrota;
+
     public int puntos;
+
+    private bool haPerdido;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -111,6 +117,19 @@ public class GameManager : MonoBehaviour
         DashText();
         
         PuntosText();
+
+        if (vidasJugador == 0)
+        {
+
+            haPerdido = true;
+            
+        }
+
+        if (haPerdido)
+        {
+            StartCoroutine(OnDeath(1));
+        }
+
     }
 
     
@@ -175,5 +194,49 @@ public class GameManager : MonoBehaviour
         
         textoPuntos.text = $"Tienes {puntos} puntos";
 
+    }
+
+    IEnumerator OnDeath(int i)
+    {
+        switch (i)
+        {
+
+            case 0:
+
+            
+
+            yield return new WaitForSeconds(0.1f);
+
+                break;
+
+            case 1:
+
+            panelDerrota.SetActive(true);
+
+            yield return new WaitForSeconds(0.1f);
+
+                break;
+
+            case 2:
+
+            SceneManager.LoadScene("Nivel 1");
+
+                break;
+        }
+
+        
+        
+
+        
+    }
+
+    public void Reiniciar()
+    {
+       SceneManager.LoadScene("TestCamp"); 
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
