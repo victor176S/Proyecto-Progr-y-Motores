@@ -31,6 +31,10 @@ public class GameManager : MonoBehaviour
 
     public GameObject LeftToRightArrows;
 
+    public TextMeshProUGUI textoPuntos;
+
+    public int puntos;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Awake()
@@ -106,9 +110,7 @@ public class GameManager : MonoBehaviour
         
         DashText();
         
-
-
-
+        PuntosText();
     }
 
     
@@ -164,5 +166,14 @@ public class GameManager : MonoBehaviour
         {
             DashCharge.text = $"Dash cargandose";
         } 
+    }
+
+    void PuntosText()
+    {
+
+        Debug.Log(puntos);
+        
+        textoPuntos.text = $"Tienes {puntos} puntos";
+
     }
 }

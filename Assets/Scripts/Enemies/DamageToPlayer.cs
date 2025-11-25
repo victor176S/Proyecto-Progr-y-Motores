@@ -5,7 +5,7 @@ using UnityEngine;
 public class DamageToPlayer : MonoBehaviour
 {
     public static DamageToPlayer instance;
-    public float hurtCoolDownTimer =0f;
+    public float hurtCoolDownTimer = 0f;
 
     public Vector3 valorDeIncremento = new Vector3(8f, 6f, 0);
 
