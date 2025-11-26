@@ -49,8 +49,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
 
-    public GameObject fallingProp, fallingProp2, FallingProp3;
-
     [Header("Valores")]
 
     private bool haPerdido;

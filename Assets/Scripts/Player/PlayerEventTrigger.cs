@@ -153,27 +153,15 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 Debug.Log("se activo el trigger del prefab");
 
-                //var es un tipo de variable global, osea, guarda de todo, pero se borra en la primera asignacion que haces
+                FallingObjectSpawn.instance.SpawnFallingBoxes(0,8f);
+                FallingObjectSpawn.instance.SpawnFallingBoxes(1,8f);
 
-                var objeto = Instantiate(GameManager.instance.fallingProp, transform.position + new Vector3 (10,40,0), Quaternion.identity); //Despues del quaternion se puede poner el padre del objeto
+                //avisos de objetos en caida de izq a derecha
+                StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(true, false, false, false, false));
+                StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
 
-                var objeto1 = Instantiate(GameManager.instance.fallingProp2, transform.position + new Vector3 (-10,40,0), Quaternion.identity);
 
-                var objeto2 = Instantiate(GameManager.instance.fallingProp, transform.position + new Vector3 (0,40,0), Quaternion.identity);
-
-                GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(true);
-
-                objeto.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
-
-                objeto2.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
-
-                objeto1.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
-
-                StartCoroutine(DeleteFallingProp(objeto1));
-
-                StartCoroutine(DeleteFallingProp(objeto2));
-
-                StartCoroutine(DeleteFallingProp(objeto));
+                //StartCoroutine(DeleteFallingProp(objeto));
 
                 break;
 
@@ -184,14 +172,22 @@ public class PlayerEventTrigger : MonoBehaviour
 
     } 
 
-    public IEnumerator DeleteFallingProp(GameObject fallingProp)
+    
+
+
+}
+
+/*Para poner overloads a una funcion, hay que hacer la misma dos o más veces pero con diferentes cantidades
+de parametros
+
+    public void Funcion(int i, int j)
     {
-
-        //tiempo de espera hasta que despawnee
-        yield return new WaitForSeconds(8f);
-
-        Destroy(fallingProp);
-
         
     }
-}
+    
+    public void Funcion(int i, int j, int k)
+    {
+        
+    }
+
+    */

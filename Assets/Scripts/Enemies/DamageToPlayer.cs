@@ -73,13 +73,18 @@ public class DamageToPlayer : MonoBehaviour
 
     private IEnumerator HurtPlayer()
     {   
+
+        if (hurtCoolDownTimer <= 0)
+        {
+
         Debug.Log($"Hurt Cooldown Timer HurtPlayer (entrada): {hurtCoolDownTimer}");
         //esto falla
         GameManager.instance.DecreasePlayerLives();
         Debug.Log($"Hurt Cooldown Timer HurtPlayer (salida): {hurtCoolDownTimer}");
         hurtCoolDownTimer = 2f;
         yield return new WaitForSeconds(0.2f);
-       
+
+        }
     }
 
     private IEnumerator PlayerImpulseOnHurt()
