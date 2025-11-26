@@ -16,7 +16,8 @@ public class PlayerMovement : MonoBehaviour
 
 
     //variables salto
-    [Header("Salto")][SerializeField] private float fuerzaSalto = 28f;
+    [Header("Salto")]
+    [SerializeField] private float fuerzaSalto = 28f;
     private float fuerzaSaltoOriginal;
     public float tiempoSalto;
     public bool comesFromJumping;

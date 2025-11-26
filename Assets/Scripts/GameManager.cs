@@ -8,6 +8,8 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+
+    
     public bool usarDatosExternos = false;
     private string file;
 
@@ -15,19 +17,19 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
+    [Header("UI")]
+
     public int vidasJugador = 3;
 
     public RawImage corazon1, corazon2, corazon3;
 
     public TextMeshProUGUI porcentajeSaltoText;
 
-    public GameObject player;
-
     public GameObject LivesUI;
 
-    public TextMeshProUGUI DashCharge;
+     public TextMeshProUGUI DashCharge;
 
-    public GameObject TopToBottomArrows;
+     public GameObject TopToBottomArrows;
 
     public GameObject BottomToTopArrows;
 
@@ -39,7 +41,17 @@ public class GameManager : MonoBehaviour
 
     public int puntos;
 
+    public Canvas avisos;
+
+    [Header("Objetos")]
+
+    public GameObject camara;
+
+    public GameObject player;
+
     public GameObject fallingProp, fallingProp2, FallingProp3;
+
+    [Header("Valores")]
 
     private bool haPerdido;
 

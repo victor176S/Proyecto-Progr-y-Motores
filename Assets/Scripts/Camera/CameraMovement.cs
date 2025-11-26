@@ -33,15 +33,21 @@ public class CameraMovement : MonoBehaviour
         switch (opcion)
         {
             case 0:
-                //un poco hacia arriba
                 
-                camYextra = 25;
+                
+                camYextra = 25; //un poco hacia arriba
 
                 break;
 
             case 1:
 
-                camYextra = 0;
+                camYextra = 0; //camara centrada
+
+                break;
+
+            case 2:
+
+                camYextra = -10; //camara hacia arriba
 
                 break;
 

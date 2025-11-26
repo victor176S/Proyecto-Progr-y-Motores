@@ -72,7 +72,7 @@ public class PlayerEventTrigger : MonoBehaviour
 
             case 0:
             
-                
+                CameraMovement.instance.Movement(2);
                 //ESTO SI CAMBIA LA GRAVEDAD
 
                 PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
@@ -103,7 +103,7 @@ public class PlayerEventTrigger : MonoBehaviour
             case 2:
 
                 
-                
+                    CameraMovement.instance.Movement(1);
                     StartCoroutine(CameraShake.instance.ShakeLogic());
 
                     PlayerMovement.instance.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -155,17 +155,19 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 //var es un tipo de variable global, osea, guarda de todo, pero se borra en la primera asignacion que haces
 
-                var objeto = Instantiate(GameManager.instance.fallingProp, transform.position + new Vector3 (10,40,0), Quaternion.identity);
+                var objeto = Instantiate(GameManager.instance.fallingProp, transform.position + new Vector3 (10,40,0), Quaternion.identity); //Despues del quaternion se puede poner el padre del objeto
 
                 var objeto1 = Instantiate(GameManager.instance.fallingProp2, transform.position + new Vector3 (-10,40,0), Quaternion.identity);
 
                 var objeto2 = Instantiate(GameManager.instance.fallingProp, transform.position + new Vector3 (0,40,0), Quaternion.identity);
 
-                objeto.gameObject.GetComponent<Rigidbody2D>().AddTorque(90, ForceMode2D.Impulse);
+                GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(true);
+
+                objeto.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
                 objeto2.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
-                objeto1.gameObject.GetComponent<Rigidbody2D>().AddTorque(90, ForceMode2D.Impulse);
+                objeto1.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
                 StartCoroutine(DeleteFallingProp(objeto1));
 
