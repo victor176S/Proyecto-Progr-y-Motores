@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -76,6 +77,7 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
                 PlayerMovement.instance.rb.gravityScale = 0f;
+                PlayerMovement.instance.rb.constraints = RigidbodyConstraints2D.FreezePositionY;
 
                 Debug.Log($"Gravedad: {PlayerMovement.instance.rb.gravityScale}");
 
@@ -85,6 +87,8 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 StartCoroutine(ArrowsAnim.instance.TopToBottomArrowsAnim());
 
+                puntosDeControl[i].gameObject.SetActive(false);
+
                 break;
 
             case 1:
@@ -92,6 +96,7 @@ public class PlayerEventTrigger : MonoBehaviour
                 CameraRotation.instance.tiltAnimation = false;
                 CameraRotation.instance.target = 0f;
                 CameraRotation.instance.tiltToTheRight = true;
+                puntosDeControl[i].gameObject.SetActive(false);
 
                 break;
 
@@ -100,6 +105,8 @@ public class PlayerEventTrigger : MonoBehaviour
                 
                 
                     StartCoroutine(CameraShake.instance.ShakeLogic());
+
+                    PlayerMovement.instance.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                     puntosDeControl[i].gameObject.SetActive(false);
                     
                    
@@ -110,6 +117,8 @@ public class PlayerEventTrigger : MonoBehaviour
             case 3:
 
                 StartCoroutine(PlatformMovement.instance.PlatformGoingUp());
+
+                puntosDeControl[i].gameObject.SetActive(false);
 
                 break;
 
@@ -128,11 +137,15 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 CameraAutoScroll2D.instance.scrollActivo = false;
                 CameraMovement.instance.Movement(0);
+
+                puntosDeControl[i].gameObject.SetActive(false);
                 break;
 
             case 6:
 
                 CameraMovement.instance.Movement(1);
+
+                puntosDeControl[i].gameObject.SetActive(false);
 
                 break;
 
@@ -142,9 +155,9 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 //var es un tipo de variable global, osea, guarda de todo, pero se borra en la primera asignacion que haces
 
-                var objeto = Instantiate(GameManager.instance.fallingProp, transform.position + new Vector3 (5,40,0), Quaternion.identity);
+                var objeto = Instantiate(GameManager.instance.fallingProp, transform.position + new Vector3 (10,40,0), Quaternion.identity);
 
-                var objeto1 = Instantiate(GameManager.instance.fallingProp, transform.position + new Vector3 (-5,40,0), Quaternion.identity);
+                var objeto1 = Instantiate(GameManager.instance.fallingProp2, transform.position + new Vector3 (-10,40,0), Quaternion.identity);
 
                 var objeto2 = Instantiate(GameManager.instance.fallingProp, transform.position + new Vector3 (0,40,0), Quaternion.identity);
 
@@ -154,6 +167,12 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 objeto1.gameObject.GetComponent<Rigidbody2D>().AddTorque(90, ForceMode2D.Impulse);
 
+                StartCoroutine(DeleteFallingProp(objeto1));
+
+                StartCoroutine(DeleteFallingProp(objeto2));
+
+                StartCoroutine(DeleteFallingProp(objeto));
+
                 break;
 
             default:
@@ -162,4 +181,15 @@ public class PlayerEventTrigger : MonoBehaviour
         }
 
     } 
+
+    public IEnumerator DeleteFallingProp(GameObject fallingProp)
+    {
+
+        //tiempo de espera hasta que despawnee
+        yield return new WaitForSeconds(8f);
+
+        Destroy(fallingProp);
+
+        
+    }
 }

@@ -6,7 +6,7 @@ public class DamageToPlayer : MonoBehaviour
 {
     public static DamageToPlayer instance;
     public float hurtCoolDownTimer = 0f;
-
+    public bool enCaida = false;
     public bool fallingObject = false;
     public Vector3 valorDeIncremento = new Vector3(0.2f, 0.1f, 0);
 
@@ -33,19 +33,41 @@ public class DamageToPlayer : MonoBehaviour
     {
         Debug.Log($"Hurt Cooldown Timer Collision: {hurtCoolDownTimer}");
         Debug.Log("Colision con jugador");
+
+        if (other.collider.CompareTag("Suelo") && enCaida && fallingObject)
+        {
+            enCaida = false;
+        }
+
         if (other.collider.CompareTag("Player"))
         {
 
             Debug.Log("Colision con jugador confirmada");
 
-            if (hurtCoolDownTimer <= 0f)
+            if (hurtCoolDownTimer <= 0f && !fallingObject)
+            {
+                 StartCoroutine(HurtPlayer());
 
-                StartCoroutine(HurtPlayer());
+                  
+                StartCoroutine(PlayerImpulseOnHurt());
+            }
 
-                if (!fallingObject)
+            if (hurtCoolDownTimer <= 0f && fallingObject)
+            {
+                
+                if (enCaida)
                 {
-                    StartCoroutine(PlayerImpulseOnHurt());
+
+                    StartCoroutine(HurtPlayer());
+
+                    Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), PlayerEventTrigger.instance.GetComponent<Collider>());   
+
                 }
+
+            }
+
+               
+                
         }
     }
 
