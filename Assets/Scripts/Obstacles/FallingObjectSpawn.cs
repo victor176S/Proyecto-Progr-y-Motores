@@ -71,6 +71,134 @@ public class FallingObjectSpawn : MonoBehaviour
                 StartCoroutine(DeleteFallingProp(objeto6));
 
                 break;
+
+            case 2:
+
+                var objeto7 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (2,42,0), Quaternion.identity);
+                var objeto8 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (0.5f,40,0), Quaternion.identity);
+                var objeto9 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (3.5f,40,0), Quaternion.identity);
+
+                objeto7.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                objeto8.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                objeto9.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                StartCoroutine(DeleteFallingProp(objeto7));
+
+                StartCoroutine(DeleteFallingProp(objeto8));
+
+                StartCoroutine(DeleteFallingProp(objeto9));
+
+                break;
+
+            case 3:
+
+                var objeto10 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (12,42,0), Quaternion.identity);
+                var objeto11 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (10.5f,40,0), Quaternion.identity);
+                var objeto12 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (13.5f,40,0), Quaternion.identity);
+
+                objeto10.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                objeto11.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                objeto12.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                StartCoroutine(DeleteFallingProp(objeto10));
+
+                StartCoroutine(DeleteFallingProp(objeto11));
+
+                StartCoroutine(DeleteFallingProp(objeto12));
+
+                break;
+
+            case 4:
+
+                var objeto13 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (22,42,0), Quaternion.identity);
+                var objeto14 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (20.5f,40,0), Quaternion.identity);
+                var objeto15 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (23.5f,40,0), Quaternion.identity);
+
+                objeto13.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                objeto14.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                objeto15.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                StartCoroutine(DeleteFallingProp(objeto13));
+
+                StartCoroutine(DeleteFallingProp(objeto14));
+
+                StartCoroutine(DeleteFallingProp(objeto15));
+
+                break;
+            
+            default:
+
+                break;
+        }
+    }
+
+        public void SpawnFallingJoist(int opcion, float tiempo)
+    {
+
+        tiempoDespawn = tiempo;
+
+        Debug.Log(tiempoDespawn);
+
+        switch (opcion)
+        {
+            case 0:
+
+            Debug.Log("Switch FallingBoxes");
+
+                var objeto1 = Instantiate(fallingProp2, GameManager.instance.player.transform.position + new Vector3 (-18,40,0), Quaternion.identity);
+
+                objeto1.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                StartCoroutine(DeleteFallingProp(objeto1));
+
+                break;
+
+            case 1:
+
+                // 3 cajas en el centro a la izq
+                var objeto2 = Instantiate(fallingProp2, GameManager.instance.player.transform.position + new Vector3 (-8,40,0), Quaternion.identity);
+                
+                objeto2.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                StartCoroutine(DeleteFallingProp(objeto2));
+
+                break;
+
+            case 2:
+
+                var objeto3 = Instantiate(fallingProp2, GameManager.instance.player.transform.position + new Vector3 (2,42,0), Quaternion.identity);
+
+                objeto3.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                StartCoroutine(DeleteFallingProp(objeto3));
+
+                break;
+
+            case 3:
+
+                var objeto4 = Instantiate(fallingProp2, GameManager.instance.player.transform.position + new Vector3 (12,42,0), Quaternion.identity);
+
+                objeto4.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                StartCoroutine(DeleteFallingProp(objeto4));
+
+                break;
+
+            case 4:
+
+                var objeto5 = Instantiate(fallingProp2, GameManager.instance.player.transform.position + new Vector3 (22,42,0), Quaternion.identity);
+
+                objeto5.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                StartCoroutine(DeleteFallingProp(objeto5));
+
+                break;
             
             default:
 

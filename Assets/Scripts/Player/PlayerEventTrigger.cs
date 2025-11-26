@@ -153,12 +153,21 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 Debug.Log("se activo el trigger del prefab");
 
-                FallingObjectSpawn.instance.SpawnFallingBoxes(0,8f);
-                FallingObjectSpawn.instance.SpawnFallingBoxes(1,8f);
+                /*FallingObjectSpawn.instance.SpawnFallingJoist(0,8f);
+
+                FallingObjectSpawn.instance.SpawnFallingJoist(1,8f);
+
+                FallingObjectSpawn.instance.SpawnFallingJoist(2,8f);
+
+                FallingObjectSpawn.instance.SpawnFallingJoist(3,8f);*/
+                
 
                 //avisos de objetos en caida de izq a derecha
                 StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(true, false, false, false, false));
                 StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
+                StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
+                StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, true, false));
+                StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, true));
 
 
                 //StartCoroutine(DeleteFallingProp(objeto));
