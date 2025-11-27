@@ -71,7 +71,7 @@ public class PlayerEventTrigger : MonoBehaviour
         {
 
             case 0:
-            
+
                 CameraMovement.instance.Movement(2);
                 //ESTO SI CAMBIA LA GRAVEDAD
 
@@ -86,6 +86,8 @@ public class PlayerEventTrigger : MonoBehaviour
                 enCaida = true;
 
                 StartCoroutine(ArrowsAnim.instance.TopToBottomArrowsAnim());
+
+                StartCoroutine(Sounds.instance.PlaySound(0,2)); 
 
                 puntosDeControl[i].gameObject.SetActive(false);
 
@@ -153,21 +155,14 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 Debug.Log("se activo el trigger del prefab");
 
-                /*FallingObjectSpawn.instance.SpawnFallingJoist(0,8f);
-
-                FallingObjectSpawn.instance.SpawnFallingJoist(1,8f);
-
-                FallingObjectSpawn.instance.SpawnFallingJoist(2,8f);
-
-                FallingObjectSpawn.instance.SpawnFallingJoist(3,8f);*/
-                
+                FallingObjectSpawn.instance.SpawnFallingGlass(0,8f);
 
                 //avisos de objetos en caida de izq a derecha
-                StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(true, false, false, false, false));
+                StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, false));
                 StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
                 StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
                 StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, true, false));
-                StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, true));
+                StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, false));
 
 
                 //StartCoroutine(DeleteFallingProp(objeto));

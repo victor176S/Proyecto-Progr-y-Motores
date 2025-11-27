@@ -106,35 +106,35 @@ public class CameraRotation : MonoBehaviour
         
         if (tiltToTheRight && target <= maxTiltLeft && target > 10f)
             {
-                target -= 0.075f;
+                target -= 0.06f;
             }
 
             //de 10 hacia 7.5 (->)
 
             if (tiltToTheRight && target <= 10f && target > 7.5f)
             {
-                target -= 0.10f;
+                target -= 0.085f;
             }
 
             // de 7.5 hacia -7.5 (->)
 
             if (tiltToTheRight && target <= 7.5f && target >= -7.5f)
             {
-                target -= 0.125f;
+                target -= 0.1f;
             }
 
             //de -7.5 hacia -10(->)
 
             if (tiltToTheRight && target < -7.5 && target >= -10f)
             {
-                target -= 0.10f;
+                target -= 0.085f;
             }
 
             //de -10 hacia -12.5 (->)
 
             if (tiltToTheRight && target < -10f && target >= maxTiltRight)
             {
-                target -= 0.075f;
+                target -= 0.07f;
             }
             //se acaba arriba la animacion hacia la derecha
 
@@ -143,35 +143,35 @@ public class CameraRotation : MonoBehaviour
 
             if (tiltToTheLeft && target >= maxTiltRight && target < -10f)
             {
-                target += 0.075f;
+                target += 0.07f;
             }
 
             //de -10 hacia -7.5 (<-)
 
             if (tiltToTheLeft && target >= -10f && target < -7.5f)
             {
-                target += 0.10f;
+                target += 0.085f;
             }
 
             // de -7.5 hacia 7.5 (<-)
 
             if (tiltToTheLeft && target >= -7.5f && target < 7.5f)
             {
-                target += 0.125f;
+                target += 0.1f;
             }
 
             // de 7.5 hacia 10 (<-)
 
             if (tiltToTheLeft && target >= 7.5f && target < 10f)
             {
-                target += 0.10f;
+                target += 0.085f;
             }
 
             //de 10 hacia 12.5 (<-)
 
             if (tiltToTheLeft && target >= 10f && target <= maxTiltLeft)
             {
-                target += 0.075f;
+                target += 0.07f;
             }
             //se acaba arriba la animacion hacia la izq
 

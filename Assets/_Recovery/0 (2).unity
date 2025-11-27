@@ -7354,7 +7354,6 @@ MonoBehaviour:
   boxCollision: {fileID: 1560553196}
   landing: {fileID: 1560553195}
   boxesFalling: {fileID: 1560553194}
-  Reproduciendo: 0
 --- !u!4 &1645462878 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2185768009446829684, guid: ee5feb0fbd3abe44b9062096cb641bcd, type: 3}
@@ -8864,10 +8863,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1088565641455710950, guid: 6f4f06f5d6761cb4eae43ad2554842d7, type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1088565641455710950, guid: 6f4f06f5d6761cb4eae43ad2554842d7, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
@@ -8887,10 +8882,6 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 771234621}
-    - target: {fileID: 3010776940745988315, guid: 6f4f06f5d6761cb4eae43ad2554842d7, type: 3}
-      propertyPath: Loop
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3010776940745988315, guid: 6f4f06f5d6761cb4eae43ad2554842d7, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0

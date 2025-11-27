@@ -139,17 +139,15 @@ public class FallingObjectSpawn : MonoBehaviour
     }
 
         public void SpawnFallingJoist(int opcion, float tiempo)
-    {
+        {
 
         tiempoDespawn = tiempo;
 
-        Debug.Log(tiempoDespawn);
-
-        switch (opcion)
-        {
+            switch (opcion)
+            {
             case 0:
 
-            Debug.Log("Switch FallingBoxes");
+            
 
                 var objeto1 = Instantiate(fallingProp2, GameManager.instance.player.transform.position + new Vector3 (-18,40,0), Quaternion.identity);
 
@@ -197,6 +195,52 @@ public class FallingObjectSpawn : MonoBehaviour
                 objeto5.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
                 StartCoroutine(DeleteFallingProp(objeto5));
+
+                break;
+            
+            default:
+
+                break;
+        }
+    }
+
+        public void SpawnFallingGlass(int opcion, float tiempo)
+        {
+
+        tiempoDespawn = tiempo;
+
+        Debug.Log(tiempoDespawn);
+
+            switch (opcion)
+            {
+            case 0:
+
+                // 3 cajas en el centro a la izq
+                var objeto2 = Instantiate(fallingProp3, GameManager.instance.player.transform.position + new Vector3 (0,40,0), Quaternion.identity);
+                
+                objeto2.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                StartCoroutine(DeleteFallingProp(objeto2));
+
+                break;
+
+            case 1:
+
+                var objeto3 = Instantiate(fallingProp3, GameManager.instance.player.transform.position + new Vector3 (10,42,0), Quaternion.identity);
+
+                objeto3.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                StartCoroutine(DeleteFallingProp(objeto3));
+
+                break;
+
+            case 2:
+
+                var objeto4 = Instantiate(fallingProp3, GameManager.instance.player.transform.position + new Vector3 (-10,42,0), Quaternion.identity);
+
+                objeto4.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
+
+                StartCoroutine(DeleteFallingProp(objeto4));
 
                 break;
             

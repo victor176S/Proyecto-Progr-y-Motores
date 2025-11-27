@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     //variables salto
     [Header("Salto")]
     [SerializeField] private float fuerzaSalto = 28f;
-    private float fuerzaSaltoOriginal;
+    public float fuerzaSaltoOriginal;
     public float tiempoSalto;
     public bool comesFromJumping;
     public float porcentajesalto = 0f;
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     [Header("Input System")]
-    private bool botonSaltoMantenido;
+    public bool botonSaltoMantenido;
     private Vector2 entradaMovimiento;
     public UnityEvent OnHold;
     public bool botonSaltoPresionado;
@@ -165,12 +165,24 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
 
+        if (!Sounds.instance.Reproduciendo)
+        {
+            Sounds.instance.Reproduciendo = true;
+
+             StartCoroutine(Sounds.instance.PlaySound(1,1));
+        }
+
+       
+
         var v = rb.linearVelocity;
         v.x = entradaMovimiento.x * velocidadMovimiento;
         rb.linearVelocity = v;
 
         if (botonSaltoMantenido && enSuelo && fuerzaSalto < fuerzaSaltoMaxima)
         {
+
+            
+
             velocidadMovimiento = velocidadMovimiento /1.02f;
 
             porcentajesalto = (fuerzaSalto / fuerzaSaltoMaxima) * 100;
@@ -234,6 +246,7 @@ public class PlayerMovement : MonoBehaviour
             // Detectar si se mantiene presionada la tecla "E"
             if (Input.GetKey(KeyCode.UpArrow))
             {
+
                 botonSaltoMantenido = true;
 
                 Debug.Log($"Mantenido = {botonSaltoMantenido}");
@@ -311,7 +324,7 @@ public class PlayerMovement : MonoBehaviour
             if (inputBuffer)
             { 
                 //si no se divide entre dos, en el input buffer salta demasiado
-                rb.AddForce(Vector2.up * fuerzaSalto/2, ForceMode2D.Impulse);
+                rb.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
             }
             enSuelo = true; 
         }

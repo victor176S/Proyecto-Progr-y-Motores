@@ -33,23 +33,24 @@ public class PlayerDash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        if (timerDashDuracion > 0f)
-        {
-            timerDashDuracion -= Time.deltaTime;
-        }
 
+        
+       
     }
 
     void FixedUpdate()
     {
-
 
         DetectarTecla();
 
         if (tiempoCooldownDash > 0f)
         {
             tiempoCooldownDash -= Time.deltaTime;
+        }
+
+        if (timerDashDuracion > 0f)
+        {
+            timerDashDuracion -= Time.deltaTime;
         }
 
         if (tiempoCooldownDash <= 0f)
