@@ -13,6 +13,8 @@ public class Sounds : MonoBehaviour
 
     public AudioSource hurted;
 
+    public AudioSource hurtedSharp;
+
     public AudioSource boxCollision;
 
     public AudioSource landing;
@@ -90,7 +92,13 @@ public class Sounds : MonoBehaviour
 
             case 2:
 
+                hurted.Play();
 
+                break;
+
+            case 3:
+
+                hurtedSharp.Play();
 
                 break;
             

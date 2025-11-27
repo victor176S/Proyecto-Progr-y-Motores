@@ -31,6 +31,7 @@ public class DamageToPlayer : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+
         Debug.Log($"Hurt Cooldown Timer Collision: {hurtCoolDownTimer}");
         Debug.Log("Colision con jugador");
 
@@ -46,10 +47,23 @@ public class DamageToPlayer : MonoBehaviour
 
             if (hurtCoolDownTimer <= 0f && !fallingObject)
             {
-                 StartCoroutine(HurtPlayer());
+                StartCoroutine(HurtPlayer());
 
-                  
+                if (gameObject.CompareTag("Pincho"))
+                {
+                    Debug.Log("entra a el if del tag");
+
+                    StartCoroutine(Sounds.instance.PlaySound(3,1));
+                }
+
+                else
+                {
+                    StartCoroutine(Sounds.instance.PlaySound(2,1));
+                }
+ 
                 StartCoroutine(PlayerImpulseOnHurt());
+
+                
             }
 
             if (hurtCoolDownTimer <= 0f && fallingObject)
@@ -59,6 +73,8 @@ public class DamageToPlayer : MonoBehaviour
                 {
 
                     StartCoroutine(HurtPlayer());
+
+                    StartCoroutine(Sounds.instance.PlaySound(2,1));
 
                     Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), PlayerEventTrigger.instance.GetComponent<Collider>());   
 

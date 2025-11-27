@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - cameraTrigger
   - playerTrigger
+  - Pincho
   layers:
   - Default
   - TransparentFX
