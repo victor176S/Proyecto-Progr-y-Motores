@@ -7351,6 +7351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sounds
   viento: {fileID: 1560553198}
   cargarSalto: {fileID: 1560553197}
+  hurted: {fileID: 0}
   boxCollision: {fileID: 1560553196}
   landing: {fileID: 1560553195}
   boxesFalling: {fileID: 1560553194}
@@ -8859,6 +8860,10 @@ PrefabInstance:
       propertyPath: m_IncludeLayers.m_Bits
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 358249365438451042, guid: 6f4f06f5d6761cb4eae43ad2554842d7, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 526565401b95173469e30367eef82127, type: 3}
     - target: {fileID: 358249365438451042, guid: 6f4f06f5d6761cb4eae43ad2554842d7, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
