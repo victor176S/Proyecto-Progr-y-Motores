@@ -11,6 +11,8 @@ public class Sounds : MonoBehaviour
 
     public AudioSource cargarSalto;
 
+    public AudioSource hurted;
+
     public AudioSource boxCollision;
 
     public AudioSource landing;
@@ -32,6 +34,11 @@ public class Sounds : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (PlayerMovement.instance.enSuelo && Input.GetKey(KeyCode.Space) || PlayerMovement.instance.enSuelo && PlayerMovement.instance.saltoBuffer)
+        {
+            landing.Play();
+        }
 
         if (PlayerMovement.instance.enSuelo)
         {
@@ -78,6 +85,12 @@ public class Sounds : MonoBehaviour
                 }
 
                    
+
+                break;
+
+            case 2:
+
+
 
                 break;
             

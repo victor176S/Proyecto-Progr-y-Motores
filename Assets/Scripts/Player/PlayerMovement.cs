@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float inputBufferCooldown = 0.3f;
 
-
+    public bool saltoBuffer;
 
     [Header("Sprite")]
     private SpriteRenderer sprite;
@@ -323,6 +323,7 @@ public class PlayerMovement : MonoBehaviour
             //input buffer jump logic
             if (inputBuffer)
             { 
+                saltoBuffer = true;
                 //si no se divide entre dos, en el input buffer salta demasiado
                 rb.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
             }
