@@ -37,6 +37,13 @@ public class OpcionesConfig : MonoBehaviour
 
         volumenSFX_Text.text = $"{Mathf.CeilToInt(volumenSFX.GetComponent<Slider>().value *100)} %";
 
+        if(codigos.GetComponent<TextMeshProUGUI>().text != null)
+        {
+            Debug.Log(codigos.GetComponent<TextMeshProUGUI>().text);
+        }
+
+        
+
     }
 
 
