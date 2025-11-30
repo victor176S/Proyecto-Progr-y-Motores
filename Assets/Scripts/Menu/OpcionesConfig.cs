@@ -15,7 +15,9 @@ public class OpcionesConfig : MonoBehaviour
 
     public TextMeshProUGUI volumenSFX_Text;
 
-    public GameObject codigos;
+    public InputField codigos;
+
+    public string textoInput;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -32,19 +34,20 @@ public class OpcionesConfig : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        DatosPersistentes.instance.volumenMusica = volumenMusica.value;
+
+        DatosPersistentes.instance.volumenSFX = volumenSFX.value;
         
         volumenMusicaText.text = $"{Mathf.CeilToInt(volumenMusica.GetComponent<Slider>().value *100)} %";
 
         volumenSFX_Text.text = $"{Mathf.CeilToInt(volumenSFX.GetComponent<Slider>().value *100)} %";
 
-        if(codigos.GetComponent<TextMeshProUGUI>().text != null)
-        {
-            Debug.Log(codigos.GetComponent<TextMeshProUGUI>().text);
-        }
+        textoInput = codigos.GetComponent<InputField>().text;
 
+        Debug.Log(textoInput);
         
 
     }
-
 
 }

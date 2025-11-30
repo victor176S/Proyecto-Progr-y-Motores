@@ -25,6 +25,7 @@ public class ButtonsUtilities : MonoBehaviour
 
     public void ChangeScene(int sceneNumber)
     {
+
         SceneManager.LoadScene(sceneNumber);
     }
 

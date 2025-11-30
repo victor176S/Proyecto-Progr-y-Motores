@@ -37,6 +37,15 @@ public class Sounds : MonoBehaviour
     void Update()
     {
 
+        viento.volume = DatosPersistentes.instance.volumenSFX;
+        cargarSalto.volume = DatosPersistentes.instance.volumenSFX;
+        hurted.volume = DatosPersistentes.instance.volumenSFX;
+        hurtedSharp.volume = DatosPersistentes.instance.volumenSFX;
+        boxCollision.volume = DatosPersistentes.instance.volumenSFX;
+        landing.volume = DatosPersistentes.instance.volumenSFX;
+        boxesFalling.volume = DatosPersistentes.instance.volumenSFX;
+
+
         if (PlayerMovement.instance.enSuelo && Input.GetKey(KeyCode.Space) || PlayerMovement.instance.enSuelo && PlayerMovement.instance.saltoBuffer)
         {
             landing.Play();

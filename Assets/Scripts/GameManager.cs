@@ -69,6 +69,9 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        DatosPersistentes.instance.fueraDelMenu = true;
+
     }
 
     void Start()
@@ -158,6 +161,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+        Debug.Log($"Datos: {DatosPersistentes.instance.codigoLyrics}");
+
+        Debug.Log($"Datos: {DatosPersistentes.instance.volumenMusica}");
+
+        Debug.Log($"Datos: {DatosPersistentes.instance.volumenSFX}");
+
     }
 
     void LogicVidas()
