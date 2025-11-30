@@ -38,6 +38,11 @@ public class OpcionesConfig : MonoBehaviour
         DatosPersistentes.instance.volumenMusica = volumenMusica.value;
 
         DatosPersistentes.instance.volumenSFX = volumenSFX.value;
+
+        SonidosMenu.instance.SFX_Prueba.volume = volumenSFX.value;
+
+        SonidosMenu.instance.Musica_Prueba.volume = volumenMusica.value;
+
         
         volumenMusicaText.text = $"{Mathf.CeilToInt(volumenMusica.GetComponent<Slider>().value *100)} %";
 
