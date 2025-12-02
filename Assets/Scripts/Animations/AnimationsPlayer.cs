@@ -5,7 +5,7 @@ public class AnimationsPlayer : MonoBehaviour
 
     public static AnimationsPlayer instance;
 
-    [SerializeField] private Animator animator;
+    public Animator animator;
 
     private bool cargandoSalto;
 
