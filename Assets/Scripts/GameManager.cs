@@ -60,15 +60,7 @@ public class GameManager : MonoBehaviour
         //en este caso como quiero llamar a una clase que cambia los valores de manera externa
         //(aunque el codigo del cambio esté en el mismo script) necesito usar esto aquí, yo que los cambios
         //en codigo los hago aqui
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        instance = this;
 
         DatosPersistentes.instance.fueraDelMenu = true;
 
