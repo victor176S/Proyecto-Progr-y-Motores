@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationsPlayer : MonoBehaviour
@@ -54,5 +56,14 @@ public class AnimationsPlayer : MonoBehaviour
 
         animator.SetBool("CargandoSalto", cargandoSalto);
         
+    }
+
+    public IEnumerator TriggerRecompostura()
+    {
+
+        yield return new WaitForSeconds(5f);
+
+        animator.SetTrigger("Recompostura");
+
     }
 }

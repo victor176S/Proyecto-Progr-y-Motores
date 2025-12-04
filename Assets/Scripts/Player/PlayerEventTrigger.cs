@@ -72,7 +72,9 @@ public class PlayerEventTrigger : MonoBehaviour
 
             case 0:
 
-                AnimationsPlayer.instance.animator.SetTrigger("CaidaGrande");
+                AnimationsPlayer.instance.animator.SetTrigger("CaidaInesperada");
+
+                StartCoroutine(AnimationsPlayer.instance.TriggerRecompostura());
 
                 CameraMovement.instance.Movement(2);
                 //ESTO SI CAMBIA LA GRAVEDAD

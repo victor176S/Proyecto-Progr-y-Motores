@@ -62,8 +62,11 @@ public class GameManager : MonoBehaviour
         //en codigo los hago aqui
         instance = this;
 
-        DatosPersistentes.instance.fueraDelMenu = true;
 
+        if (DatosPersistentes.instance != null)
+        {
+            DatosPersistentes.instance.fueraDelMenu = true;
+        }
     }
 
     void Start()
@@ -152,13 +155,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (DatosPersistentes.instance != null)
+        {
         Debug.Log($"Datos: {DatosPersistentes.instance.codigoLyrics}");
 
         Debug.Log($"Datos: {DatosPersistentes.instance.volumenMusica}");
 
         Debug.Log($"Datos: {DatosPersistentes.instance.volumenSFX}");
-
+        }
     }
 
     void LogicVidas()
