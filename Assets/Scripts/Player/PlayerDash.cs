@@ -18,6 +18,7 @@ public class PlayerDash : MonoBehaviour
     public float tiempoCooldownDash = 2f;
 
     public bool activateTimer;
+    private bool disableDash = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -43,6 +44,13 @@ public class PlayerDash : MonoBehaviour
     void FixedUpdate()
     {
 
+        if (PlayerMovement.instance.velocidadMovimientoActual > 20 && !dashEnCurso)
+        {
+            player.gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            player.gameObject.GetComponent<PlayerMovement>().velocidadMovimiento = 18f;
+
+        }
+
         DetectarTecla();
 
         if (player.gameObject.GetComponent<PlayerMovement>().enSuelo == true && tiempoCooldownDash <= 0f)
@@ -62,7 +70,11 @@ public class PlayerDash : MonoBehaviour
 
         if (botonDashPresionado && tiempoCooldownDash <= 0f)
         {
-            StartCoroutine(DashLogic());
+
+            if (!disableDash)
+            {
+                 StartCoroutine(DashLogic());
+            }
         }
 
         if (activateTimer && timerDashDuracion > 0f)

@@ -111,6 +111,7 @@ public class PlayerEventTrigger : MonoBehaviour
                 
                     CameraMovement.instance.Movement(1);
                     StartCoroutine(CameraShake.instance.ShakeLogic());
+                    AnimationsPlayer.instance.animator.SetTrigger("Landing");
 
                     PlayerMovement.instance.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                     puntosDeControl[i].gameObject.SetActive(false);
