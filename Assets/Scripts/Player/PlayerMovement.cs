@@ -34,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     public float velocidadMovimientoOriginal = 18f;
     public float y;
 
+    public float velocidadMovimientoActual; //no asignar nada a parte del linearvelocityX, esto es para debug
+
     [Header("Rigidbody")]
     public Rigidbody2D rb;
 
@@ -165,6 +167,8 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
 
+        
+
         if (!Sounds.instance.Reproduciendo)
         {
             Sounds.instance.Reproduciendo = true;
@@ -206,6 +210,8 @@ public class PlayerMovement : MonoBehaviour
                 velocidadMovimiento = velocidadMovimientoOriginal;
             }
         }
+
+        velocidadMovimientoActual = v.x;
     }
 
     // Update is called once per frame

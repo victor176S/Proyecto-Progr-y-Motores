@@ -27,6 +27,14 @@ public class AnimationsPlayer : MonoBehaviour
         if (PlayerMovement.instance.botonSaltoMantenido && PlayerMovement.instance.enSuelo)
         {
             cargandoSalto = true;
+            if (PlayerMovement.instance.velocidadMovimientoActual > 0 || PlayerMovement.instance.velocidadMovimientoActual < 0)
+            {
+                animator.SetTrigger("CargarSaltoAndar");
+            }
+            else
+            {
+                animator.SetTrigger("CargarSaltoQuieto");
+            }
         }
 
         else

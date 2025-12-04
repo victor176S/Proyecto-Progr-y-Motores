@@ -17,6 +17,8 @@ public class PlayerDash : MonoBehaviour
 
     public float tiempoCooldownDash = 2f;
 
+    public bool activateTimer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Awake()
@@ -43,54 +45,89 @@ public class PlayerDash : MonoBehaviour
 
         DetectarTecla();
 
+        if (player.gameObject.GetComponent<PlayerMovement>().enSuelo == true && tiempoCooldownDash <= 0f)
+        {
+                puedeDashear = true;
+        }
+
+        if (timerDashDuracion <= 0)
+        {
+            dashEnCurso = false;
+        }
+
         if (tiempoCooldownDash > 0f)
         {
             tiempoCooldownDash -= Time.deltaTime;
         }
 
-        if (timerDashDuracion > 0f)
+        if (botonDashPresionado && tiempoCooldownDash <= 0f)
+        {
+            StartCoroutine(DashLogic());
+        }
+
+        if (activateTimer && timerDashDuracion > 0f)
         {
             timerDashDuracion -= Time.deltaTime;
         }
 
-        if (tiempoCooldownDash <= 0f)
+        if (!dashEnCurso)
         {
-            DashLogic();
+            timerDashDuracion = 0.7f;
         }
         
     }
 
-    public void DashLogic()
+    public IEnumerator DashLogic()
     {
+        
 
-            if ((timerDashDuracion + tiempoCooldownDash) > 0f)
+            if (timerDashDuracion > 0.01f)
+                {
+                    dashEnCurso = true;
+                }
+
+
+
+            if (tiempoCooldownDash <= 0f)
             {
 
             Debug.Log("Entrada al if de gravedad");
             //player.gameObject.GetComponent<PlayerMovement>().rb.gravityScale = 0;
 
             //congela la rotacion y la posicion en Y
-            player.gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezePositionY;
-            player.gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+                while (timerDashDuracion >= 0f)
+                    {
+
+                    activateTimer = true;
+                    
+
+                    player.gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+                    player.gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             
-            player.gameObject.GetComponent<PlayerMovement>().velocidadMovimiento += 24f;
+                    player.gameObject.GetComponent<PlayerMovement>().velocidadMovimiento = 40f;
+                    AnimationsPlayer.instance.animator.SetTrigger("Dashear");
+                    yield return new WaitForSeconds(0.01f);
 
-            puedeDashear = false;
+                    }
 
-            }
+                    puedeDashear = false;
+                    tiempoCooldownDash = 1f;
+                    timerDashDuracion = 0.7f;
+                    botonDashPresionado = false;
+
+
+
+                }
             
         
 
-        else
+        if (timerDashDuracion <= 0.3f)
         {   
             player.gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            if (player.gameObject.GetComponent<PlayerMovement>().enSuelo == true && tiempoCooldownDash <= 0f)
-            {
-                puedeDashear = true;
-            }
         }
 
-        
+        yield return new WaitForSeconds(0.01f);
 
     }
 
@@ -103,8 +140,6 @@ public class PlayerDash : MonoBehaviour
             // Detectar si se presiona la tecla "flecha arriba"
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-
-                tiempoCooldownDash = 2f;
 
                 botonDashPresionado = true;
 
@@ -123,8 +158,6 @@ public class PlayerDash : MonoBehaviour
             {
 
                 botonDashMantenido = true;
-
-                timerDashDuracion = 0.7f;
 
                 Debug.Log($"Dash Pulsado = {botonDashPresionado}");
                 // Aquí puedes agregar la lógica que deseas ejecutar
