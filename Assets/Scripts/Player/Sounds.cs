@@ -21,6 +21,8 @@ public class Sounds : MonoBehaviour
 
     public AudioSource boxesFalling;
 
+    public AudioSource musicaNivel;
+
     public bool Reproduciendo;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -30,7 +32,10 @@ public class Sounds : MonoBehaviour
     }
     void Start()
     {
-        
+        if (musicaNivel != null)
+        {
+            musicaNivel.Play();
+        }
     }
 
     // Update is called once per frame
@@ -46,6 +51,7 @@ public class Sounds : MonoBehaviour
         boxCollision.volume = DatosPersistentes.instance.volumenSFX;
         landing.volume = DatosPersistentes.instance.volumenSFX;
         boxesFalling.volume = DatosPersistentes.instance.volumenSFX;
+        musicaNivel.volume = DatosPersistentes.instance.volumenMusica;
         }
 
        

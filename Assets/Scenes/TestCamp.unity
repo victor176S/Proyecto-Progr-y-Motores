@@ -8490,7 +8490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1117750687
 Transform:
   m_ObjectHideFlags: 0
@@ -12267,7 +12267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1692273916
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14451,7 +14451,7 @@ GameObject:
   - component: {fileID: 2036819879}
   - component: {fileID: 2036819880}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI y pantalla de perder
   m_TagString: Pincho
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15574,6 +15574,10 @@ PrefabInstance:
       propertyPath: hurtedSharp
       value: 
       objectReference: {fileID: 1560553207}
+    - target: {fileID: 3600776877832032797, guid: 6f4f06f5d6761cb4eae43ad2554842d7, type: 3}
+      propertyPath: musicaNivel
+      value: 
+      objectReference: {fileID: 5148697172520111288}
     - target: {fileID: 4217751069432328834, guid: 6f4f06f5d6761cb4eae43ad2554842d7, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -15678,11 +15682,20 @@ PrefabInstance:
       propertyPath: 'puntosDeControl.Array.data[7]'
       value: 
       objectReference: {fileID: 787900015}
+    - target: {fileID: 8959974220391676283, guid: 6f4f06f5d6761cb4eae43ad2554842d7, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f4f06f5d6761cb4eae43ad2554842d7, type: 3}
+--- !u!82 &5148697172520111288 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8959974220391676283, guid: 6f4f06f5d6761cb4eae43ad2554842d7, type: 3}
+  m_PrefabInstance: {fileID: 5148697172520111287}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6184127690080578960
 PrefabInstance:
   m_ObjectHideFlags: 0
