@@ -8,7 +8,7 @@ public class DamageToPlayer : MonoBehaviour
     public float hurtCoolDownTimer = 0f;
     public bool enCaida = false;
     public bool fallingObject = false;
-    public Vector3 valorDeIncremento = new Vector3(0.2f, 0.1f, 0);
+    public Vector3 valorDeIncremento = new Vector3(0.2f, 0.05f, 0);
 
     public int veces = 40;
 
@@ -63,6 +63,9 @@ public class DamageToPlayer : MonoBehaviour
  
                 StartCoroutine(PlayerImpulseOnHurt());
 
+                AnimationsPlayer.instance.animator.SetTrigger("HurtToFall");
+
+
                 
             }
 
@@ -98,6 +101,7 @@ public class DamageToPlayer : MonoBehaviour
         GameManager.instance.DecreasePlayerLives();
         Debug.Log($"Hurt Cooldown Timer HurtPlayer (salida): {hurtCoolDownTimer}");
         hurtCoolDownTimer = 2f;
+        
         yield return new WaitForSeconds(0.2f);
 
         }
@@ -105,7 +109,8 @@ public class DamageToPlayer : MonoBehaviour
 
     private IEnumerator PlayerImpulseOnHurt()
     {
-        
+        AnimationsPlayer.instance.animator.SetBool("Hurted", true);
+        AnimationsPlayer.instance.animator.SetTrigger("CaidaInesperada");
         
         for (int i = 0; i <= (veces*5); i++)
         {
@@ -120,6 +125,9 @@ public class DamageToPlayer : MonoBehaviour
 
         PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
         PlayerMovement.instance.rb.gravityScale = 4f;
+
+        AnimationsPlayer.instance.animator.SetBool("Hurted", false);
+        
 
         yield return new WaitForSeconds (0.001f);
 
