@@ -13,7 +13,7 @@ public class CameraManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        camara.gameObject.GetComponent<Camera>().fieldOfView = 70;
     }
 
     // Update is called once per frame

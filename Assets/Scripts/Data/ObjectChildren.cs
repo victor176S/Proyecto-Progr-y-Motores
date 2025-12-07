@@ -38,7 +38,7 @@ public class ObjectChildren : MonoBehaviour
     {
         foreach (GameObject objeto in hijosRawImage)
         {
-            objeto.gameObject.GetComponent<RawImage>().color = new Color (255f,255f,255f,padre.gameObject.GetComponent<AlphaChangerPanelImage>().alpha);
+            objeto.gameObject.GetComponent<RawImage>().color = new Color (255f,255f,255f,padre.gameObject.GetComponent<AlphaChangerPanelImage>().alpha/2);
         }
     }
 
@@ -46,7 +46,7 @@ public class ObjectChildren : MonoBehaviour
     {
          foreach (GameObject objeto in hijosTextMesh)
         {
-            objeto.gameObject.GetComponent<TextMeshProUGUI>().color = new Color (255f,255f,255f,padre.gameObject.GetComponent<AlphaChangerPanelImage>().alpha);
+            objeto.gameObject.GetComponent<TextMeshProUGUI>().color = new Color (255f,255f,255f,padre.gameObject.GetComponent<AlphaChangerPanelImage>().alpha/2);
         }
     }
 }
