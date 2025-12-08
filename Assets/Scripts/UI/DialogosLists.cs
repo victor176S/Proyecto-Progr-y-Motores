@@ -5,40 +5,52 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dialogos : MonoBehaviour
+public class DialogosLists : MonoBehaviour
 {
 
-    public static Dialogos instance;
+    public static DialogosLists instance;
 
-    public string dialogo1;
+    public List<string> dialogos;
 
     public string AppendToString;
 
-    public char[] dialogo1Array;
+    public List<char[]> dialogosArrays;
 
     public TextMeshProUGUI textoCaja;
     public bool called;
 
+    int k;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        dialogo1 = "Hola, has sido traido a este laboratorio para realizar algunas pruebas físicas, no te preocupes, se te dará una recompensa el final de las pruebas por el esfuerzo";
-        dialogo1Array = dialogo1.ToCharArray();
+        dialogos[0] = "Hola, has sido traido a este laboratorio para realizar algunas pruebas físicas, no te preocupes, se te dará una recompensa el final de las pruebas por el esfuerzo";
+        dialogosArrays[0] = dialogos[0].ToCharArray();
         
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        
+    }
+    /*{
         if (!called)
         {
             StartCoroutine(DialogoLogic());
         }
-    }
+    }*/
 
-    public IEnumerator DialogoLogic()
+    /*public IEnumerator DialogoLogic()
     {
-        for (int i = 0; i < dialogo1Array.Length; i++)
+
+        switch (switch_on)
+        {
+            
+            default:
+        }
+
+        for (int i = 0; i < dialogosArrays[0].Length; i++)
         {
             called =true;
 
@@ -70,6 +82,6 @@ public class Dialogos : MonoBehaviour
         textoCaja.transform.parent.gameObject.GetComponent<AlphaChangerPanelImage>().hasChildren = true;
 
         textoCaja.transform.parent.gameObject.GetComponent<AlphaChangerPanelImage>().fade = true;
-    }
+    }*/
     
 }

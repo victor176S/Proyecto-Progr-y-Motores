@@ -87,15 +87,15 @@ public class AlphaChangerPanelImage : MonoBehaviour
         
         if (contador <= tiempo)
         {
-            contador += Time.deltaTime;
+            contador += Time.deltaTime * 6;
 
             if (fade)
             {
-                objeto.gameObject.GetComponent<UnityEngine.UI.Image>().color += new Color (0f,0f,0f, 0f - (1/tiempo * Time.deltaTime));
+                objeto.gameObject.GetComponent<UnityEngine.UI.Image>().color += new Color (0f,0f,0f, 0f - (1/tiempo * Time.deltaTime * 6));
 
                 if (hasChildren)
                 {
-                    
+                    ObjectChildren.instance.ApplyAlphaToChildren();
                 }
             }
 

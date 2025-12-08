@@ -6976,7 +6976,7 @@ GameObject:
   - component: {fileID: 1057696437}
   - component: {fileID: 1057696439}
   m_Layer: 5
-  m_Name: Dialogo
+  m_Name: Dialogo 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7021,7 +7021,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Primer dialogo de ejemplo hola buenos dias como estas yo bien y tu
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 241c6acceca8b844baad6cbcf60cefc7, type: 2}
   m_sharedMaterial: {fileID: -699112959996641730, guid: 241c6acceca8b844baad6cbcf60cefc7, type: 2}
@@ -7030,8 +7030,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278209279
-  m_fontColor: {r: 1, g: 0.28901172, b: 0, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7113,8 +7113,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dialogos
   dialogo1: 
+  AppendToString: 
   dialogo1Array: 
   textoCaja: {fileID: 1057696437}
+  called: 0
 --- !u!1 &1070595702
 GameObject:
   m_ObjectHideFlags: 0
@@ -9657,6 +9659,8 @@ GameObject:
   - component: {fileID: 1501388320}
   - component: {fileID: 1501388322}
   - component: {fileID: 1501388321}
+  - component: {fileID: 1501388323}
+  - component: {fileID: 1501388324}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -9681,7 +9685,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.675476, y: 181.81}
+  m_AnchoredPosition: {x: -5.675537, y: 204}
   m_SizeDelta: {x: -659.16, y: -908.37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1501388321
@@ -9697,7 +9701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.1882353}
+  m_Color: {r: 0.81886786, g: 0.81886786, b: 0.81886786, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9722,6 +9726,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501388319}
   m_CullTransparentMesh: 1
+--- !u!114 &1501388323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501388319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb0e3d43ee988f4caba105955a69a21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlphaChangerPanelImage
+  objeto: {fileID: 1501388319}
+  contador: 0
+  tiempo: 1
+  fade: 0
+  fadeActive: 0
+  appearActive: 0
+  transitionStart: 0
+  transitionEnd: 0
+  appear: 0
+  opcion: 0
+  transicionStartAlphaLimit: 0
+  transicionEndAlphaLimit: 0
+  transicionStartIntesity: 0
+  transicionEndIntesity: 0
+  transitionMiddleIntensity: 0
+  hasChildren: 1
+  alpha: 0
+  delay: 0
+--- !u!114 &1501388324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501388319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010cb35742cfdc740addd331db377d06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectChildren
+  padre: {fileID: 1501388319}
+  hijosRawImage: []
+  hijosTextMesh:
+  - {fileID: 1057696435}
 --- !u!1 &1504016175
 GameObject:
   m_ObjectHideFlags: 0
