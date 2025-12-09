@@ -7113,13 +7113,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogosLists
   dialogos: []
-  dialogosSeleccionados: 
+  dialogosSeleccionados: 0100000000000000
   AppendToString: 
   textoCaja: {fileID: 1057696437}
   called: 0
   dialogo: 1
   isOneDialog: 0
   dialogNumberEnd: 0
+  tiempoDialogos: 0
 --- !u!1 &1070595702
 GameObject:
   m_ObjectHideFlags: 0
@@ -9743,7 +9744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AlphaChangerPanelImage
   objeto: {fileID: 1501388319}
   contador: 0
-  tiempo: 1
+  tiempo: 100
   fade: 0
   fadeActive: 0
   appearActive: 0

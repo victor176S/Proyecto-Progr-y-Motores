@@ -26,6 +26,8 @@ public class DialogosLists : MonoBehaviour
 
     public int dialogNumberEnd;
 
+    public float tiempoDialogos;
+
     void Awake()
     {
         instance = this;
@@ -34,6 +36,7 @@ public class DialogosLists : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
         dialogos.Insert(0, "Hola, has sido traido a este laboratorio para realizar algunas pruebas físicas, no te preocupes, se te dará una recompensa el final de las pruebas por el esfuerzo");
         
         dialogos.Insert(1, "prueba 2");
@@ -61,21 +64,45 @@ public class DialogosLists : MonoBehaviour
 
         else
         {
-            for (int i = 0; i < dialogNumberEnd; i++)
+            if (!called)
             {
-
-                var dialogoArray = dialogos[dialogo].ToCharArray();
-                StartCoroutine(DialogoLogic(dialogoArray));
+                
+                StartCoroutine(MultiDialogos());  
+                
             }
+                
         }
         
+    }
+
+    public IEnumerator MultiDialogos()
+    {
+        for (int l = 0; l < dialogos.Count; l++)
+            {       
+                    
+                    dialogo = dialogosSeleccionados[l];
+                    var dialogoArray = dialogos[dialogo].ToCharArray();
+
+                    if (dialogoArray.Length > 20)
+                    {
+                        tiempoDialogos = 0.14f * dialogoArray.Length / 3;
+                    }
+
+                    if(dialogoArray.Length <= 20)
+                    {
+                        tiempoDialogos = 0.2f * dialogoArray.Length / 2;
+                    }
+                    
+                    Debug.Log($"Multidialogo: {dialogoArray}");
+                    StartCoroutine(DialogoLogic(dialogoArray));
+                    yield return new WaitForSeconds(tiempoDialogos);
+                    textoCaja.text = "";
+            }
     }
     
 
     public IEnumerator DialogoLogic(char[] dialogoArray)
     {
-
-        dialogoArray = dialogos[dialogo].ToCharArray();
 
         Debug.Log($"Longitud dialogo corrutina");
 
