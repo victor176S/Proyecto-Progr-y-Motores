@@ -7109,14 +7109,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1057696435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25a3125c3e0e33248a8fb25c3d8026bd, type: 3}
+  m_Script: {fileID: 11500000, guid: ba507c043a20f7849987bc8d1f504ff5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Dialogos
-  dialogo1: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogosLists
+  dialogos: []
   AppendToString: 
-  dialogo1Array: 
   textoCaja: {fileID: 1057696437}
   called: 0
+  dialogo: 0
 --- !u!1 &1070595702
 GameObject:
   m_ObjectHideFlags: 0
@@ -9662,7 +9662,7 @@ GameObject:
   - component: {fileID: 1501388323}
   - component: {fileID: 1501388324}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Dialogos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

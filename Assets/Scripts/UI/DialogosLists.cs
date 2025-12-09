@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,57 +13,67 @@ public class DialogosLists : MonoBehaviour
 
     public List<string> dialogos;
 
-    public string AppendToString;
+    public char[] dialogoArray;
 
-    public List<char[]> dialogosArrays;
+    public string AppendToString;
 
     public TextMeshProUGUI textoCaja;
     public bool called;
 
-    int k;
+    public int dialogo;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        dialogos[0] = "Hola, has sido traido a este laboratorio para realizar algunas pruebas físicas, no te preocupes, se te dará una recompensa el final de las pruebas por el esfuerzo";
-        dialogosArrays[0] = dialogos[0].ToCharArray();
+        dialogos.Insert(0, "Hola, has sido traido a este laboratorio para realizar algunas pruebas físicas, no te preocupes, se te dará una recompensa el final de las pruebas por el esfuerzo");
         
+        dialogos.Insert(1, "prueba 2");
+        Debug.Log(dialogos[0]);
+
+        dialogoArray = dialogos[dialogo].ToCharArray();
+
+        Debug.Log($"Array dialogo {dialogoArray}");
+
+        /*dialogos[1] = "dialogo 2";
+        dialogosArrays[1] = dialogos[1].ToCharArray();*/
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         
-    }
-    /*{
         if (!called)
         {
             StartCoroutine(DialogoLogic());
         }
-    }*/
+    
+    }
+    
 
-    /*public IEnumerator DialogoLogic()
+    public IEnumerator DialogoLogic()
     {
 
-        switch (switch_on)
-        {
-            
-            default:
-        }
+        Debug.Log($"Longitud dialogo corrutina");
 
-        for (int i = 0; i < dialogosArrays[0].Length; i++)
+        for (int i = 0; i < dialogoArray.Length; i++)
         {
-            called =true;
+            Debug.Log($"Longitud dialogo {dialogoArray.Length}");
+            called = true;
 
             if (i == 0)
             {
-                AppendToString += dialogo1Array[i].ToString();
+                AppendToString += dialogoArray[i].ToString();
                 yield return new WaitForSeconds(0.03f);
             }
 
             else
             {
-                if(dialogo1Array[i-1].ToString() == ",")
+                if(dialogoArray[i-1].ToString() == ",")
                 {
                     yield return new WaitForSeconds(0.4f);
                 }
@@ -70,7 +81,7 @@ public class DialogosLists : MonoBehaviour
                 {
                     yield return new WaitForSeconds(0.03f);
                 }
-                    AppendToString += dialogo1Array[i].ToString();
+                    AppendToString += dialogoArray[i].ToString();
             }
 
            
@@ -82,6 +93,6 @@ public class DialogosLists : MonoBehaviour
         textoCaja.transform.parent.gameObject.GetComponent<AlphaChangerPanelImage>().hasChildren = true;
 
         textoCaja.transform.parent.gameObject.GetComponent<AlphaChangerPanelImage>().fade = true;
-    }*/
+    }
     
 }
