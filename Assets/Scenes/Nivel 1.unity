@@ -7113,10 +7113,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogosLists
   dialogos: []
+  dialogosSeleccionados: 
   AppendToString: 
   textoCaja: {fileID: 1057696437}
   called: 0
-  dialogo: 0
+  dialogo: 1
+  isOneDialog: 0
+  dialogNumberEnd: 0
 --- !u!1 &1070595702
 GameObject:
   m_ObjectHideFlags: 0
