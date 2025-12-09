@@ -13,7 +13,7 @@ public class DialogosLists : MonoBehaviour
 
     public List<string> dialogos;
 
-    public char[] dialogoArray;
+    public List<int> dialogosSeleccionados;
 
     public string AppendToString;
 
@@ -21,6 +21,10 @@ public class DialogosLists : MonoBehaviour
     public bool called;
 
     public int dialogo;
+
+    public bool isOneDialog;
+
+    public int dialogNumberEnd;
 
     void Awake()
     {
@@ -35,10 +39,6 @@ public class DialogosLists : MonoBehaviour
         dialogos.Insert(1, "prueba 2");
         Debug.Log(dialogos[0]);
 
-        dialogoArray = dialogos[dialogo].ToCharArray();
-
-        Debug.Log($"Array dialogo {dialogoArray}");
-
         /*dialogos[1] = "dialogo 2";
         dialogosArrays[1] = dialogos[1].ToCharArray();*/
     }
@@ -46,17 +46,36 @@ public class DialogosLists : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
-        if (!called)
+
+        if (isOneDialog)
         {
-            StartCoroutine(DialogoLogic());
+            if (!called)
+            {
+
+                var dialogoArray = dialogos[dialogo].ToCharArray();
+
+                StartCoroutine(DialogoLogic(dialogoArray));
+            }
+
         }
-    
+
+        else
+        {
+            for (int i = 0; i < dialogNumberEnd; i++)
+            {
+
+                var dialogoArray = dialogos[dialogo].ToCharArray();
+                StartCoroutine(DialogoLogic(dialogoArray));
+            }
+        }
+        
     }
     
 
-    public IEnumerator DialogoLogic()
+    public IEnumerator DialogoLogic(char[] dialogoArray)
     {
+
+        dialogoArray = dialogos[dialogo].ToCharArray();
 
         Debug.Log($"Longitud dialogo corrutina");
 
