@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
         gameManager = datosObject.GetComponent<GameManager>();
 
-        RestaurarPosicion();
+        //RestaurarPosicion();
 
         if (enSuelo)
         {

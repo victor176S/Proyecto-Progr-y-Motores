@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -96,7 +97,6 @@ public class DialogosLists : MonoBehaviour
                     Debug.Log($"Multidialogo: {dialogoArray}");
                     StartCoroutine(DialogoLogic(dialogoArray));
                     yield return new WaitForSeconds(tiempoDialogos);
-                    textoCaja.text = "";
             }
     }
     
@@ -133,6 +133,17 @@ public class DialogosLists : MonoBehaviour
            
             Debug.Log($"Dialogo: {AppendToString}");
             textoCaja.text = AppendToString;
+
+            Debug.Log($"Append: {AppendToString}");
+
+            //limpiar caja de texto despues de cada dialogo
+
+            if (i == dialogoArray.Length - 1)
+            {
+                Array.Clear(dialogoArray, 0, dialogoArray.Length);
+                textoCaja.text = "";
+                AppendToString = "";
+            }
         }
 
         
