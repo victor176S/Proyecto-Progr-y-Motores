@@ -37,6 +37,12 @@ public class Eventos : MonoBehaviour
     public float delay;
     public bool hasChildren;
 
+    [Header ("camera FOV change values")]
+
+    public float addFov;
+
+    public float timeFOVChange;
+
     void Awake()
     {
         instance = this;
@@ -63,19 +69,33 @@ public class Eventos : MonoBehaviour
     {
         moverMegafono = true;
 
-        arriba = true;
+        abajo = true;
 
         yield return new WaitForSeconds(1f); // siempre tiene que ser un segundo para cuadrar con el movimiento del update
        
         moverMegafono = false;
 
-        arriba = false;
+        abajo = false;
 
         megafono.transform.GetComponentInChildren<AnimacionesMegafono>().activeAnim = true;
 
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(9f);
 
-        camara.gameObject.GetComponent<Camera>().fieldOfView = 130;
+        megafono.transform.GetComponentInChildren<AnimacionesMegafono>().activeAnim = false;
+
+        moverMegafono = true;
+
+        arriba = true;
+
+        yield return new WaitForSeconds(1f);
+
+        moverMegafono = false;
+
+        arriba = false;
+
+        yield return new WaitForSeconds(4f);
+
+        StartCoroutine(CameraFOVChange());
 
 
 
@@ -85,9 +105,37 @@ public class Eventos : MonoBehaviour
     {
         if (moverMegafono)
         {
-            if (arriba)
+            if (abajo)
+            {
+                megafono.transform.Translate(Vector2.down * cantidadMovimiento * velocidadMovimiento * tiempoMovimiento * Time.deltaTime);
+            }
 
-            megafono.transform.Translate(Vector2.down * cantidadMovimiento * velocidadMovimiento * tiempoMovimiento * Time.deltaTime);
+            if (arriba)
+            {
+                megafono.transform.Translate(Vector2.up * cantidadMovimiento * velocidadMovimiento * tiempoMovimiento * Time.deltaTime);
+            }
+
+            if (izq)
+            {
+                megafono.transform.Translate(Vector2.left * cantidadMovimiento * velocidadMovimiento * tiempoMovimiento * Time.deltaTime);
+            }
+            
+            if (derecha)
+            {
+                megafono.transform.Translate(Vector2.right * cantidadMovimiento * velocidadMovimiento * tiempoMovimiento * Time.deltaTime);
+            }
+
+        }
+    }
+
+    IEnumerator CameraFOVChange()
+    {
+        for (int i = 0; i < addFov; i++)
+        {
+
+            yield return new WaitForSeconds(timeFOVChange / addFov);
+
+            camara.gameObject.GetComponent<Camera>().fieldOfView += timeFOVChange * 30 / addFov;
         }
     }
 

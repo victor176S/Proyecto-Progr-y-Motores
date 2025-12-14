@@ -48,8 +48,6 @@ public class DialogosLists : MonoBehaviour
     {
 
         dialogos.Insert(0, "Hola, has sido traido a este laboratorio para realizar algunas pruebas físicas, no te preocupes, se te dará una recompensa el final de las pruebas por el esfuerzo");
-        
-        dialogos.Insert(-1, "prueba 2");
 
         dialogos.Insert(1, "Deberias probar a moverte");
         Debug.Log(dialogos[0]);
@@ -182,10 +180,6 @@ public class DialogosLists : MonoBehaviour
             }
         }
 
-        
-        textoCaja.transform.parent.gameObject.GetComponent<AlphaChangerPanelImage>().hasChildren = true;
-
-        textoCaja.transform.parent.gameObject.GetComponent<AlphaChangerPanelImage>().fade = true;
     }
     
 }

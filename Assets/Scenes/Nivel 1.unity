@@ -1339,7 +1339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &118754132
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3067,7 +3067,6 @@ GameObject:
   - component: {fileID: 427425017}
   - component: {fileID: 427425020}
   - component: {fileID: 427425019}
-  - component: {fileID: 427425018}
   - component: {fileID: 427425021}
   m_Layer: 5
   m_Name: Panel
@@ -3096,36 +3095,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &427425018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 427425016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb0e3d43ee988f4caba105955a69a21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AlphaChangerPanelImage
-  objeto: {fileID: 427425016}
-  contador: 0
-  tiempo: 1.5
-  fade: 1
-  delay: 2
-  fadeActive: 0
-  appearActive: 0
-  transitionStart: 0
-  transitionEnd: 0
-  appear: 0
-  opcion: 0
-  transicionStartAlphaLimit: 0
-  transicionEndAlphaLimit: 0
-  transicionStartIntesity: 0
-  transicionEndIntesity: 0
-  transitionMiddleIntensity: 0
-  hasChildren: 0
-  alpha: 0
 --- !u!114 &427425019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3173,15 +3142,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 427425016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 010cb35742cfdc740addd331db377d06, type: 3}
+  m_Script: {fileID: 11500000, guid: dadf9dd60394198489cdc88ea56e34b6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjectChildren
-  padre: {fileID: 427425016}
+  m_EditorClassIdentifier: Assembly-CSharp::AlphaChangerV2
+  objeto: {fileID: 427425016}
+  hasChildren: 1
+  atStart: 1
+  alpha: 1
+  fade: 1
+  appear: 0
+  timeChangeAlpha: 1
   hijosRawImage:
   - {fileID: 2057386686}
   - {fileID: 1335474665}
-  - {fileID: 1868915201}
-  - {fileID: 118754131}
+  - {fileID: 1620470403}
   - {fileID: 359927603}
   - {fileID: 1200417310}
   hijosTextMesh:
@@ -6864,8 +6838,10 @@ MonoBehaviour:
   contador: 0
   tiempo: 3
   fade: 1
-  delay: 12
+  delay: 10.5
   hasChildren: 1
+  addFov: 60
+  timeFOVChange: 2
 --- !u!4 &952470639
 Transform:
   m_ObjectHideFlags: 0
@@ -10683,6 +10659,7 @@ RectTransform:
   m_Children:
   - {fileID: 2057386687}
   - {fileID: 1335474666}
+  - {fileID: 1620470404}
   - {fileID: 1868915202}
   - {fileID: 118754132}
   - {fileID: 359927604}
@@ -10697,6 +10674,78 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -148}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1620470403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1620470404}
+  - component: {fileID: 1620470406}
+  - component: {fileID: 1620470405}
+  m_Layer: 5
+  m_Name: Tecla Espacio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1620470404
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620470403}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1573451819}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -500, y: -105}
+  m_SizeDelta: {x: 400, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1620470405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620470403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 2800000, guid: 48c0b71a6c30b754482c1779408b6b6a, type: 3}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &1620470406
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620470403}
+  m_CullTransparentMesh: 1
 --- !u!1 &1622170906
 GameObject:
   m_ObjectHideFlags: 0
@@ -12228,7 +12277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1868915202
 RectTransform:
   m_ObjectHideFlags: 0
