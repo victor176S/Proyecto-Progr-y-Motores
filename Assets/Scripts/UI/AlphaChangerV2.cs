@@ -21,6 +21,8 @@ public class AlphaChangerV2 : MonoBehaviour
     [SerializeField] private bool fade;
     [SerializeField] private bool appear;
     [SerializeField] private float timeChangeAlpha;
+
+    [SerializeField] private float delay;
     public List<GameObject> hijosRawImage;
     public List<GameObject> hijosTextMesh;
 
@@ -41,6 +43,8 @@ public class AlphaChangerV2 : MonoBehaviour
 
     public IEnumerator AlphaChanger()
     {
+
+        yield return new WaitForSeconds(delay);
 
         if (fade)
         {

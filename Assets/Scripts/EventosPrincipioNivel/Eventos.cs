@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mono.Cecil.Cil;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,7 +12,7 @@ public class Eventos : MonoBehaviour
     [Header("Asignacion objetos")]
 
     public GameObject esteObjeto;
-    public GameObject camara;
+    public List<GameObject> camaras;
 
     public GameObject canvasDialogos;
 
@@ -43,6 +44,14 @@ public class Eventos : MonoBehaviour
 
     public float timeFOVChange;
 
+    [Header ("camera move values")]
+
+    public float distance;
+
+    public float tiempoCameraMove;
+
+    private int i;
+
     void Awake()
     {
         instance = this;
@@ -60,13 +69,26 @@ public class Eventos : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        StartCoroutine(AlphaChangeV2());
         MovimientoLogic();
-
     }
 
     public IEnumerator EventosNivel1()
     {
+        while(i < tiempo * 60)
+        {
+            camaras[1].gameObject.transform.Translate(Vector3.right * Time.deltaTime * 5 * distance / tiempo);
+            i++;
+            yield return new WaitForSeconds(0.0167f);
+        }
+    
+        i = 0;
+        
+        yield return new WaitForSeconds(3f);
+
+        camaras[1].gameObject.SetActive(false);
+
+        
+
         moverMegafono = true;
 
         abajo = true;
@@ -87,7 +109,7 @@ public class Eventos : MonoBehaviour
 
         arriba = true;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         moverMegafono = false;
 
@@ -135,34 +157,7 @@ public class Eventos : MonoBehaviour
 
             yield return new WaitForSeconds(timeFOVChange / addFov);
 
-            camara.gameObject.GetComponent<Camera>().fieldOfView += timeFOVChange * 30 / addFov;
-        }
-    }
-
-    IEnumerator AlphaChangeV2()
-    {
-        yield return new WaitForSeconds(delay);
-        
-        if (contador <= tiempo)
-        {
-            contador += Time.deltaTime * 6;
-
-            if (fade)
-            {
-                canvasDialogos.gameObject.GetComponent<UnityEngine.UI.Image>().color += new Color (0f,0f,0f, 0f - (1/tiempo * Time.deltaTime * 6));
-
-                if (hasChildren)
-                {
-                    canvasDialogos.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color += new Color (0f,0f,0f, 0f - (1/tiempo * Time.deltaTime * 6));
-
-                }
-            }
-
-        }
-
-        if (contador > tiempo)
-        {
-            contador = tiempo; 
+            camaras[0].gameObject.GetComponent<Camera>().fieldOfView += timeFOVChange * 30 / addFov;
         }
     }
 }
