@@ -14,11 +14,11 @@ public class AlphaChangerPanelImage : MonoBehaviour
 
     public float contador;
     public float tiempo;
+    public bool fade;
+    public float delay;
 
     [Header ("transitionMiddleIntensity - (transicionEndIntesity")] 
     [Header ("+ transicionStartIntesity) tiene que ser igual a 1")]
-
-    public bool fade;
 
     public bool fadeActive;
 
@@ -44,8 +44,6 @@ public class AlphaChangerPanelImage : MonoBehaviour
     public bool hasChildren;
 
     public float alpha;
-
-    public float delay;
 
     void Awake()
     {
@@ -73,16 +71,16 @@ public class AlphaChangerPanelImage : MonoBehaviour
     {
         if (appear)
         {
-            StartCoroutine(AppearLogic(tiempo, delay));
+            StartCoroutine(AppearLogic());
         }
 
         if (fade)
         {
-            StartCoroutine(FadeLogic(tiempo, delay));
+            StartCoroutine(FadeLogic());
         }
     }
 
-    public IEnumerator FadeLogic(float tiempo, float delay)
+    public IEnumerator FadeLogic()
     {
 
         yield return new WaitForSeconds(delay);
@@ -109,7 +107,7 @@ public class AlphaChangerPanelImage : MonoBehaviour
         }
     }
 
-    public void FadeLogic(float tiempo, bool transitionStart, bool transitionEnd)
+    /*public void FadeLogic()
     {
         if (contador <= tiempo)
         {
@@ -141,9 +139,9 @@ public class AlphaChangerPanelImage : MonoBehaviour
         {
             contador = tiempo; 
         }
-    }
+    }*/
 
-    public IEnumerator AppearLogic(float tiempo, float delay)
+    public IEnumerator AppearLogic()
     {
 
         yield return new WaitForSeconds(delay);

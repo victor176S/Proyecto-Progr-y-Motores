@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class DialogosLists : MonoBehaviour
@@ -16,10 +17,10 @@ public class DialogosLists : MonoBehaviour
 
     public List<int> dialogosSeleccionados;
 
-    public string AppendToString;
+    private string AppendToString;
 
     public TextMeshProUGUI textoCaja;
-    public bool called;
+    private bool called;
 
     public int dialogo;
 
@@ -28,6 +29,14 @@ public class DialogosLists : MonoBehaviour
     public int dialogNumberEnd;
 
     public float tiempoDialogos;
+
+    public float delay;
+
+    private bool delayFinished;
+
+    public float delayBetweenDialoges;
+
+    private int l;
 
     void Awake()
     {
@@ -40,7 +49,9 @@ public class DialogosLists : MonoBehaviour
 
         dialogos.Insert(0, "Hola, has sido traido a este laboratorio para realizar algunas pruebas físicas, no te preocupes, se te dará una recompensa el final de las pruebas por el esfuerzo");
         
-        dialogos.Insert(1, "prueba 2");
+        dialogos.Insert(-1, "prueba 2");
+
+        dialogos.Insert(1, "Deberias probar a moverte");
         Debug.Log(dialogos[0]);
 
         /*dialogos[1] = "dialogo 2";
@@ -51,34 +62,56 @@ public class DialogosLists : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (isOneDialog)
+        if (isOneDialog == true)
         {
-            if (!called)
+
+             StartCoroutine(Delay());
+
+            if (delayFinished == true)
             {
+                if (!called)
+                {
 
-                var dialogoArray = dialogos[dialogo].ToCharArray();
+                    var dialogoArray = dialogos[dialogo].ToCharArray();
 
-                StartCoroutine(DialogoLogic(dialogoArray));
+                    StartCoroutine(DialogoLogic(dialogoArray));
+                }
+
             }
 
         }
 
-        else
+        if (isOneDialog == false)
         {
-            if (!called)
+            StartCoroutine(Delay());
+
+            if (delayFinished == true)
             {
+                if (!called)
+                {
                 
-                StartCoroutine(MultiDialogos());  
+                    StartCoroutine(MultiDialogos());  
                 
+                }
             }
-                
+   
         }
         
     }
 
+    public IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(delay);
+
+        delayFinished = true;
+
+    }
+
     public IEnumerator MultiDialogos()
     {
-        for (int l = 0; l < dialogos.Count; l++)
+
+
+        for (l = 0; l < dialogos.Count; l++)
             {       
                     
                     dialogo = dialogosSeleccionados[l];
@@ -96,8 +129,10 @@ public class DialogosLists : MonoBehaviour
                     
                     Debug.Log($"Multidialogo: {dialogoArray}");
                     StartCoroutine(DialogoLogic(dialogoArray));
-                    yield return new WaitForSeconds(tiempoDialogos);
+                    yield return new WaitForSeconds(tiempoDialogos + delayBetweenDialoges);
             }
+
+            l = 0;
     }
     
 
@@ -138,8 +173,9 @@ public class DialogosLists : MonoBehaviour
 
             //limpiar caja de texto despues de cada dialogo
 
-            if (i == dialogoArray.Length - 1)
+            if (i == dialogoArray.Length - 1 && l < dialogos.Count - 1) //la ultima condicion permite que el ultimo dialogo no se vaya
             {
+
                 Array.Clear(dialogoArray, 0, dialogoArray.Length);
                 textoCaja.text = "";
                 AppendToString = "";

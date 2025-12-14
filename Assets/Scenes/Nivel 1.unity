@@ -2743,12 +2743,12 @@ GameObject:
   - component: {fileID: 387509112}
   - component: {fileID: 387509111}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Start level screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &387509111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3112,6 +3112,7 @@ MonoBehaviour:
   contador: 0
   tiempo: 1.5
   fade: 1
+  delay: 2
   fadeActive: 0
   appearActive: 0
   transitionStart: 0
@@ -3125,7 +3126,6 @@ MonoBehaviour:
   transitionMiddleIntensity: 0
   hasChildren: 0
   alpha: 0
-  delay: 2
 --- !u!114 &427425019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6834,8 +6834,6 @@ GameObject:
   m_Component:
   - component: {fileID: 952470639}
   - component: {fileID: 952470638}
-  - component: {fileID: 952470640}
-  - component: {fileID: 952470641}
   m_Layer: 0
   m_Name: EventosPrincipio
   m_TagString: Untagged
@@ -6856,11 +6854,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Eventos
   esteObjeto: {fileID: 952470637}
+  camara: {fileID: 519420028}
   canvasDialogos: {fileID: 1501388319}
+  player: {fileID: 1560553181}
   megafono: {fileID: 1421779964}
   cantidadMovimiento: 15
   tiempoMovimiento: 2
   velocidadMovimiento: 1
+  contador: 0
+  tiempo: 3
+  fade: 1
+  delay: 12
+  hasChildren: 1
 --- !u!4 &952470639
 Transform:
   m_ObjectHideFlags: 0
@@ -6876,52 +6881,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &952470640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 952470637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb0e3d43ee988f4caba105955a69a21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AlphaChangerPanelImage
-  objeto: {fileID: 1501388319}
-  contador: 0
-  tiempo: 0
-  fade: 0
-  fadeActive: 0
-  appearActive: 0
-  transitionStart: 0
-  transitionEnd: 0
-  appear: 1
-  opcion: 0
-  transicionStartAlphaLimit: 0
-  transicionEndAlphaLimit: 0
-  transicionStartIntesity: 0
-  transicionEndIntesity: 0
-  transitionMiddleIntensity: 0
-  hasChildren: 1
-  alpha: 0
-  delay: 0
---- !u!114 &952470641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 952470637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 010cb35742cfdc740addd331db377d06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjectChildren
-  padre: {fileID: 1501388319}
-  hijosRawImage: []
-  hijosTextMesh:
-  - {fileID: 1057696435}
 --- !u!1 &965254150
 GameObject:
   m_ObjectHideFlags: 0
@@ -7441,14 +7400,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogosLists
   dialogos: []
-  dialogosSeleccionados: 0100000000000000
-  AppendToString: 
+  dialogosSeleccionados: 00000000
   textoCaja: {fileID: 1057696437}
-  called: 0
-  dialogo: 1
-  isOneDialog: 0
+  dialogo: 0
+  isOneDialog: 1
   dialogNumberEnd: 0
   tiempoDialogos: 0
+  delay: 4
+  delayBetweenDialoges: 1
 --- !u!1 &1070595702
 GameObject:
   m_ObjectHideFlags: 0
@@ -10023,8 +9982,6 @@ GameObject:
   - component: {fileID: 1501388320}
   - component: {fileID: 1501388322}
   - component: {fileID: 1501388321}
-  - component: {fileID: 1501388323}
-  - component: {fileID: 1501388324}
   m_Layer: 5
   m_Name: Dialogos
   m_TagString: Untagged
@@ -10065,7 +10022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.81886786, g: 0.81886786, b: 0.81886786, a: 0}
+  m_Color: {r: 0.81886786, g: 0.81886786, b: 0.81886786, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10090,52 +10047,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501388319}
   m_CullTransparentMesh: 1
---- !u!114 &1501388323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1501388319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb0e3d43ee988f4caba105955a69a21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AlphaChangerPanelImage
-  objeto: {fileID: 1501388319}
-  contador: 0
-  tiempo: 0
-  fade: 0
-  fadeActive: 0
-  appearActive: 0
-  transitionStart: 0
-  transitionEnd: 0
-  appear: 0
-  opcion: 0
-  transicionStartAlphaLimit: 0
-  transicionEndAlphaLimit: 0
-  transicionStartIntesity: 0
-  transicionEndIntesity: 0
-  transitionMiddleIntensity: 0
-  hasChildren: 1
-  alpha: 0
-  delay: 0
---- !u!114 &1501388324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1501388319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 010cb35742cfdc740addd331db377d06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjectChildren
-  padre: {fileID: 1501388319}
-  hijosRawImage: []
-  hijosTextMesh:
-  - {fileID: 1057696435}
 --- !u!1 &1504016175
 GameObject:
   m_ObjectHideFlags: 0
