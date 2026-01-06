@@ -683,6 +683,7 @@ MonoBehaviour:
   fade: 0
   appear: 1
   timeChangeAlpha: 3
+  delay: 0
   hijosRawImage:
   - {fileID: 1489980222}
   - {fileID: 1788138998}
@@ -3761,8 +3762,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501ef43b00119584eb7b22cd89945a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DatosPersistentes
-  volumenMusica: 0
-  volumenSFX: 0
+  volumenMusica: 1
+  volumenSFX: 1
   textoInput: 
   codigoLyrics: 0
   fueraDelMenu: 0

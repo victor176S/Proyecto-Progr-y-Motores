@@ -11,6 +11,8 @@ using UnityEngine.UI;
 public class DialogosLists : MonoBehaviour
 {
 
+    [SerializeField] private float delayCleanDialogue;
+
     public static DialogosLists instance;
 
     public List<string> dialogos;
@@ -173,6 +175,8 @@ public class DialogosLists : MonoBehaviour
 
             if (i == dialogoArray.Length - 1 && l < dialogos.Count - 1) //la ultima condicion permite que el ultimo dialogo no se vaya
             {
+
+                yield return new WaitForSeconds(delayBetweenDialoges);
 
                 Array.Clear(dialogoArray, 0, dialogoArray.Length);
                 textoCaja.text = "";

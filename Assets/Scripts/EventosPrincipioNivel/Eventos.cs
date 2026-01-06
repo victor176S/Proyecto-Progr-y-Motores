@@ -60,6 +60,8 @@ public class Eventos : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        megafono.transform.position += new Vector3(0, 100, 0);
+
         if (SceneManager.GetActiveScene().name == "Nivel 1")
         {
             StartCoroutine(EventosNivel1());
@@ -74,6 +76,8 @@ public class Eventos : MonoBehaviour
 
     public IEnumerator EventosNivel1()
     {
+
+        //cambiar
         while(i < tiempo * 60)
         {
             camaras[1].gameObject.transform.Translate(Vector3.right * Time.deltaTime * 5 * distance / tiempo);
@@ -83,11 +87,13 @@ public class Eventos : MonoBehaviour
     
         i = 0;
         
-        yield return new WaitForSeconds(3f);
+        //yield return new WaitForSeconds(3f);
 
         camaras[1].gameObject.SetActive(false);
 
-        
+        camaras[0].gameObject.SetActive(true);
+
+        megafono.transform.position -= new Vector3(0, 50, 0);
 
         moverMegafono = true;
 
@@ -115,12 +121,7 @@ public class Eventos : MonoBehaviour
 
         arriba = false;
 
-        yield return new WaitForSeconds(4f);
-
         StartCoroutine(CameraFOVChange());
-
-
-
     }
 
     private void MovimientoLogic()
@@ -154,10 +155,9 @@ public class Eventos : MonoBehaviour
     {
         for (int i = 0; i < addFov; i++)
         {
-
             yield return new WaitForSeconds(timeFOVChange / addFov);
 
-            camaras[0].gameObject.GetComponent<Camera>().fieldOfView += timeFOVChange * 30 / addFov;
+            camaras[0].gameObject.GetComponent<Camera>().fieldOfView += addFov * 1.67f * (timeFOVChange / addFov);
         }
     }
 }
