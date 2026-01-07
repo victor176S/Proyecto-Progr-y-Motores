@@ -18,4 +18,9 @@ public class AnimacionesMegafono : MonoBehaviour
     {
        animator.SetBool("Animacion", activeAnim); 
     }
+
+    void ResetMegafono()
+    {
+        
+    }
 }

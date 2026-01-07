@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Mono.Cecil.Cil;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Eventos : MonoBehaviour
 {
     public static Eventos instance;
+
+    private Sprite sprispriteMegafonoBase;
 
     [Header("Asignacion objetos")]
 
@@ -40,6 +43,8 @@ public class Eventos : MonoBehaviour
 
     [Header ("camera FOV change values")]
 
+    [SerializeField] private float fovObjetivo;
+
     public float addFov;
 
     public float timeFOVChange;
@@ -60,6 +65,9 @@ public class Eventos : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        sprispriteMegafonoBase = megafono.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite;
+
         megafono.transform.position += new Vector3(0, 100, 0);
 
         if (SceneManager.GetActiveScene().name == "Nivel 1")
@@ -93,7 +101,7 @@ public class Eventos : MonoBehaviour
 
         camaras[0].gameObject.SetActive(true);
 
-        megafono.transform.position -= new Vector3(0, 50, 0);
+        megafono.transform.position -= new Vector3(0, 40, 0);
 
         moverMegafono = true;
 
@@ -110,6 +118,8 @@ public class Eventos : MonoBehaviour
         yield return new WaitForSeconds(9f);
 
         megafono.transform.GetComponentInChildren<AnimacionesMegafono>().activeAnim = false;
+
+        megafono.transform.GetComponentInChildren<SpriteRenderer>().sprite = sprispriteMegafonoBase;
 
         moverMegafono = true;
 
@@ -153,11 +163,37 @@ public class Eventos : MonoBehaviour
 
     IEnumerator CameraFOVChange()
     {
-        for (int i = 0; i < addFov; i++)
-        {
-            yield return new WaitForSeconds(timeFOVChange / addFov);
+        var originalFov = camaras[0].gameObject.GetComponent<Camera>().fieldOfView;
 
-            camaras[0].gameObject.GetComponent<Camera>().fieldOfView += addFov * 1.67f * (timeFOVChange / addFov);
+        if (fovObjetivo > originalFov)
+        {
+            while (camaras[0].gameObject.GetComponent<Camera>().fieldOfView < fovObjetivo)
+            {
+                yield return new WaitForSeconds(0.01f);
+
+                camaras[0].gameObject.GetComponent<Camera>().fieldOfView += 0.5f;
+
+            }
         }
+
+        if (fovObjetivo < originalFov)
+        {
+            while (camaras[0].gameObject.GetComponent<Camera>().fieldOfView < fovObjetivo)
+            {
+                yield return new WaitForSeconds(0.01f);
+
+                camaras[0].gameObject.GetComponent<Camera>().fieldOfView -= 0.5f;
+
+            }
+        }
+
+        
+
+        /*for (int i = 0; i < addFov; i++)
+        {
+            yield return new WaitForSeconds(0.05f);
+
+            camaras[0].gameObject.GetComponent<Camera>().fieldOfView += (addFov / 60) / timeFOVChange ;
+        }*/
     }
 }
