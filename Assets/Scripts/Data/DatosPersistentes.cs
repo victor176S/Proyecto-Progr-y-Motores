@@ -18,6 +18,8 @@ public class DatosPersistentes : MonoBehaviour
 
     public bool fueraDelMenu;
 
+    public int numeroEscena;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {  
@@ -35,7 +37,7 @@ public class DatosPersistentes : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame

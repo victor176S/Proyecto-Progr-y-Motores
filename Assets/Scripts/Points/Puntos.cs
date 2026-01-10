@@ -26,6 +26,8 @@ public class Puntos : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+
+            Debug.Log("entrada trigger");
         
         GameManager.instance.puntos += 1;
 

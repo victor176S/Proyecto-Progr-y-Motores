@@ -132,6 +132,9 @@ public class Eventos : MonoBehaviour
         arriba = false;
 
         StartCoroutine(CameraFOVChange());
+
+        StartCoroutine(CameraScrollStart());
+
     }
 
     private void MovimientoLogic()
@@ -195,5 +198,12 @@ public class Eventos : MonoBehaviour
 
             camaras[0].gameObject.GetComponent<Camera>().fieldOfView += (addFov / 60) / timeFOVChange ;
         }*/
+    }
+
+    IEnumerator CameraScrollStart()
+    {
+        yield return new WaitForSeconds(1);
+
+        camaras[0].gameObject.GetComponent<CameraAutoScroll2D>().scrollActivo = true;
     }
 }

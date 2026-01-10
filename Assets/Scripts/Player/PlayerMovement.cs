@@ -120,10 +120,12 @@ public class PlayerMovement : MonoBehaviour
             if (!enSuelo)
                 return;
 
+            Debug.Log("deberia saltar");
+
             var v = rb.linearVelocity;
             v.y = 0f;
             rb.linearVelocity = v;
-        rb.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * fuerzaSalto, ForceMode2D.Impulse);
         }
  
     }
@@ -338,6 +340,15 @@ public class PlayerMovement : MonoBehaviour
 
         comesFromJumping = false;
         
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Suelo"))
+        {
+            enSuelo = true;
+        }
+
     }
 
     public void EnemyBumpOnHit()

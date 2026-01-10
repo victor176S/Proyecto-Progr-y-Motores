@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerEventTrigger : MonoBehaviour
 {
-   public static PlayerEventTrigger instance;
+
+    public GameObject simpleDialogs;
+
+    public static PlayerEventTrigger instance;
 
     public List<GameObject> puntosDeControl;
 
@@ -22,7 +27,7 @@ public class PlayerEventTrigger : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        simpleDialogs = GameObject.Find("SimpleDialogs");
     }
 
     // Update is called once per frame
@@ -66,9 +71,15 @@ public class PlayerEventTrigger : MonoBehaviour
     }
 
     public void TriggerPuntoDeControl(int i)
-    { 
-        switch (i)
+    {
+
+        var nombreEscena = SceneManager.GetActiveScene().name;
+
+        if (nombreEscena == "Nivel 1")
         {
+
+            switch (i)
+            {
 
             case 0:
 
@@ -174,14 +185,60 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 break;
 
+            case 8:
+
+                SceneManager.LoadScene("EscenaMuerte");
+
+                break;
+
+            case 9:
+                    
+                    StartCoroutine(DialogosSimples("Por cierto, pueden haber algunos cristales desperdigados, intenta no tocarlos"));
+
+                    break;
+
             default:
 
             break;
+            }
+      
+        }
+
+        if (nombreEscena == "Nivel 2")
+        {
+            
+        }
+
+        if (nombreEscena == "Nivel 3")
+        {
+            
         }
 
     } 
 
-    
+    IEnumerator DialogosSimples(string dialogo)
+    {
+
+        simpleDialogs.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = dialogo;
+
+        for (int i = 0; i < 50; i++)
+        {
+            yield return new WaitForSeconds(0.02f);
+
+            simpleDialogs.gameObject.transform.position -= new Vector3(0,5,0);
+        }
+
+        yield return new WaitForSeconds (3f);
+
+        for (int i = 0; i < 50; i++)
+        {
+            yield return new WaitForSeconds(0.02f);
+
+            simpleDialogs.gameObject.transform.position += new Vector3(0,5,0);
+        }
+
+        simpleDialogs.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "";
+    }
 
 
 }
