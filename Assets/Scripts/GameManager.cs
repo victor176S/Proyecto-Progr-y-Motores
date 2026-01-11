@@ -143,11 +143,18 @@ public class GameManager : MonoBehaviour
             
         }
 
-        if (haPerdido)
+        Debug.Log($"Jugador pinchado: {player.GetComponent<PlayerMovement>().jugadorPinchado}");
+
+        if (vidasJugador == 0 && player.GetComponent<PlayerMovement>().jugadorPinchado)
+        {
+            SceneManager.LoadScene(3);   
+        }
+
+        if (haPerdido && !player.GetComponent<PlayerMovement>().jugadorPinchado)
         {
             StartCoroutine(OnDeath(1));
         }
-
+    
     }
 
     

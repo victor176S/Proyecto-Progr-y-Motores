@@ -8,7 +8,7 @@ public class DamageToPlayer : MonoBehaviour
     public float hurtCoolDownTimer = 0f;
     public bool enCaida = false;
     public bool fallingObject = false;
-    public Vector3 valorDeIncremento = new Vector3(0.2f, 0.05f, 0);
+    public Vector3 valorDeIncremento = new Vector3(0.05f, 0.1f, 0);
 
     public int veces = 40;
 
@@ -54,6 +54,10 @@ public class DamageToPlayer : MonoBehaviour
                     Debug.Log("entra a el if del tag");
 
                     StartCoroutine(Sounds.instance.PlaySound(3,1));
+
+                    other.gameObject.GetComponent<PlayerMovement>().jugadorPinchado = true;
+                    
+                    StartCoroutine(QuitarJugadorPinchado(other.gameObject));
                 }
 
                 else
@@ -107,15 +111,22 @@ public class DamageToPlayer : MonoBehaviour
         }
     }
 
+    private IEnumerator QuitarJugadorPinchado(GameObject other)
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        other.gameObject.GetComponent<PlayerMovement>().jugadorPinchado = false;
+    }
+
     private IEnumerator PlayerImpulseOnHurt()
     {
         AnimationsPlayer.instance.animator.SetBool("Hurted", true);
         AnimationsPlayer.instance.animator.SetTrigger("CaidaInesperada");
         
-        for (int i = 0; i <= (veces*5); i++)
+        for (int i = 0; i <= (veces * 5); i++)
         {
             
-            GameManager.instance.player.gameObject.transform.position += valorDeIncremento * Time.deltaTime * 200;
+            GameManager.instance.player.gameObject.transform.position += valorDeIncremento * Time.deltaTime * 50;
 
             PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
             PlayerMovement.instance.rb.gravityScale = 0f;
