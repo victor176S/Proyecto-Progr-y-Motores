@@ -123,7 +123,7 @@ public class DamageToPlayer : MonoBehaviour
         AnimationsPlayer.instance.animator.SetBool("Hurted", true);
         AnimationsPlayer.instance.animator.SetTrigger("CaidaInesperada");
         
-        for (int i = 0; i <= (veces * 5); i++)
+        for (int i = 0; i <= (veces * 4); i++)
         {
             
             GameManager.instance.player.gameObject.transform.position += valorDeIncremento * Time.deltaTime * 50;

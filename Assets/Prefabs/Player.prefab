@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 8959974220391676283}
   - component: {fileID: 3776859018433245745}
   - component: {fileID: 6108435712258477140}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -43,9 +43,9 @@ Transform:
   m_GameObject: {fileID: 8099996984659592239}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3, y: 0.86, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.3, y: -535.6, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -95,8 +95,8 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_SortingOrder: 10
+  m_Sprite: {fileID: -1225659887722782849, guid: 8a7b317efdc1d4649a665ee2f0e649b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -184,12 +184,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   gameManager: {fileID: 0}
+  jugadorPinchado: 0
   fuerzaSalto: 28
   fuerzaSaltoOriginal: 0
   tiempoSalto: 0
   comesFromJumping: 0
   porcentajesalto: 0
-  enSuelo: 0
+  enSuelo: 1
   maxJumpCapacity: 0
   touchedFloorFirstTime: 0
   velocidadMovimiento: 18
@@ -239,7 +240,7 @@ MonoBehaviour:
   dashEnCurso: 0
   puedeDashear: 0
   timerDashDuracion: 0.7
-  tiempoCooldownDash: 2
+  tiempoCooldownDash: 1
   activateTimer: 0
 --- !u!114 &8799367131818960529
 MonoBehaviour:
@@ -253,7 +254,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be56a828525c404a877d2956c605bfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerEventTrigger
+  simpleDialogs: {fileID: 0}
   puntosDeControl:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -278,12 +282,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Sounds
   viento: {fileID: 1088565641455710950}
   cargarSalto: {fileID: 3010776940745988315}
-  hurted: {fileID: 0}
-  hurtedSharp: {fileID: 0}
+  hurted: {fileID: 2737967872092714318}
+  hurtedSharp: {fileID: 4084222340996773713}
   boxCollision: {fileID: 6246996512593116296}
   landing: {fileID: 358249365438451042}
   boxesFalling: {fileID: 1139197112073438193}
-  musicaNivel: {fileID: 0}
+  musicaNivel: {fileID: 8959974220391676283}
   Reproduciendo: 0
 --- !u!114 &894635786592864231
 MonoBehaviour:
@@ -327,10 +331,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: d20bb43f946e6d14abaf5582e0d1acb4, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -424,7 +428,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 98312d23c54e2ed4caaabd2801105585, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -520,8 +524,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 5143003fb1ac72a408627475a7563b7d, type: 3}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 8300000, guid: c817e8d667a49344fb7a3c02f87d98bd, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -618,7 +622,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 3c7fdf2ea2bab624785482d44133f9d8, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -714,8 +718,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 4c8d098f352ca384b8fb6f93481b65da, type: 3}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 8300000, guid: 526565401b95173469e30367eef82127, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -812,7 +816,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: b1a9f1b0475ed7147968a1f1702306c3, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1006,7 +1010,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: bfac35913e1d52046994467b0892f0b4, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

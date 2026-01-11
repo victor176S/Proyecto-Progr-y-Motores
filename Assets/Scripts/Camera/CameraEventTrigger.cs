@@ -11,6 +11,10 @@ public class CameraEventTrigger : MonoBehaviour
 
     private int i;
 
+    private GameObject camara;
+
+    private bool autoScroll;
+
     void Awake()
     {
         instance = this;
@@ -18,7 +22,7 @@ public class CameraEventTrigger : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        camara = GameObject.Find("Main Camera");
     }
 
     // Update is called once per frame
@@ -49,8 +53,14 @@ public class CameraEventTrigger : MonoBehaviour
 
             case 0:
 
-                CameraAutoScroll2D.instance.scrollActivo = false;
+                camara.GetComponent<CameraAutoScroll2D>().scrollActivo = false;
+
+                camara.GetComponent<CameraAutoScroll2D>().enabled = false;
                 
+                StartCoroutine(MoverCamaraY(100));
+
+
+
                 break;
 
             case 1:
@@ -83,4 +93,16 @@ public class CameraEventTrigger : MonoBehaviour
         }
 
     } 
+
+    IEnumerator MoverCamaraY(float cantidad)
+    {
+        for (int i = 0; i < cantidad * 15; i++)
+        {
+            yield return new WaitForSeconds(0.02f);
+
+            camara.transform.position -= new Vector3 (0, 0.075f, 0);
+        }
+
+        camara.GetComponent<CameraAutoScroll2D>().enabled = true;
+    }
 }
