@@ -131455,6 +131455,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 771234621}
+    - target: {fileID: 5151982421127528090, guid: 6f4f06f5d6761cb4eae43ad2554842d7, type: 3}
+      propertyPath: puedeDashear
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5887005503411031525, guid: 6f4f06f5d6761cb4eae43ad2554842d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.3
