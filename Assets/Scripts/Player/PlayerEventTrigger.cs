@@ -121,7 +121,7 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 
                     CameraMovement.instance.Movement(1);
-                    StartCoroutine(CameraShake.instance.ShakeLogic());
+                    StartCoroutine(CameraShake.instance.ShakeLogic(15, 1, 0.3f));
                     AnimationsPlayer.instance.animator.SetTrigger("Landing");
 
                     PlayerMovement.instance.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -196,6 +196,24 @@ public class PlayerEventTrigger : MonoBehaviour
                     StartCoroutine(DialogosSimples("Por cierto, pueden haber algunos cristales desperdigados, intenta no tocarlos"));
 
                     break;
+
+            case 10:
+
+                SceneManager.LoadScene("EscenaMuerte");
+
+                break;
+
+            case 11:
+
+                var plataforma = GameObject.Find("Plataforma sola suelta");
+
+                var camara = GameObject.Find("Main Camera");
+
+                StartCoroutine(camara.GetComponent<CameraShake>().ShakeLogic(15, 1, 0.02f));
+
+                plataforma.GetComponent<PlatformMovement>().enabled = true;
+
+                break;
 
             default:
 

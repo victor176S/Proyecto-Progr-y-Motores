@@ -10,7 +10,7 @@ public class CameraAutoScroll2D : MonoBehaviour
     [SerializeField] private float yOffset = 0f;
 
     [Header("Scroll automático en X")]
-    [SerializeField] private float speedX = 2f;   // velocidad del scroll
+    public float speedX;   // velocidad del scroll
     public bool scrollActivo = false;             // por si quieres activarlo/desactivarlo
 
     // Para suavizar la Y (opcional)

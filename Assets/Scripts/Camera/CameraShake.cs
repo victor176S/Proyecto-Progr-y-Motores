@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem.DualShock;
 
 public class CameraShake : MonoBehaviour
 {
@@ -12,9 +11,9 @@ public class CameraShake : MonoBehaviour
 
     public float shakeSpeed = 0.02f; //cuanto más pequeño, más rapidos son los cambios de posicion
 
-    public float shakeX;
+    private float shakeX;
 
-    public float shakeY;
+    private float shakeY;
 
     public static CameraShake instance;
 
@@ -37,7 +36,7 @@ public class CameraShake : MonoBehaviour
         
     }
 
-    public IEnumerator ShakeLogic()
+    public IEnumerator ShakeLogic(int timesShake, float magnitude, float shakeSpeed)
     {
         
         for (int i = 0; i <= timesShake; i++)
