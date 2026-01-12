@@ -126,7 +126,7 @@ public class PlayerDash : MonoBehaviour
                     puedeDashear = false;
                     tiempoCooldownDash = 1f;
                     timerDashDuracion = 0.7f;
-                    botonDashPresionado = false;
+                    
 
 
 

@@ -211,7 +211,7 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 StartCoroutine(camara.GetComponent<CameraShake>().ShakeLogic(15, 1, 0.02f));
 
-                plataforma.GetComponent<PlatformMovement>().enabled = true;
+                plataforma.GetComponent<PlatformMovement>().PlatformGoingUp();
 
                 break;
 

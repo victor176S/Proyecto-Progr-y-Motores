@@ -117,7 +117,7 @@ public class CameraEventTrigger : MonoBehaviour
     {
         Debug.Log("entrada Shake1");
 
-        yield return new WaitForSeconds(24.5f);
+        yield return new WaitForSecondsRealtime(25f);
 
         Debug.Log("accion Shake1");
         
