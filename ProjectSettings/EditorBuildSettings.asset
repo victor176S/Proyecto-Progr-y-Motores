@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EscenaMuerte 2.unity
     guid: f6a651d50a0d81d40b3d7f837fd36875
+  - enabled: 1
+    path: Assets/Scenes/EscenaMuerteScroll.unity
+    guid: 185408c125fe146489bc22bb1f435513
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

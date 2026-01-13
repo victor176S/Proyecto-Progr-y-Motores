@@ -3744,7 +3744,7 @@ GameObject:
   - component: {fileID: 1097292509}
   - component: {fileID: 1097292508}
   m_Layer: 0
-  m_Name: Datos persistentes
+  m_Name: DatosPersistentes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3767,6 +3767,8 @@ MonoBehaviour:
   textoInput: 
   codigoLyrics: 0
   fueraDelMenu: 0
+  numeroEscena: 0
+  puntos: 0
 --- !u!4 &1097292509
 Transform:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ using System.Collections;
 public class GameManager : MonoBehaviour
 {
 
-    
+    private GameObject datosPersistentes;
     public bool usarDatosExternos = false;
     private string file;
 
@@ -78,6 +78,8 @@ public class GameManager : MonoBehaviour
         }
 
         porcentajeSaltoText.text = "Porcentaje de fuerza de salto: 0%";
+
+        datosPersistentes = GameObject.Find("DatosPersistentes");
 
     }
 

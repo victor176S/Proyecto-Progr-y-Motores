@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerEventTrigger : MonoBehaviour
 {
@@ -213,15 +213,42 @@ public class PlayerEventTrigger : MonoBehaviour
 
             case 12:
 
+                puntosDeControl[13].gameObject.SetActive(false);
+
                 var finalPosition = GameObject.Find("FinalPlace");
 
-                var finalCanvas = GameObject.Find("Secondary canvas final");
+                var finalCanvas = GameObject.Find("SecondaryCanvasFinal");
+
+                Debug.Log($"nombre del objeto {finalCanvas.gameObject.name}");
 
                 gameObject.transform.position = finalPosition.transform.position;
 
-                finalCanvas.gameObject.SetActive(true);              
+                finalCanvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Image>().color += new Color (0,0,0,1);
+
+                finalCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().color += new Color (0,0,0,1);
+
+                finalCanvas.transform.GetChild(0).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().color += new Color (0,0,0,1);
+
+                finalCanvas.transform.GetChild(0).GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().color += new Color (0,0,0,1);
+
+                finalCanvas.transform.GetChild(0).GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().color += new Color (0,0,0,1);
+
+                var gameManager = GameObject.Find("GameManager");
+
+                var datosPersistentes = GameObject.Find("DatosPersistentes");
+
+                datosPersistentes.GetComponent<DatosPersistentes>().puntos += gameManager.GetComponent<GameManager>().puntos;
+
+                finalCanvas.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = datosPersistentes.GetComponent<DatosPersistentes>().puntos.ToString();       
+    
 
                 break;
+
+                case 13:
+
+                    SceneManager.LoadScene("EscenaMuerteScroll");
+
+                    break;
 
             default:
 

@@ -20,6 +20,8 @@ public class DatosPersistentes : MonoBehaviour
 
     public int numeroEscena;
 
+    public int puntos;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {  

@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.RenderGraphModule;
+
 using UnityEngine.UI;
 
 public class AlphaChangerV2 : MonoBehaviour
@@ -38,7 +37,7 @@ public class AlphaChangerV2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     public IEnumerator AlphaChanger()
