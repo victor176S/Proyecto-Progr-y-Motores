@@ -37,15 +37,18 @@ public class PlayerDash : MonoBehaviour
     void Update()
     {
 
-        
+
+       DetectarTecla();
+
        
     }
 
     void FixedUpdate()
     {
 
-        DetectarTecla();
+         
 
+        
         if (PlayerMovement.instance.velocidadMovimientoActual > 20 && !dashEnCurso)
         {
             player.gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -124,8 +127,11 @@ public class PlayerDash : MonoBehaviour
                     }
 
                     puedeDashear = false;
+                    yield return new WaitForSeconds(0.01f);
                     tiempoCooldownDash = 1f;
                     timerDashDuracion = 0.7f;
+                    
+
                     
                     
 
@@ -149,19 +155,18 @@ public class PlayerDash : MonoBehaviour
     void DetectarTecla()
     {
         
-            // Detectar si se presiona la tecla "flecha arriba"
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            
+            if (Input.GetKeyDown(KeyCode.RightArrow) && puedeDashear)
             {
 
-                botonDashPresionado = true;
-
-                Debug.Log($"Dash Pulsado = {botonDashPresionado}");
+            StartCoroutine(DashLogic());
+            Debug.Log($"Dash Pulsado = {botonDashPresionado}");
                 // Aquí puedes agregar la lógica que deseas ejecutar
             }
 
             else
             {
-                botonDashPresionado = false;
+                
 
                 
             }
