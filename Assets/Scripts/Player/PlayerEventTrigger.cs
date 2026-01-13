@@ -205,13 +205,21 @@ public class PlayerEventTrigger : MonoBehaviour
 
             case 11:
 
-                var plataforma = GameObject.Find("Plataforma sola suelta");
-
                 var camara = GameObject.Find("Main Camera");
 
                 StartCoroutine(camara.GetComponent<CameraShake>().ShakeLogic(15, 1, 0.02f));
 
-                plataforma.GetComponent<PlatformMovement>().PlatformGoingUp();
+                break;
+
+            case 12:
+
+                var finalPosition = GameObject.Find("FinalPlace");
+
+                var finalCanvas = GameObject.Find("Secondary canvas final");
+
+                gameObject.transform.position = finalPosition.transform.position;
+
+                finalCanvas.gameObject.SetActive(true);              
 
                 break;
 
