@@ -100,7 +100,7 @@ public class CameraEventTrigger : MonoBehaviour
     {
         for (int i = 0; i < cantidad * 15; i++)
         {
-            yield return new WaitForSeconds(0.018f);
+            yield return new WaitForSecondsRealtime(0.018f);
 
             camara.transform.position -= new Vector3 (0, 0.055f, 0);
         }
