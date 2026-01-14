@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool jugadorPinchado;
 
+    public bool jugadorGolpeado;
+
 
     //variables salto
     [Header("Salto")]

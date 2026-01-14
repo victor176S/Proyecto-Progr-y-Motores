@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraEventTrigger : MonoBehaviour
 {
@@ -47,9 +48,13 @@ public class CameraEventTrigger : MonoBehaviour
     }
 
     public void TriggerPuntoDeControl(int i)
-    { 
-        switch (i)
+    {
+         var nombreEscena = SceneManager.GetActiveScene().name;
+
+        if (nombreEscena == "Nivel 1")
         {
+            switch (i)
+            {
 
             case 0:
 
@@ -59,7 +64,7 @@ public class CameraEventTrigger : MonoBehaviour
 
                 camara.transform.position = new Vector3 (camara.transform.position.x, -545, camara.transform.position.z);
                 
-                StartCoroutine(MoverCamaraY(90));
+                StartCoroutine(MoverCamaraY(90, 1, 0));
 
                 StartCoroutine(Shake1());
 
@@ -92,18 +97,65 @@ public class CameraEventTrigger : MonoBehaviour
             default:
 
             break;
+            }
         }
+        
+        if (nombreEscena == "Nivel 2")
+        {
+            switch (i)
+            {
 
-    } 
+            case 0:
 
-    IEnumerator MoverCamaraY(float cantidad)
+                camara.GetComponent<CameraAutoScroll2D>().scrollActivo = false;
+
+                camara.GetComponent<CameraAutoScroll2D>().enabled = false;
+                
+                StartCoroutine(MoverCamaraY(20, 1.5f, 0));
+
+                puntosDeControl[i].gameObject.SetActive(false);
+
+                break;
+
+            case 1:
+
+                camara.GetComponent<CameraAutoScroll2D>().scrollActivo = false;
+
+                camara.GetComponent<CameraAutoScroll2D>().enabled = false;
+                
+                StartCoroutine(MoverCamaraY(40, -1.5f, 0));
+
+                puntosDeControl[i].gameObject.SetActive(false);
+
+                break;
+
+            case 2:
+
+                camara.GetComponent<CameraAutoScroll2D>().scrollActivo = false;
+
+                camara.GetComponent<CameraAutoScroll2D>().enabled = false;
+                
+                StartCoroutine(MoverCamaraY(40, -1.5f, 0));
+
+                puntosDeControl[i].gameObject.SetActive(false);
+
+                break;
+            }
+
+            
+
+        } 
+
+    IEnumerator MoverCamaraY(float cantidad, float multiplicador, float retardo)
     {
         for (int i = 0; i < cantidad * 15; i++)
         {
             yield return new WaitForSecondsRealtime(0.018f);
 
-            camara.transform.position -= new Vector3 (0, 0.055f, 0);
+            camara.transform.position -= new Vector3 (0, 0.055f * multiplicador, 0);
         }
+
+        yield return new WaitForSeconds(retardo);
 
         camara.GetComponent<CameraAutoScroll2D>().enabled = true;
 
@@ -122,5 +174,6 @@ public class CameraEventTrigger : MonoBehaviour
         Debug.Log("accion Shake1");
         
         StartCoroutine(camara.GetComponent<CameraShake>().ShakeLogic(15, 1, 0.02f));
+    }
     }
 }

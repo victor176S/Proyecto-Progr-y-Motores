@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
 
     private bool haPerdido;
 
+    public bool jugadorGolpeado;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Awake()
@@ -141,7 +143,7 @@ public class GameManager : MonoBehaviour
         if (vidasJugador == 0)
         {
 
-            haPerdido = true;
+           
             
         }
 
@@ -155,6 +157,13 @@ public class GameManager : MonoBehaviour
         if (haPerdido && !player.GetComponent<PlayerMovement>().jugadorPinchado)
         {
             StartCoroutine(OnDeath(1));
+        }
+
+         if (vidasJugador == 0 && jugadorGolpeado)
+        {
+
+            SceneManager.LoadScene("EscenaMuerte2");
+            
         }
     
     }

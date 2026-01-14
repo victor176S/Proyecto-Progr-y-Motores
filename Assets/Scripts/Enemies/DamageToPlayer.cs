@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Net;
+using Mono.Cecil.Cil;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DamageToPlayer : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class DamageToPlayer : MonoBehaviour
     public Vector3 valorDeIncremento = new Vector3(0.05f, 0.1f, 0);
 
     public int veces = 40;
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -83,7 +87,14 @@ public class DamageToPlayer : MonoBehaviour
 
                     StartCoroutine(Sounds.instance.PlaySound(2,1));
 
-                    Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), PlayerEventTrigger.instance.GetComponent<Collider>());   
+                    var gameManager = GameObject.Find("GameManager");
+
+                    if (gameManager.GetComponent<GameManager>().vidasJugador == 0)
+                    {
+                        SceneManager.LoadScene("EscenaMuerte2");
+                    }  
+
+                    Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), PlayerEventTrigger.instance.GetComponent<Collider>()); 
 
                 }
 
@@ -116,6 +127,13 @@ public class DamageToPlayer : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         other.gameObject.GetComponent<PlayerMovement>().jugadorPinchado = false;
+    }
+
+    private IEnumerator QuitarJugadorGolpeado(GameObject other)
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        other.GetComponent<GameManager>().jugadorGolpeado = false;
     }
 
     private IEnumerator PlayerImpulseOnHurt()

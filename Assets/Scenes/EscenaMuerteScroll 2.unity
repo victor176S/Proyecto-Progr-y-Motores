@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 9135207084996945098, guid: 0fb4590469c612047890595695b80e5f, type: 3}
+  m_Sprite: {fileID: -8391647131525806625, guid: a49024cd3af27b6479eddc7f77b4f422, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -354,8 +354,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Al parecer te caiste, se te devolver\xE1 al punto inicial, \xA1todavia
-    hay pruebas que hacer!"
+  m_text: "Te alcanz\xF3 una abalancha de objetos, intenta evitarlos la proxima vez
+    e intenta ir m\xE1s r\xE1pido"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -364,8 +364,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278228479
+  m_fontColor: {r: 1, g: 0.5832002, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -694,7 +694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 278e7e6d7d3aa294aa6fd89d34af4a15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EscenaMuerteEventos
-  nivel: 1
+  nivel: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,6 +14,8 @@ public class PlayerEventTrigger : MonoBehaviour
     public static PlayerEventTrigger instance;
 
     public List<GameObject> puntosDeControl;
+
+    private GameObject globalCanvas;
 
     [SerializeField] private float speedY = -18f;
 
@@ -28,6 +31,8 @@ public class PlayerEventTrigger : MonoBehaviour
     void Start()
     {
         simpleDialogs = GameObject.Find("SimpleDialogs");
+
+        globalCanvas = GameObject.Find("GlobalCanvas");
     }
 
     // Update is called once per frame
@@ -74,6 +79,8 @@ public class PlayerEventTrigger : MonoBehaviour
     {
 
         var nombreEscena = SceneManager.GetActiveScene().name;
+
+        Debug.Log($"Nombre escena: {nombreEscena}");
 
         if (nombreEscena == "Nivel 1")
         {
@@ -239,10 +246,11 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 datosPersistentes.GetComponent<DatosPersistentes>().puntos += gameManager.GetComponent<GameManager>().puntos;
 
-                finalCanvas.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = datosPersistentes.GetComponent<DatosPersistentes>().puntos.ToString();       
-    
-
-                break;
+                finalCanvas.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = datosPersistentes.GetComponent<DatosPersistentes>().puntos.ToString();
+                
+                StartCoroutine(LoadSceneLate());
+                
+                    break;
 
                 case 13:
 
@@ -259,7 +267,40 @@ public class PlayerEventTrigger : MonoBehaviour
 
         if (nombreEscena == "Nivel 2")
         {
+            switch (i)
+            {
+
+            case 0:
+
+                SceneManager.LoadScene("EscenaMuerte1");
+
+                break;
+
+            case 1:
+
+                SceneManager.LoadScene("EscenaMuerte2");
+
+                break;
+
+            case 2:
+
+                Debug.Log("entrada al control");
+
+                    StartCoroutine(InstantiateFallingObjectNormalSection(0,0,0));
+                    
+                    break;
+
+            case 3:
             
+                    StartCoroutine(InstantiateFallingObjectNormalSection(1,0,1));
+
+                    break;
+
+            default:
+
+                break;
+
+            }
         }
 
         if (nombreEscena == "Nivel 3")
@@ -268,6 +309,77 @@ public class PlayerEventTrigger : MonoBehaviour
         }
 
     } 
+
+    IEnumerator InstantiateFallingObjectNormalSection(int hijo1, int hijo2, int objeto)
+    {
+
+        if (objeto == 0)
+        {
+            var caja = GameObject.Find("cajadamage");
+
+            var posicionAparicion = globalCanvas.transform.GetChild(1).GetChild(hijo1).GetChild(hijo2).gameObject.transform.position;
+
+            GameObject cajaInvocada = Instantiate(caja, posicionAparicion, quaternion.identity);
+
+            cajaInvocada.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+
+            GameObject cajaInvocada1 = Instantiate(caja, posicionAparicion - new Vector3(3, 0, 0), quaternion.identity);
+
+            cajaInvocada1.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+
+            GameObject cajaInvocada2 = Instantiate(caja, posicionAparicion - new Vector3(-3, 0, 0), quaternion.identity);
+
+            cajaInvocada2.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+
+            GameObject cajaInvocada3 = Instantiate(caja, posicionAparicion - new Vector3(3, 3, 0), quaternion.identity);
+
+            cajaInvocada3.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+
+            GameObject cajaInvocada4 = Instantiate(caja, posicionAparicion - new Vector3(-3, 3, 0), quaternion.identity);
+
+            cajaInvocada4.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+
+            for (int i = 0; i < 10; i++)
+            {
+                yield return new WaitForSeconds(1f);  
+
+                if (cajaInvocada4.GetComponent<DamageToPlayer>().enCaida == false)
+                globalCanvas.transform.GetChild(1).GetChild(hijo1).gameObject.SetActive(false);
+            }
+
+           
+
+           
+        }
+
+        if (objeto == 1)
+        {
+            var vigas = GameObject.Find("Vigas");
+
+            var posicionAparicion = globalCanvas.transform.GetChild(1).GetChild(hijo1).GetChild(hijo2).gameObject.transform.position;
+
+            GameObject vigaInvocada = Instantiate(vigas, posicionAparicion, quaternion.identity);
+
+            vigaInvocada.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+
+            for (int i = 0; i < 10; i++)
+            {
+                yield return new WaitForSeconds(1f);  
+
+                if (vigaInvocada.GetComponent<DamageToPlayer>().enCaida == false)
+                globalCanvas.transform.GetChild(1).GetChild(hijo1).gameObject.SetActive(false);
+            }
+        }
+    }
+
+    
+
+    IEnumerator LoadSceneLate()
+    {
+        yield return new WaitForSecondsRealtime (18f);
+
+        SceneManager.LoadScene("Nivel 2");
+    }
 
     IEnumerator DialogosSimples(string dialogo)
     {
