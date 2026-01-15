@@ -7,7 +7,7 @@ public class CameraAutoScroll2D : MonoBehaviour
 
     [Header("Jugador a seguir en Y")]
     [SerializeField] private Transform player;
-    [SerializeField] private float yOffset = 0f;
+    public float yOffset = 0f;
 
     [Header("Scroll automático en X")]
     public float speedX;   // velocidad del scroll

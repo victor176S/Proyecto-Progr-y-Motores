@@ -2,7 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -78,6 +77,10 @@ public class GameManager : MonoBehaviour
         {
         file = Application.persistentDataPath + "/Gamedata.json";
         }
+
+        var datosPersistentes = GameObject.Find("DatosPersistentes");
+
+        puntos += datosPersistentes.GetComponent<DatosPersistentes>().puntos;
 
         porcentajeSaltoText.text = "Porcentaje de fuerza de salto: 0%";
 

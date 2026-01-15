@@ -1,8 +1,6 @@
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 
 public class DatosPersistentes : MonoBehaviour
 {
@@ -21,10 +19,11 @@ public class DatosPersistentes : MonoBehaviour
     public int numeroEscena;
 
     public int puntos;
+    private bool alreadyAdded = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
-    {  
+    {   
 
         if (instance != null && instance != this)
         {
@@ -40,11 +39,20 @@ public class DatosPersistentes : MonoBehaviour
     void Start()
     {
 
+        var gameManager = GameObject.Find("GameManager");
+
+        if(SceneManager.GetActiveScene().buildIndex != 0)
+        {
+             gameManager.GetComponent<GameManager>().puntos += puntos;
+        }
+         
     }
 
     // Update is called once per frame
     void Update()
     {
+
+           
             Debug.Log(volumenSFX);
 
             Debug.Log(volumenMusica);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -36,6 +37,9 @@ public class CameraEventTrigger : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        StartCoroutine(ReOrganizeUI.instance.UIFromRightToTop());
+
         camara = GameObject.Find("Main Camera");
 
         player = GameObject.Find("Player");
@@ -107,7 +111,7 @@ public class CameraEventTrigger : MonoBehaviour
                 
                 StartCoroutine(MoverCamaraY(90, 1, 0));
 
-                StartCoroutine(Shake1());
+                StartCoroutine(Shake1(15, 1, 0.02f, 25));
 
                 break;
 
@@ -218,7 +222,7 @@ public class CameraEventTrigger : MonoBehaviour
 
                     break;
 
-            case 7:
+            case 7: //
 
                     StartCoroutine(InstantiateInFall(0, 0));
 
@@ -232,24 +236,189 @@ public class CameraEventTrigger : MonoBehaviour
 
             case 8:
 
+                    StartCoroutine(InstantiateInFall(0, 0));
+
+                    StartCoroutine(InstantiateInFall(1, 2));
+
+                    StartCoroutine(InstantiateInFall(0, 4));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
                     break;
 
             case 9:
+
+                    StartCoroutine(InstantiateInFall(1, 1));
+
+                    StartCoroutine(InstantiateInFall(1, 3));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
 
                     break;
 
             case 10:
 
+                    StartCoroutine(InstantiateInFall(0, 0));
+
+                    StartCoroutine(InstantiateInFall(0, 1));
+
+                    StartCoroutine(InstantiateInFall(0, 2));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
                     break;
 
             case 11:
 
+                    StartCoroutine(InstantiateInFall(1, 1));
+
+                    StartCoroutine(InstantiateInFall(1, 2));
+
+                    StartCoroutine(InstantiateInFall(1, 3));
+
+                    StartCoroutine(InstantiateInFall(1, 4));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
                     break;
+
+            case 12:
+
+                    StartCoroutine(InstantiateInFall(1, 0));
+
+                    StartCoroutine(InstantiateInFall(1, 1));
+
+                    StartCoroutine(InstantiateInFall(1, 2));
+
+                    StartCoroutine(InstantiateInFall(1, 3));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+            case 13:
+
+                    StartCoroutine(InstantiateInFall(1, 1));
+
+                    StartCoroutine(InstantiateInFall(1, 2));
+
+                    StartCoroutine(InstantiateInFall(1, 3));
+
+                    StartCoroutine(InstantiateInFall(1, 4));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+            case 14:
+
+                StartCoroutine(Shake1(1500, 0.2f, 0.02f, 0.01f));
+                speedY = -18f;
+
+                    break;
+
+
+            case 15:
+
+                    StartCoroutine(InstantiateInFall(0, 0));
+
+                    StartCoroutine(InstantiateInFall(0, 1));
+
+                    StartCoroutine(InstantiateInFall(0, 2));
+
+                    StartCoroutine(InstantiateInFall(0, 3));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+            case 16:
+
+                    StartCoroutine(InstantiateInFall(1, 1));
+
+                    StartCoroutine(InstantiateInFall(0, 2));
+
+                    StartCoroutine(InstantiateInFall(1, 3));
+
+                    StartCoroutine(InstantiateInFall(0, 4));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+            case 17:
+
+                    StartCoroutine(InstantiateInFall(0, 0));
+
+                    StartCoroutine(InstantiateInFall(1, 1));
+
+                    StartCoroutine(InstantiateInFall(0, 2));
+
+                    StartCoroutine(InstantiateInFall(1, 3));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+            case 18:
+
+                    StartCoroutine(InstantiateInFall(0, 1));
+
+                    StartCoroutine(InstantiateInFall(0, 2));
+
+                    StartCoroutine(InstantiateInFall(0, 3));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+            case 19:
+
+            
+
+                var finalPosition = GameObject.Find("FinalPlace");
+
+                var finalCanvas = GameObject.Find("SecondaryCanvasFinal");
+
+                Debug.Log($"nombre del objeto {finalCanvas.gameObject.name}");
+
+                player.gameObject.transform.position = finalPosition.transform.position;
+
+                finalCanvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Image>().color += new Color (0,0,0,1);
+
+                finalCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().color += new Color (0,0,0,1);
+
+                finalCanvas.transform.GetChild(0).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().color += new Color (0,0,0,1);
+
+                finalCanvas.transform.GetChild(0).GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().color += new Color (0,0,0,1);
+
+                finalCanvas.transform.GetChild(0).GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().color += new Color (0,0,0,1);
+
+                var gameManager = GameObject.Find("GameManager");
+
+                var datosPersistentes = GameObject.Find("DatosPersistentes");
+
+                datosPersistentes.GetComponent<DatosPersistentes>().puntos = gameManager.GetComponent<GameManager>().puntos;
+
+                finalCanvas.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = datosPersistentes.GetComponent<DatosPersistentes>().puntos.ToString();
+                
+                StartCoroutine(LoadSceneLate());
+
+                    break;
+
+            
             }
 
             
 
-        } 
+        }
+    IEnumerator LoadSceneLate()
+    {
+        yield return new WaitForSecondsRealtime (18f);
+
+        SceneManager.LoadScene("Nivel 3");
+    } 
 
     IEnumerator MoverCamaraY(float cantidad, float multiplicador, float retardo)
     {
@@ -270,15 +439,15 @@ public class CameraEventTrigger : MonoBehaviour
 
     }
 
-    IEnumerator Shake1()
+    IEnumerator Shake1(int timesShake, float magnitude, float shakeSpeed, float shakeDelay)
     {
         Debug.Log("entrada Shake1");
 
-        yield return new WaitForSecondsRealtime(25f);
+        yield return new WaitForSecondsRealtime(shakeDelay);
 
         Debug.Log("accion Shake1");
         
-        StartCoroutine(camara.GetComponent<CameraShake>().ShakeLogic(15, 1, 0.02f));
+        StartCoroutine(camara.GetComponent<CameraShake>().ShakeLogic(timesShake, magnitude, shakeSpeed));
     }
 
     IEnumerator InstantiateInFall(int objeto, int lugar)
@@ -415,6 +584,8 @@ public class CameraEventTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+            StartCoroutine(FovFallAdapt());
+
             player.GetComponent<PlayerMovement>().enSuelo = false;
 
             AnimationsPlayer.instance.animator.SetTrigger("CaidaInesperada");
@@ -444,6 +615,19 @@ public class CameraEventTrigger : MonoBehaviour
 
 
             
+        }
+
+        IEnumerator FovFallAdapt()
+        {
+
+            camara.GetComponent<CameraAutoScroll2D>().yOffset = 10;
+
+            for (int i = 0; i < 20; i++)
+            {
+                camara.GetComponent<Camera>().fieldOfView -= 1f;
+
+                yield return new WaitForSeconds(0.03f);
+            }
         }
     
         IEnumerator StartPlatformFall()
