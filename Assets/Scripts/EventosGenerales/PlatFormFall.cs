@@ -29,6 +29,9 @@ public class PlatFormFall : MonoBehaviour
 
     IEnumerator PlataformaCae()
     {
+
+        yield return new WaitForSeconds(3.5f);
+
         for (int i = 0; i < 500; i++)
         {
             gameObject.transform.position -= new Vector3 (0, 2, 0);
