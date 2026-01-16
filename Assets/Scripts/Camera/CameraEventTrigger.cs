@@ -410,19 +410,28 @@ public class CameraEventTrigger : MonoBehaviour
 
             
             }
+            
 
-            if (nombreEscena == "Nivel 3")
+        }
+
+        if (nombreEscena == "Nivel 3")
             {
                 switch (i)
                 {
 
                 case 0:
 
-                    camara.GetComponent<CameraAutoScroll2D>().enabled = true;
-
                     camara.GetComponent<CameraAutoScroll2D>().scrollActivo = true;
 
                     enCaida = false;
+
+                    camara.GetComponent<CameraRotation>().tiltAnimation = false;
+
+                    camara.GetComponent<CameraRotation>().target = 0;
+
+                    player.gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.None;
+
+                    player.gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
                     break;
                     
@@ -432,9 +441,6 @@ public class CameraEventTrigger : MonoBehaviour
 
 
             }
-            
-
-        }
     IEnumerator LoadSceneLate()
     {
         yield return new WaitForSecondsRealtime (18f);

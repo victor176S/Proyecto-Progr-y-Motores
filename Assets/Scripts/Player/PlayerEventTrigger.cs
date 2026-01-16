@@ -309,9 +309,29 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 case 0:
 
+
+
+                    break;
+
+                case 1:
+
+                    SceneManager.LoadScene("EscenaMuerte5");
+
                     break;
                     
-                
+                case 2:
+
+                    AnimationsPlayer.instance.animator.SetTrigger("Landing");
+                    
+                    StartCoroutine(Landing());
+
+                    GameObject fuegosScroll = GameObject.Find("FuegosScroll");
+
+                    GameObject camara = GameObject.Find("Main Camera");
+
+                    fuegosScroll.transform.SetParent(camara.transform);
+
+                    break;
                 
                 }
 
@@ -319,6 +339,25 @@ public class PlayerEventTrigger : MonoBehaviour
             }
 
     } 
+
+    IEnumerator Landing()
+    {
+
+        var posicion = gameObject.transform.position;
+
+        for (int i = 0; i < 50; i++)
+        {
+            gameObject.transform.position = posicion;
+
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+
+        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
 
     IEnumerator InstantiateFallingObjectNormalSection(int hijo1, int hijo2, int objeto)
     {

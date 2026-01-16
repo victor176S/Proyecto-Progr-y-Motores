@@ -55,6 +55,8 @@ public class AnimationsPlayer : MonoBehaviour
         animator.SetBool("OnDash", PlayerDash.instance.dashEnCurso);
 
         animator.SetBool("CargandoSalto", cargandoSalto);
+
+        animator.SetTrigger("Still");
         
     }
 
