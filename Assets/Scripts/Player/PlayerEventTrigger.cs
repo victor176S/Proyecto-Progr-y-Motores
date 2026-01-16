@@ -303,9 +303,20 @@ public class PlayerEventTrigger : MonoBehaviour
         }
 
         if (nombreEscena == "Nivel 3")
-        {
-            
-        }
+            {
+                switch (i)
+                {
+
+                case 0:
+
+                    break;
+                    
+                
+                
+                }
+
+
+            }
 
     } 
 

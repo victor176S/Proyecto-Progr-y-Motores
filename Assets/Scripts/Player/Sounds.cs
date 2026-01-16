@@ -23,6 +23,8 @@ public class Sounds : MonoBehaviour
 
     public AudioSource musicaNivel;
 
+    public AudioSource levelExtension;
+
     public bool Reproduciendo;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 

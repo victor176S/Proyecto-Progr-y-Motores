@@ -38,6 +38,7 @@ public class CameraEventTrigger : MonoBehaviour
     void Start()
     {
 
+        if (SceneManager.GetActiveScene().name == "Nivel 2")
         StartCoroutine(ReOrganizeUI.instance.UIFromRightToTop());
 
         camara = GameObject.Find("Main Camera");
@@ -410,6 +411,27 @@ public class CameraEventTrigger : MonoBehaviour
             
             }
 
+            if (nombreEscena == "Nivel 3")
+            {
+                switch (i)
+                {
+
+                case 0:
+
+                    camara.GetComponent<CameraAutoScroll2D>().enabled = true;
+
+                    camara.GetComponent<CameraAutoScroll2D>().scrollActivo = true;
+
+                    enCaida = false;
+
+                    break;
+                    
+                
+                
+                }
+
+
+            }
             
 
         }

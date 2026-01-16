@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -61,8 +62,8 @@ public class Eventos : MonoBehaviour
 
     private int randomAnterior;
     private bool activateNextCorrutine;
-
-    
+    private bool enCaida;
+    private float speedY = -18;
 
     void Awake()
     {
@@ -87,13 +88,43 @@ public class Eventos : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Nivel 2")
         {
-            StartCoroutine(EventosNìvel2());
+            StartCoroutine(EventosNivel2());
+        }
+
+        if (SceneManager.GetActiveScene().name == "Nivel 3")
+        {
+            StartCoroutine(EventosNivel3());
+        }
+    }
+
+    void Update()
+    {
+        
+        if(enCaida)
+        {
+
+            Debug.Log("Jugador en caida");
+        
+                Vector3 pos = player.transform.position;
+
+                pos.y += speedY * Time.deltaTime;
+
+                player.transform.position = pos;
+
+                if (PlayerMovement.instance.enSuelo)
+                {
+                    PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
+                    PlayerMovement.instance.rb.gravityScale = 4f;
+
+                    enCaida = false;
+                }
+
         }
     }
 
     #region Eventos nivel 2
 
-    IEnumerator EventosNìvel2()
+    IEnumerator EventosNivel2()
     {
         StartCoroutine(Shake1(1000, 0.02f, 1));
 
@@ -399,4 +430,175 @@ public class Eventos : MonoBehaviour
         
         StartCoroutine(camaras[camara].GetComponent<CameraShake>().ShakeLogic(veces, 0.2f, velocidad));
     }
+
+    #region Eventos nivel 3
+
+    IEnumerator EventosNivel3()
+    {
+        yield return new WaitForSeconds(0.00001f);
+        
+        StartCoroutine(Shake1(1000, 0.02f, 1));
+
+        RandomInstantiate2();
+
+        StartCoroutine(PlatFormsFalling());
+
+        StartCoroutine(CameraAdapt());
+
+        StartCoroutine(MoveStartFireUP());
+
+
+    }
+
+    void RandomInstantiate2()
+    {
+        var spawnPoint1 = GameObject.Find("SpawnPoint1");
+
+        Debug.Log($"nombre spawn: {spawnPoint1.gameObject.name}");
+
+        var spawnPoint2 = GameObject.Find("SpawnPoint2");
+
+        var spawnPoint3 = GameObject.Find("SpawnPoint3");
+
+        spawnPoints.Add(spawnPoint1);
+
+        spawnPoints.Add(spawnPoint2);
+
+        spawnPoints.Add(spawnPoint3);
+        
+        StartCoroutine(RandomizedInstantiate2());
+
+       
+    }
+
+    IEnumerator RandomizedInstantiate2()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            var randomSpawn = UnityEngine.Random.Range(0,3);
+
+            var objetoRandom = UnityEngine.Random.Range(0,2);
+
+            Debug.Log($"Numero objeto {objetoRandom}");
+
+            GameObject objetoElegido = null;
+
+            if (objetoRandom == 0)
+            {
+                objetoElegido = GameObject.Find("caja");
+            }
+
+            if (objetoRandom == 1)
+            {
+                objetoElegido = GameObject.Find("Vigas");
+            }
+
+            while (randomAnterior == randomSpawn)
+            {
+               randomSpawn = UnityEngine.Random.Range(0,3);
+            }
+
+            var cajaRandom = Instantiate(objetoElegido, spawnPoints[randomSpawn].transform.position, quaternion.identity);
+
+            cajaRandom.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+
+            yield return new WaitForSeconds(0.2f);
+
+            randomAnterior = randomSpawn;
+
+        }
+
+        GameObject cristal = GameObject.Find("Cristal"); 
+
+        GameObject crsitalInstanciado = Instantiate(cristal, spawnPoints[1].transform.position, quaternion.identity);
+
+        crsitalInstanciado.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(7f);
+
+        camaras[1].gameObject.SetActive(false);
+
+        camaras[0].gameObject.SetActive(true);
+    }
+
+    IEnumerator PlatFormsFalling()
+    {
+        GameObject plataformas = GameObject.Find("Plataformas");
+
+        for (int i = 0; i < 180; i++)
+        {
+           plataformas.transform.GetChild(0).GetChild(0).GetChild(0).transform.localEulerAngles += new Vector3(0,0,-1f);
+
+           yield return new WaitForSeconds(0.011f); 
+        }
+
+        for (int i = 0; i < 180; i++)
+        {
+           plataformas.transform.GetChild(0).GetChild(1).GetChild(0).transform.localEulerAngles += new Vector3(0,0,1f);
+
+           yield return new WaitForSeconds(0.011f); 
+        }
+
+        
+    }
+
+    IEnumerator CameraAdapt()
+    {
+
+        StartFall();
+
+        yield return new WaitForSeconds(10f);
+
+        camaras[1].gameObject.SetActive(false);
+
+        camaras[0].gameObject.SetActive(true);
+
+        camaras[0].GetComponent<Camera>().fieldOfView = 130;
+
+    }
+
+    void StartFall()
+    {
+
+           
+
+            player.GetComponent<PlayerMovement>().enSuelo = false;
+
+            AnimationsPlayer.instance.animator.SetTrigger("CaidaInesperada");
+
+                //StartCoroutine(AnimationsPlayer.instance.TriggerRecompostura());
+
+            CameraMovement.instance.Movement(2);
+                //ESTO SI CAMBIA LA GRAVEDAD
+
+            PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
+            PlayerMovement.instance.rb.gravityScale = 0f;
+            PlayerMovement.instance.rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+
+            Debug.Log($"Gravedad: {PlayerMovement.instance.rb.gravityScale}");
+
+            CameraRotation.instance.tiltAnimation = true;
+
+            enCaida = true; 
+
+        }
+
+    IEnumerator MoveStartFireUP()
+    {
+
+        yield return new WaitForSeconds(5f);
+
+        var fuegos = GameObject.Find("FuegosPrincipio");
+
+        for(int i = 0; i < 500; i++)
+        {
+            fuegos.transform.position += new Vector3(0, 0.2f, 0);
+
+            yield return new WaitForSeconds(0.0075f);
+        }
+
+         
+    }
+
+    #endregion
 }
