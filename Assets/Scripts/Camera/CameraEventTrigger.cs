@@ -433,9 +433,21 @@ public class CameraEventTrigger : MonoBehaviour
 
                     player.gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
+                    puntosDeControl[i].gameObject.SetActive(false);
+
                     break;
                     
-                
+                case 1:
+
+                    GameObject fuegosScroll = GameObject.Find("FuegosScroll");
+
+                    StartCoroutine(MoveFire(true, fuegosScroll));
+
+                    fuegosScroll.transform.localEulerAngles = new Vector3(0, 0, 0);
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
                 
                 }
 
@@ -645,7 +657,7 @@ public class CameraEventTrigger : MonoBehaviour
             
         }
 
-        IEnumerator FovFallAdapt()
+    IEnumerator FovFallAdapt()
         {
 
             camara.GetComponent<CameraAutoScroll2D>().yOffset = 10;
@@ -658,7 +670,7 @@ public class CameraEventTrigger : MonoBehaviour
             }
         }
     
-        IEnumerator StartPlatformFall()
+    IEnumerator StartPlatformFall()
         {
             int rotation = 4;
 
@@ -678,5 +690,32 @@ public class CameraEventTrigger : MonoBehaviour
             }
         }
 
+
+    IEnumerator MoveFire(bool direccion, GameObject fuegosScroll)
+    {
+            
+        if (direccion)
+        {
+            for(int i = 0; i < 20; i++)
+            {
+                fuegosScroll.transform.localPosition += new Vector3(0.8f, 0, 0);
+
+                yield return new WaitForSeconds(0.05f);
+
+            }
+        }
+
+        else
+        {
+           for(int i = 0; i < 20; i++)
+            {
+                fuegosScroll.transform.localPosition += new Vector3(-0.8f, 0, 0);
+
+                yield return new WaitForSeconds(0.05f);
+
+            }     
+        }
+
+    }
     }
 }

@@ -21,6 +21,9 @@ public class PlayerEventTrigger : MonoBehaviour
     private int i;
 
     public bool enCaida = false;
+    private float hurtCoolDownTimer;
+    public int veces = 40;
+    public Vector3 valorDeIncremento = new Vector3(0f, 0f, 0);
 
     void Awake()
     {
@@ -57,6 +60,14 @@ public class PlayerEventTrigger : MonoBehaviour
             }
         
 
+    }
+
+    void FixedUpdate()
+    {
+         if (hurtCoolDownTimer > 0f)
+        {   
+            hurtCoolDownTimer -= Time.fixedDeltaTime;
+        }
     }
     //el objeto al que le afecta el trigger, tiene que tener un rigidbody
     //si quieres que su comportamiento original no cambie (en este caso, la camara)
@@ -309,7 +320,7 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 case 0:
 
-
+                    SceneManager.LoadScene("EscenaMuerte6");
 
                     break;
 
@@ -325,11 +336,31 @@ public class PlayerEventTrigger : MonoBehaviour
                     
                     StartCoroutine(Landing());
 
+                    StartCoroutine(Sounds.instance.PlaySound(5,1));
+
                     GameObject fuegosScroll = GameObject.Find("FuegosScroll");
 
                     GameObject camara = GameObject.Find("Main Camera");
 
                     fuegosScroll.transform.SetParent(camara.transform);
+
+
+
+                    break;
+
+                case 3:
+
+                    StartCoroutine(StopVelocity());
+
+                    break;
+
+                case 4:
+
+                    StartCoroutine(HurtPlayer());
+
+                    StartCoroutine(Sounds.instance.PlaySound(2,1));
+
+                    StartCoroutine(PlayerImpulseOnHurt());
 
                     break;
                 
@@ -345,19 +376,43 @@ public class PlayerEventTrigger : MonoBehaviour
 
         var posicion = gameObject.transform.position;
 
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 100; i++)
         {
             gameObject.transform.position = posicion;
 
             yield return new WaitForSeconds(0.01f);
         }
 
+        AnimationsPlayer.instance.animator.SetTrigger("Still");
+
         yield return new WaitForSeconds(0.5f);
 
         gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
 
         gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        gameObject.GetComponent<Rigidbody2D>().linearVelocityX = 18;
+
+        
+
+
     }
+
+    IEnumerator StopVelocity()
+    {
+
+        for (int i = 0; i < 500; i++)
+        {
+            gameObject.GetComponent<Rigidbody2D>().linearVelocityX = 0;
+
+            yield return new WaitForSeconds(0.001f);
+        }
+
+        gameObject.GetComponent<Rigidbody2D>().linearVelocityX = 18;
+        
+    }
+
+
 
     IEnumerator InstantiateFallingObjectNormalSection(int hijo1, int hijo2, int objeto)
     {
@@ -454,7 +509,46 @@ public class PlayerEventTrigger : MonoBehaviour
         simpleDialogs.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "";
     }
 
+    private IEnumerator HurtPlayer()
+    {   
 
+        if (hurtCoolDownTimer <= 0)
+        {
+
+        Debug.Log($"Hurt Cooldown Timer HurtPlayer (entrada): {hurtCoolDownTimer}");
+        //esto falla
+        GameManager.instance.DecreasePlayerLives();
+        Debug.Log($"Hurt Cooldown Timer HurtPlayer (salida): {hurtCoolDownTimer}");
+        hurtCoolDownTimer = 2f;
+        
+        yield return new WaitForSeconds(0.2f);
+
+        }
+    }
+
+    private IEnumerator PlayerImpulseOnHurt()
+    {
+        AnimationsPlayer.instance.animator.SetBool("Hurted", true);
+        AnimationsPlayer.instance.animator.SetTrigger("CaidaInesperada");
+
+        PlayerMovement.instance.rb.gravityScale = 0f;
+        
+        for (int i = 0; i <= 50; i++)
+        {
+            
+            gameObject.transform.localPosition += new Vector3(0.4f, 0.05f, 0);
+
+            yield return new WaitForSeconds (0.01f);
+        }
+
+        PlayerMovement.instance.rb.gravityScale = 4f;
+
+        AnimationsPlayer.instance.animator.SetBool("Hurted", false);
+        
+
+        yield return new WaitForSeconds (0.001f);
+
+    }
 }
 
 /*Para poner overloads a una funcion, hay que hacer la misma dos o más veces pero con diferentes cantidades

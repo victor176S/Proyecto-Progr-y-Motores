@@ -25,6 +25,8 @@ public class Sounds : MonoBehaviour
 
     public AudioSource levelExtension;
 
+    public AudioSource aterrizaje;
+
     public bool Reproduciendo;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -53,7 +55,10 @@ public class Sounds : MonoBehaviour
         boxCollision.volume = DatosPersistentes.instance.volumenSFX;
         landing.volume = DatosPersistentes.instance.volumenSFX;
         boxesFalling.volume = DatosPersistentes.instance.volumenSFX;
+        aterrizaje.volume = DatosPersistentes.instance.volumenSFX;
         musicaNivel.volume = DatosPersistentes.instance.volumenMusica;
+        levelExtension.volume = DatosPersistentes.instance.volumenMusica;
+        
         }
 
        
@@ -121,6 +126,12 @@ public class Sounds : MonoBehaviour
             case 3:
 
                 hurtedSharp.Play();
+
+                break;
+
+            case 5:
+
+                aterrizaje.Play();
 
                 break;
             
