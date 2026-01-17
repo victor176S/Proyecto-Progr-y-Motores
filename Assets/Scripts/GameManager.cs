@@ -152,9 +152,14 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"Jugador pinchado: {player.GetComponent<PlayerMovement>().jugadorPinchado}");
 
-        if (vidasJugador == 0 && player.GetComponent<PlayerMovement>().jugadorPinchado)
+        if (vidasJugador == 0 && player.GetComponent<PlayerMovement>().jugadorPinchado && SceneManager.GetActiveScene().name == "Nivel 2")
         {
             SceneManager.LoadScene(3);   
+        }
+
+        if (vidasJugador == 0 && player.GetComponent<PlayerMovement>().jugadorPinchado && SceneManager.GetActiveScene().name == "Nivel 3")
+        {
+            SceneManager.LoadScene("EscenaMuerte4");   
         }
 
         if (haPerdido && !player.GetComponent<PlayerMovement>().jugadorPinchado)

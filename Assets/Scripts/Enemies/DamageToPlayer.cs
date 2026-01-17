@@ -87,9 +87,14 @@ public class DamageToPlayer : MonoBehaviour
 
                     var gameManager = GameObject.Find("GameManager");
 
-                    if (gameManager.GetComponent<GameManager>().vidasJugador == 0)
+                    if (gameManager.GetComponent<GameManager>().vidasJugador == 0 && SceneManager.GetActiveScene().name == "Nivel 2")
                     {
                         SceneManager.LoadScene("EscenaMuerte2");
+                    }
+
+                    if (gameManager.GetComponent<GameManager>().vidasJugador == 0 && SceneManager.GetActiveScene().name == "Nivel 3")
+                    {
+                        SceneManager.LoadScene("EscenaMuerte4");
                     }  
 
                     Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), PlayerEventTrigger.instance.GetComponent<Collider>()); 

@@ -38,6 +38,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Nivel 3.unity
     guid: ad14879d3ad77e949ab47dd078226418
+  - enabled: 1
+    path: Assets/Scenes/Nivel 3/EscenaMuerte4.unity
+    guid: 4f766691c447ecc4d888ca72a138d8fb
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

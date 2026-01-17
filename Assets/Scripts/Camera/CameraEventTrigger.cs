@@ -110,7 +110,7 @@ public class CameraEventTrigger : MonoBehaviour
 
                 camara.transform.position = new Vector3 (camara.transform.position.x, -545, camara.transform.position.z);
                 
-                StartCoroutine(MoverCamaraY(90, 1, 0));
+                StartCoroutine(MoverCamaraY(90, 1, 0, 13, true));
 
                 StartCoroutine(Shake1(15, 1, 0.02f, 25));
 
@@ -157,7 +157,7 @@ public class CameraEventTrigger : MonoBehaviour
 
                 camara.GetComponent<CameraAutoScroll2D>().enabled = false;
                 
-                StartCoroutine(MoverCamaraY(20, 1.5f, 0));
+                StartCoroutine(MoverCamaraY(20, 1.5f, 0, 13, true));
 
                 puntosDeControl[i].gameObject.SetActive(false);
 
@@ -169,7 +169,7 @@ public class CameraEventTrigger : MonoBehaviour
 
                 camara.GetComponent<CameraAutoScroll2D>().enabled = false;
                 
-                StartCoroutine(MoverCamaraY(40, -1.5f, 0));
+                StartCoroutine(MoverCamaraY(40, -1.5f, 0, 13, true));
 
                 puntosDeControl[i].gameObject.SetActive(false);
 
@@ -181,7 +181,7 @@ public class CameraEventTrigger : MonoBehaviour
 
                 camara.GetComponent<CameraAutoScroll2D>().enabled = false;
                 
-                StartCoroutine(MoverCamaraY(40, -1.5f, 0));
+                StartCoroutine(MoverCamaraY(40, -1.5f, 0, 13, true));
 
                 puntosDeControl[i].gameObject.SetActive(false);
 
@@ -448,11 +448,95 @@ public class CameraEventTrigger : MonoBehaviour
                     puntosDeControl[i].gameObject.SetActive(false);
 
                     break;
+
+                case 2:
+
+                    camara.GetComponent<CameraAutoScroll2D>().scrollActivo = false;
+
+                    camara.GetComponent<CameraAutoScroll2D>().enabled = false;
+                
+                    StartCoroutine(MoverCamaraY(90, -1.5f, 0, 17, false));
+
+                    StartCoroutine(AdjustCamera());
+                    
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 3:
+
+                    GameObject fuegosScroll1 = GameObject.Find("FuegosScroll");
+
+                    GameObject PlatFormLift = GameObject.Find("PlataformaLift");
+
+                    StartCoroutine(MoveFire(false, fuegosScroll1));
+
+                    StartCoroutine(PlatformUP(PlatFormLift, 85, 0.0002f));
+
+                    camara.GetComponent<CameraAutoScroll2D>().yOffset = 28;
+
+                    break;
+
+                case 4:
+
+                    StartCoroutine(CheckHeight(-565));
+
+                    break;
+
+                case 14:
+
+                    GameObject platform = GameObject.Find("PlataformaLift");
+
+                    platform.gameObject.transform.GetChild(12).gameObject.SetActive(false);
+
+                    break;
+
+                
                 
                 }
 
 
             }
+
+    IEnumerator FromUpToNormal()
+    {
+        yield return new WaitForSeconds(2);
+
+        camara.GetComponent<CameraAutoScroll2D>().yOffset = 10;
+
+        camara.GetComponent<CameraAutoScroll2D>().scrollActivo = true;
+
+        camara.GetComponent<CameraAutoScroll2D>().speedX = 10;    
+    }
+
+    IEnumerator PlatformUP(GameObject platform, float altura, float secsPerMove)
+    {
+
+        yield return new WaitForSeconds (2f);
+
+        for (int i = 0; i < altura * 100; i++)
+        {
+
+            yield return new WaitForSeconds(secsPerMove);
+
+            platform.transform.position += new Vector3(0, 0.1f, 0);
+
+        }
+            
+    }
+
+    IEnumerator CheckHeight(float posicion)
+    {
+        for (int i = 0; i < 100; i++)
+        {
+           yield return new WaitForSeconds(0.2f);
+
+           if (player.transform.position.y < posicion)
+            {
+                SceneManager.LoadScene("EscenaMuerte4");    
+            }     
+        }
+    }
     IEnumerator LoadSceneLate()
     {
         yield return new WaitForSecondsRealtime (18f);
@@ -460,7 +544,7 @@ public class CameraEventTrigger : MonoBehaviour
         SceneManager.LoadScene("Nivel 3");
     } 
 
-    IEnumerator MoverCamaraY(float cantidad, float multiplicador, float retardo)
+    IEnumerator MoverCamaraY(float cantidad, float multiplicador, float retardo, float velocidad, bool devolverScroll)
     {
         for (int i = 0; i < cantidad * 15; i++)
         {
@@ -473,9 +557,42 @@ public class CameraEventTrigger : MonoBehaviour
 
         camara.GetComponent<CameraAutoScroll2D>().enabled = true;
 
-        camara.GetComponent<CameraAutoScroll2D>().scrollActivo = true;
+        if (devolverScroll)
+        {
+            camara.GetComponent<CameraAutoScroll2D>().scrollActivo = true;
 
-        camara.GetComponent<CameraAutoScroll2D>().speedX = 13;
+            camara.GetComponent<CameraAutoScroll2D>().speedX = velocidad;
+        }
+
+        else
+        {
+            camara.GetComponent<CameraAutoScroll2D>().scrollActivo = true;
+
+            yield return new WaitForSeconds(0.1f);
+
+            camara.GetComponent<CameraAutoScroll2D>().scrollActivo = false;
+            
+        }
+
+        
+
+    }
+
+    IEnumerator AdjustCamera()
+    {
+
+        yield return new WaitForSeconds(24.5f);
+
+        for (int i = 0; i < 15; i++)
+        {
+
+            yield return new WaitForSeconds(0.06f);
+
+            camara.transform.position += new Vector3(1, 0, 0);
+
+            camara.GetComponent<Camera>().fieldOfView -= 1f;
+
+        }
 
     }
 
@@ -698,7 +815,7 @@ public class CameraEventTrigger : MonoBehaviour
         {
             for(int i = 0; i < 20; i++)
             {
-                fuegosScroll.transform.localPosition += new Vector3(0.8f, 0, 0);
+                fuegosScroll.transform.localPosition += new Vector3(1.1f, 0, 0);
 
                 yield return new WaitForSeconds(0.05f);
 
@@ -709,7 +826,7 @@ public class CameraEventTrigger : MonoBehaviour
         {
            for(int i = 0; i < 20; i++)
             {
-                fuegosScroll.transform.localPosition += new Vector3(-0.8f, 0, 0);
+                fuegosScroll.transform.localPosition += new Vector3(-1.1f, 0, 0);
 
                 yield return new WaitForSeconds(0.05f);
 

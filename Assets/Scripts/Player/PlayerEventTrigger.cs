@@ -363,8 +363,23 @@ public class PlayerEventTrigger : MonoBehaviour
                     StartCoroutine(PlayerImpulseOnHurt());
 
                     break;
+
+                case 5:
+
+                    GameObject platform = GameObject.Find("PlataformaLift");
+
+                    platform.gameObject.transform.GetChild(13).gameObject.SetActive(true);
+
+                    break;
+
+                case 6:
+
+                    SceneManager.LoadScene("EscenaMuerte6");
+
+                    break;
                 
                 }
+                
 
 
             }
@@ -523,6 +538,11 @@ public class PlayerEventTrigger : MonoBehaviour
         
         yield return new WaitForSeconds(0.2f);
 
+        }
+
+        if (GameManager.instance.vidasJugador == 0)
+        {
+            SceneManager.LoadScene("EscenaMuerte5");
         }
     }
 
