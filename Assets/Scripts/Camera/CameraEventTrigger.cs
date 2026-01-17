@@ -475,17 +475,31 @@ public class CameraEventTrigger : MonoBehaviour
 
                     camara.GetComponent<CameraAutoScroll2D>().yOffset = 28;
 
+                    puntosDeControl[i].gameObject.SetActive(false);
+
                     break;
 
                 case 4:
 
                     StartCoroutine(CheckHeight(-565));
 
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 5:
+
+                    StartCoroutine(InstantiateInFall(3, 1));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
                     break;
 
                 case 14:
 
                     GameObject platform = GameObject.Find("PlataformaLift");
+
+                    StartCoroutine(FromUpToNormal());
 
                     platform.gameObject.transform.GetChild(12).gameObject.SetActive(false);
 
@@ -732,7 +746,212 @@ public class CameraEventTrigger : MonoBehaviour
 
         if (objeto == 2)
             {
+                var cristal = GameObject.Find("Cristal");
                 
+                var cristal1 = Instantiate(cristal, spawners.transform.GetChild(lugar).transform.position - new Vector3 (0,0,90), quaternion.identity);
+
+                cristal1.GetComponent<Rigidbody2D>().AddTorque(20, ForceMode2D.Impulse);
+
+                switch (lugar)
+                {
+                case 0:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(true, false, false, false, false));
+
+                    break;
+
+                case 1:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
+
+                    break;
+
+                case 2:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
+
+                    break;
+
+                case 3:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, true, false));
+
+                    break;
+
+                case 4:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, true));
+
+                    break;
+                }
+
+                yield return new WaitForSeconds (10f);
+
+                Destroy(cristal1);
+            }
+
+        if (objeto == 3)
+            {
+                var caja = GameObject.Find("cajadamageRebote");
+                
+                var caja1 = Instantiate(caja, spawners.transform.GetChild(lugar).transform.position - new Vector3 (0,0,90) + new Vector3(0, 5, 0), quaternion.identity);
+
+                var caja2 = Instantiate(caja, spawners.transform.GetChild(lugar).transform.position - new Vector3 (0,0,90) + new Vector3(3, 5, 0), quaternion.identity);
+
+                var caja3 = Instantiate(caja, spawners.transform.GetChild(lugar).transform.position - new Vector3 (0,0,90) + new Vector3(-3, 5, 0), quaternion.identity);
+
+                var caja4 = Instantiate(caja, spawners.transform.GetChild(lugar).transform.position - new Vector3 (0,0,90) + new Vector3(3, 0, 0), quaternion.identity);
+
+                var caja5 = Instantiate(caja, spawners.transform.GetChild(lugar).transform.position - new Vector3 (0,0,90) + new Vector3(-3, 0, 0), quaternion.identity);
+
+                caja1.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+
+                caja2.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+
+                caja3.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+
+                caja4.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+
+                caja5.GetComponent<Rigidbody2D>().AddTorque(5, ForceMode2D.Impulse);
+
+                switch (lugar)
+                {
+                case 0:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(true, false, false, false, false));
+
+                    break;
+
+                case 1:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
+
+                    break;
+
+                case 2:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
+
+                    break;
+
+                case 3:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, true, false));
+
+                    break;
+
+                case 4:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, true));
+
+                    break;
+                }
+
+                
+
+                yield return new WaitForSeconds (10f);
+
+                Destroy(caja1);
+
+                Destroy(caja2);
+
+                Destroy(caja3);
+
+                Destroy(caja4);
+
+                Destroy(caja5);
+            }
+
+        if (objeto == 4)
+            {
+                var vigas = GameObject.Find("VigasRebote");
+                
+                var vigas1 = Instantiate(vigas, spawners.transform.GetChild(lugar).transform.position - new Vector3 (0,0,90), quaternion.identity);
+
+                vigas1.GetComponent<Rigidbody2D>().AddTorque(20, ForceMode2D.Impulse);
+
+                switch (lugar)
+                {
+                case 0:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(true, false, false, false, false));
+
+                    break;
+
+                case 1:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
+
+                    break;
+
+                case 2:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
+
+                    break;
+
+                case 3:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, true, false));
+
+                    break;
+
+                case 4:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, true));
+
+                    break;
+                }
+
+                yield return new WaitForSeconds (10f);
+
+                Destroy(vigas1);
+            }
+
+        if (objeto == 5)
+            {
+               var cristal = GameObject.Find("CristalRebote");
+                
+                var cristal1 = Instantiate(cristal, spawners.transform.GetChild(lugar).transform.position - new Vector3 (0,0,90), quaternion.identity);
+
+                cristal1.GetComponent<Rigidbody2D>().AddTorque(20, ForceMode2D.Impulse);
+
+                switch (lugar)
+                {
+                case 0:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(true, false, false, false, false));
+
+                    break;
+
+                case 1:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
+
+                    break;
+
+                case 2:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
+
+                    break;
+
+                case 3:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, true, false));
+
+                    break;
+
+                case 4:
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, true));
+
+                    break;
+                }
+
+                yield return new WaitForSeconds (10f);
+
+                Destroy(cristal1); 
             }
     }
 
