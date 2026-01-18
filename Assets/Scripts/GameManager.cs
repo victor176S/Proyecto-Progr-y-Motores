@@ -190,8 +190,6 @@ public class GameManager : MonoBehaviour
     {
         if (DatosPersistentes.instance != null)
         {
-        Debug.Log($"Datos: {DatosPersistentes.instance.codigoLyrics}");
-
         Debug.Log($"Datos: {DatosPersistentes.instance.volumenMusica}");
 
         Debug.Log($"Datos: {DatosPersistentes.instance.volumenSFX}");

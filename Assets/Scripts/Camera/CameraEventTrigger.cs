@@ -47,6 +47,7 @@ public class CameraEventTrigger : MonoBehaviour
 
         canvasMegafono = GameObject.Find("CanvasMegafono");
 
+        if (SceneManager.GetActiveScene().name == "Nivel 2" || SceneManager.GetActiveScene().name == "Nivel 3")
         spawners = canvasMegafono.transform.GetChild(1).gameObject;
     }
 
@@ -404,7 +405,7 @@ public class CameraEventTrigger : MonoBehaviour
 
                 finalCanvas.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = datosPersistentes.GetComponent<DatosPersistentes>().puntos.ToString();
                 
-                StartCoroutine(LoadSceneLate());
+                StartCoroutine(LoadSceneLate("Nivel 3", 18));
 
                     break;
 
@@ -615,7 +616,7 @@ public class CameraEventTrigger : MonoBehaviour
 
                     GameObject PlatFormLift1 = GameObject.Find("PlataformaLift1");
 
-                    StartCoroutine(PlatformUP(PlatFormLift1, 85, 0.0002f));
+                    StartCoroutine(PlatformUP(PlatFormLift1, 120, 0.0002f));
 
                     camara.GetComponent<CameraAutoScroll2D>().yOffset = 28;
 
@@ -623,7 +624,266 @@ public class CameraEventTrigger : MonoBehaviour
 
                     camara.GetComponent<CameraAutoScroll2D>().scrollActivo = false;
 
+                    StartCoroutine(Shake1(2000, 0.2f, 0.02f, 1f));
+
                     puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 18:
+
+                    StartCoroutine(InstantiateInFall(5, 1));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 19:
+
+                    StartCoroutine(InstantiateInFall(4, 0));
+
+                    StartCoroutine(InstantiateInFall(4, 1));
+
+                    StartCoroutine(InstantiateInFall(4, 2));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 20:
+
+                    StartCoroutine(InstantiateInFall(3, 2));
+
+                    StartCoroutine(InstantiateInFall(3, 3));
+
+                    StartCoroutine(InstantiateInFall(3, 4));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 21:
+
+                    StartCoroutine(InstantiateInFall(5, 0));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 22:
+
+                    StartCoroutine(InstantiateInFall(5, 2));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 23:
+
+                    StartCoroutine(InstantiateInFall(3, 0));
+
+                    StartCoroutine(InstantiateInFall(3, 2));
+
+                    StartCoroutine(InstantiateInFall(3, 4));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 24:
+
+                    StartCoroutine(InstantiateInFall(4, 1));
+
+                    StartCoroutine(InstantiateInFall(4, 3));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 25:
+
+                    StartCoroutine(InstantiateInFall(5, 1));
+                    
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 26:
+
+                    StartCoroutine(InstantiateInFall(4, 0));
+
+                    StartCoroutine(InstantiateInFall(4, 1));
+
+                    StartCoroutine(InstantiateInFall(4, 2));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 27:
+
+                    StartCoroutine(InstantiateInFall(4, 2));
+
+                    StartCoroutine(InstantiateInFall(4, 3));
+
+                    StartCoroutine(InstantiateInFall(4, 4));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 28:
+
+                    StartCoroutine(InstantiateInFall(4, 0));
+
+                    StartCoroutine(InstantiateInFall(4, 1));
+
+                    StartCoroutine(InstantiateInFall(4, 2));
+
+                    StartCoroutine(InstantiateInFall(4, 3));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 29:
+
+                    StartCoroutine(InstantiateInFall(4, 0));
+
+                    StartCoroutine(InstantiateInFall(4, 1));
+
+                    StartCoroutine(InstantiateInFall(4, 2));
+
+                    StartCoroutine(InstantiateInFall(4, 4));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+
+                    break;
+
+                case 30:
+
+                    StartCoroutine(InstantiateInFall(4, 0));
+
+                    StartCoroutine(InstantiateInFall(4, 1));
+
+                    StartCoroutine(InstantiateInFall(4, 3));
+
+                    StartCoroutine(InstantiateInFall(4, 4));
+                    
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 31:
+
+                    StartCoroutine(InstantiateInFall(4, 0));
+
+                    StartCoroutine(InstantiateInFall(4, 2));
+
+                    StartCoroutine(InstantiateInFall(4, 3));
+
+                    StartCoroutine(InstantiateInFall(4, 4));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 32:
+
+                    StartCoroutine(InstantiateInFall(4, 1));
+
+                    StartCoroutine(InstantiateInFall(4, 2));
+
+                    StartCoroutine(InstantiateInFall(4, 3));
+
+                    StartCoroutine(InstantiateInFall(4, 4));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 33:
+
+                    StartCoroutine(InstantiateInFall(5, 0));
+
+                    StartCoroutine(InstantiateInFall(5, 2));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 34:
+
+                    StartCoroutine(InstantiateInFall(5, 1));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 35:
+
+                    StartCoroutine(InstantiateInFall(3, 0));
+
+                    StartCoroutine(InstantiateInFall(3, 2));
+
+                    StartCoroutine(InstantiateInFall(3, 3));
+
+                    StartCoroutine(InstantiateInFall(3, 4));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 36:
+
+                    StartCoroutine(InstantiateInFall(4, 1));
+
+                    StartCoroutine(InstantiateInFall(4, 2));
+
+                    StartCoroutine(InstantiateInFall(4, 3));
+
+                    StartCoroutine(InstantiateInFall(4, 4));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 37:
+
+                    StartCoroutine(InstantiateInFall(5, 0));
+
+                    StartCoroutine(InstantiateInFall(5, 2));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 38:
+
+                var finalCanvas = GameObject.Find("SecondaryCanvasFinal");
+
+                Debug.Log($"nombre del objeto {finalCanvas.gameObject.name}");
+
+                finalCanvas.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Image>().color += new Color (0,0,0,1);
+
+                finalCanvas.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().color += new Color (0,0,0,1);
+
+                finalCanvas.transform.GetChild(0).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().color += new Color (0,0,0,1);
+
+                finalCanvas.transform.GetChild(0).GetChild(2).gameObject.GetComponent<TextMeshProUGUI>().color += new Color (0,0,0,1);
+
+                finalCanvas.transform.GetChild(0).GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().color += new Color (0,0,0,1);
+
+                var gameManager = GameObject.Find("GameManager");
+
+                var datosPersistentes = GameObject.Find("DatosPersistentes");
+
+                datosPersistentes.GetComponent<DatosPersistentes>().puntos = gameManager.GetComponent<GameManager>().puntos;
+
+                finalCanvas.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = datosPersistentes.GetComponent<DatosPersistentes>().puntos.ToString();
+
+                StartCoroutine(LoadSceneLate("Menu", 28));
 
                     break;
                 
@@ -671,11 +931,12 @@ public class CameraEventTrigger : MonoBehaviour
             }     
         }
     }
-    IEnumerator LoadSceneLate()
-    {
-        yield return new WaitForSecondsRealtime (18f);
 
-        SceneManager.LoadScene("Nivel 3");
+    IEnumerator LoadSceneLate(string scene, float wait)
+    {
+        yield return new WaitForSecondsRealtime (wait);
+
+        SceneManager.LoadScene(scene);
     } 
 
     IEnumerator MoverCamaraY(float cantidad, float multiplicador, float retardo, float velocidad, bool devolverScroll)
@@ -870,7 +1131,7 @@ public class CameraEventTrigger : MonoBehaviour
                 
                 var cristal1 = Instantiate(cristal, spawners.transform.GetChild(lugar).transform.position - new Vector3 (0,0,90), quaternion.identity);
 
-                cristal1.GetComponent<Rigidbody2D>().AddTorque(20, ForceMode2D.Impulse);
+                cristal1.GetComponent<Rigidbody2D>().AddTorque(100, ForceMode2D.Impulse);
 
                 switch (lugar)
                 {
@@ -1034,7 +1295,7 @@ public class CameraEventTrigger : MonoBehaviour
                 
                 var cristal1 = Instantiate(cristal, spawners.transform.GetChild(lugar + 1).transform.position - new Vector3 (0,0,90), quaternion.identity);
 
-                cristal1.GetComponent<Rigidbody2D>().AddTorque(20, ForceMode2D.Impulse);
+                cristal1.GetComponent<Rigidbody2D>().AddTorque(100, ForceMode2D.Impulse);
 
                 switch (lugar)
                 {

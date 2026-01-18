@@ -12,7 +12,7 @@ public class DatosPersistentes : MonoBehaviour
 
     public string textoInput;
 
-    public bool codigoLyrics;
+    public bool debugTeclas;
 
     public bool fueraDelMenu;
 
@@ -57,12 +57,29 @@ public class DatosPersistentes : MonoBehaviour
 
             Debug.Log(volumenMusica);
 
-            if (textoInput == "alexans")
+            if (textoInput == "DebugClase")
             {
-                codigoLyrics = true;
+                debugTeclas = true;
             }
-        
-            Debug.Log(codigoLyrics);
+
+        if (debugTeclas)
+        {
+            if (Input.GetKey(KeyCode.Alpha1))
+            {
+                SceneManager.LoadScene("Nivel 1");
+            }
+
+            if (Input.GetKey(KeyCode.Alpha2))
+            {
+                SceneManager.LoadScene("Nivel 2");
+            }
+
+            if (Input.GetKey(KeyCode.Alpha3))
+            {
+                SceneManager.LoadScene("Nivel 3");
+            }
+        }
+    
 
 
     }

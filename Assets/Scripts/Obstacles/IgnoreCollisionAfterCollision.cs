@@ -18,14 +18,14 @@ public class IgnoreCollisionAfterCollision : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if (collision.transform.CompareTag("Suelo") && gameObject.name.Contains("CristalRebote"))
+        if ((collision.transform.CompareTag("Suelo") || collision.transform.CompareTag("Enemy")) && gameObject.name.Contains("CristalRebote"))
         {
             StartCoroutine(QuitarColliderCristal());
 
             gameObject.GetComponent<DamageToPlayer>().enCaida = false;
         }
 
-        if (collision.transform.CompareTag("Suelo") && !gameObject.name.Contains("CristalRebote"))
+        if ((collision.transform.CompareTag("Suelo") || collision.transform.CompareTag("Enemy")) && !gameObject.name.Contains("CristalRebote"))
         {
             StartCoroutine(QuitarOtrosColliders());
 

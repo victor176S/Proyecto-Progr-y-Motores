@@ -50,7 +50,9 @@ public class OpcionesConfig : MonoBehaviour
 
         textoInput = codigos.GetComponent<InputField>().text;
 
-        Debug.Log(textoInput);
+        DatosPersistentes.instance.textoInput = textoInput;
+
+        Debug.Log($"InputField {textoInput}");
         
 
     }

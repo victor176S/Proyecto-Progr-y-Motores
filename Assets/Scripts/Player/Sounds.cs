@@ -48,6 +48,7 @@ public class Sounds : MonoBehaviour
 
         if (DatosPersistentes.instance != null)
         {
+            
         viento.volume = DatosPersistentes.instance.volumenSFX;
         cargarSalto.volume = DatosPersistentes.instance.volumenSFX;
         hurted.volume = DatosPersistentes.instance.volumenSFX;
