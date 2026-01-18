@@ -377,6 +377,14 @@ public class PlayerEventTrigger : MonoBehaviour
                     SceneManager.LoadScene("EscenaMuerte6");
 
                     break;
+
+                case 7:
+
+                    GameObject platform1 = GameObject.Find("PlataformaLift1");
+
+                    platform1.gameObject.transform.GetChild(13).gameObject.SetActive(true);
+
+                    break;
                 
                 }
                 

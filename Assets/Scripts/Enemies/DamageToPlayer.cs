@@ -65,6 +65,8 @@ public class DamageToPlayer : MonoBehaviour
                 else
                 {
                     StartCoroutine(Sounds.instance.PlaySound(2,1));
+
+                    StartCoroutine(QuitarJugadorGolpeado(other.gameObject));
                 }
  
                 StartCoroutine(PlayerImpulseOnHurt());
@@ -94,7 +96,7 @@ public class DamageToPlayer : MonoBehaviour
 
                     if (gameManager.GetComponent<GameManager>().vidasJugador == 0 && SceneManager.GetActiveScene().name == "Nivel 3")
                     {
-                        SceneManager.LoadScene("EscenaMuerte4");
+                        SceneManager.LoadScene("EscenaMuerteGolpeado");
                     }  
 
                     Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), PlayerEventTrigger.instance.GetComponent<Collider>()); 

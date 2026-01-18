@@ -18,29 +18,37 @@ public class IgnoreCollisionAfterCollision : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if (collision.transform.CompareTag("Suelo") && gameObject.name == "CristalRebote")
+        if (collision.transform.CompareTag("Suelo") && gameObject.name.Contains("CristalRebote"))
         {
             StartCoroutine(QuitarColliderCristal());
+
+            gameObject.GetComponent<DamageToPlayer>().enCaida = false;
         }
 
-        if (collision.transform.CompareTag("Suelo") && gameObject.name != "CristalRebote")
+        if (collision.transform.CompareTag("Suelo") && !gameObject.name.Contains("CristalRebote"))
         {
             StartCoroutine(QuitarOtrosColliders());
+
+            gameObject.GetComponent<DamageToPlayer>().enCaida = false;
         }
         
     }
 
     IEnumerator QuitarColliderCristal()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(0.2f);
 
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
+
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = -10;
     }
 
     IEnumerator QuitarOtrosColliders()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(0.2f);
 
          gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
+         gameObject.GetComponent<SpriteRenderer>().sortingOrder = -10;
     }
 }

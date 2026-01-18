@@ -475,6 +475,10 @@ public class CameraEventTrigger : MonoBehaviour
 
                     camara.GetComponent<CameraAutoScroll2D>().yOffset = 28;
 
+                    StartCoroutine(ArrowsAnim.instance.BottomToTopArrowsAnim());
+
+                    StartCoroutine(ReOrganizeUI.instance.UIFromBottomToRight());
+
                     puntosDeControl[i].gameObject.SetActive(false);
 
                     break;
@@ -482,6 +486,8 @@ public class CameraEventTrigger : MonoBehaviour
                 case 4:
 
                     StartCoroutine(CheckHeight(-565));
+
+                    StartCoroutine(Shake1(1300, 0.2f, 0.02f, 0.01f));
 
                     puntosDeControl[i].gameObject.SetActive(false);
 
@@ -495,7 +501,107 @@ public class CameraEventTrigger : MonoBehaviour
 
                     break;
 
+                case 6:
+
+                    StartCoroutine(InstantiateInFall(5, 1));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 7:
+
+                    StartCoroutine(InstantiateInFall(4, 0));
+
+                    StartCoroutine(InstantiateInFall(4, 1));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+                
+                case 8:
+
+                    StartCoroutine(InstantiateInFall(5, 2));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 9:
+
+                    StartCoroutine(InstantiateInFall(4, 0));
+
+                    StartCoroutine(InstantiateInFall(4, 2));
+
+                    StartCoroutine(InstantiateInFall(4, 4));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 10:
+
+                    StartCoroutine(InstantiateInFall(3, 1));
+
+                    StartCoroutine(InstantiateInFall(3, 3));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 11:
+
+                    StartCoroutine(InstantiateInFall(4, 0));
+
+                    StartCoroutine(InstantiateInFall(4, 2));
+
+                    StartCoroutine(InstantiateInFall(4, 4));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 12:
+
+                    StartCoroutine(InstantiateInFall(4, 1));
+
+                    StartCoroutine(InstantiateInFall(4, 3));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 13:
+
+                    StartCoroutine(InstantiateInFall(5, 0));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
                 case 14:
+
+                    StartCoroutine(InstantiateInFall(5, 2));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 15:
+
+                    StartCoroutine(InstantiateInFall(3, 0));
+
+                    StartCoroutine(InstantiateInFall(3, 1));
+
+                    StartCoroutine(InstantiateInFall(3, 3));
+
+                    StartCoroutine(InstantiateInFall(3, 4));
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
+
+                case 16:
 
                     GameObject platform = GameObject.Find("PlataformaLift");
 
@@ -505,7 +611,21 @@ public class CameraEventTrigger : MonoBehaviour
 
                     break;
 
-                
+                case 17:
+
+                    GameObject PlatFormLift1 = GameObject.Find("PlataformaLift1");
+
+                    StartCoroutine(PlatformUP(PlatFormLift1, 85, 0.0002f));
+
+                    camara.GetComponent<CameraAutoScroll2D>().yOffset = 28;
+
+                    StartCoroutine(ArrowsAnim.instance.BottomToTopArrowsAnim());
+
+                    camara.GetComponent<CameraAutoScroll2D>().scrollActivo = false;
+
+                    puntosDeControl[i].gameObject.SetActive(false);
+
+                    break;
                 
                 }
 
@@ -912,7 +1032,7 @@ public class CameraEventTrigger : MonoBehaviour
             {
                var cristal = GameObject.Find("CristalRebote");
                 
-                var cristal1 = Instantiate(cristal, spawners.transform.GetChild(lugar).transform.position - new Vector3 (0,0,90), quaternion.identity);
+                var cristal1 = Instantiate(cristal, spawners.transform.GetChild(lugar + 1).transform.position - new Vector3 (0,0,90), quaternion.identity);
 
                 cristal1.GetComponent<Rigidbody2D>().AddTorque(20, ForceMode2D.Impulse);
 
@@ -922,11 +1042,19 @@ public class CameraEventTrigger : MonoBehaviour
 
                     StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(true, false, false, false, false));
 
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
+
                     break;
 
                 case 1:
 
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, true, false));
+
                     StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
+
+                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
 
                     break;
 
@@ -934,15 +1062,7 @@ public class CameraEventTrigger : MonoBehaviour
 
                     StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
 
-                    break;
-
-                case 3:
-
                     StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, true, false));
-
-                    break;
-
-                case 4:
 
                     StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, true));
 

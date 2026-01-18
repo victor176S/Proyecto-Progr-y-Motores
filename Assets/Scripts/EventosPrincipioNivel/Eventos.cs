@@ -436,6 +436,12 @@ public class Eventos : MonoBehaviour
     IEnumerator EventosNivel3()
     {
         yield return new WaitForSeconds(0.00001f);
+
+        StartCoroutine(ReOrganizeUI.instance.UIFromRightToTop());
+
+        StartCoroutine(ReOrganizeUI.instance.UIFromTopToLeft());
+
+        StartCoroutine(ReOrganizeUI.instance.UIFromLeftToBottom());
         
         StartCoroutine(Shake1(1000, 0.02f, 1));
 

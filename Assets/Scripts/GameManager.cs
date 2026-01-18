@@ -167,10 +167,17 @@ public class GameManager : MonoBehaviour
             StartCoroutine(OnDeath(1));
         }
 
-         if (vidasJugador == 0 && jugadorGolpeado)
+        if (vidasJugador == 0 && jugadorGolpeado && SceneManager.GetActiveScene().name == "Nivel 2")
         {
 
             SceneManager.LoadScene("EscenaMuerte2");
+            
+        }
+
+        if (vidasJugador == 0 && jugadorGolpeado && SceneManager.GetActiveScene().name == "Nivel 3")
+        {
+
+            SceneManager.LoadScene("EscenaMuerteGolpeado");
             
         }
     

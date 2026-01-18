@@ -153,7 +153,7 @@ public class ArrowsAnim : MonoBehaviour
 
     }
 
-    public IEnumerator BottomToRightArrowsAnim() 
+    public IEnumerator BottomToTopArrowsAnim() 
     {
 
         velocidad = 50/vecesQueSeMueve;
