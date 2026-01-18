@@ -5,11 +5,15 @@ public class Puntos : MonoBehaviour
 
     public static Puntos instance;
 
+    GameObject gameManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Awake()
     {
         instance = this;
+
+        gameManager = GameObject.Find("GameManager");
     }
     void Start()
     {
@@ -29,9 +33,9 @@ public class Puntos : MonoBehaviour
 
             Debug.Log("entrada trigger");
         
-        GameManager.instance.puntos += 1;
+        gameManager.GetComponent<GameManager>().puntos += 1;
 
-        Destroy(gameObject);
+        Destroy(this.gameObject);
 
         }
 

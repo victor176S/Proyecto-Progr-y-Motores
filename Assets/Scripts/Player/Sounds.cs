@@ -28,11 +28,15 @@ public class Sounds : MonoBehaviour
     public AudioSource aterrizaje;
 
     public bool Reproduciendo;
+
+    GameObject datosPersistentes;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Awake()
     {
         instance = this;
+
+        datosPersistentes = GameObject.Find("DatosPersistentes");
     }
     void Start()
     {
@@ -46,31 +50,31 @@ public class Sounds : MonoBehaviour
     void Update()
     {
 
-        if (DatosPersistentes.instance != null)
+        if (datosPersistentes != null)
         {
             
-        viento.volume = DatosPersistentes.instance.volumenSFX;
-        cargarSalto.volume = DatosPersistentes.instance.volumenSFX;
-        hurted.volume = DatosPersistentes.instance.volumenSFX;
-        hurtedSharp.volume = DatosPersistentes.instance.volumenSFX;
-        boxCollision.volume = DatosPersistentes.instance.volumenSFX;
-        landing.volume = DatosPersistentes.instance.volumenSFX;
-        boxesFalling.volume = DatosPersistentes.instance.volumenSFX;
-        aterrizaje.volume = DatosPersistentes.instance.volumenSFX;
-        musicaNivel.volume = DatosPersistentes.instance.volumenMusica;
-        levelExtension.volume = DatosPersistentes.instance.volumenMusica;
+        viento.volume = datosPersistentes.GetComponent<DatosPersistentes>().volumenSFX;
+        cargarSalto.volume = datosPersistentes.GetComponent<DatosPersistentes>().volumenSFX;
+        hurted.volume = datosPersistentes.GetComponent<DatosPersistentes>().volumenSFX;
+        hurtedSharp.volume = datosPersistentes.GetComponent<DatosPersistentes>().volumenSFX;
+        boxCollision.volume = datosPersistentes.GetComponent<DatosPersistentes>().volumenSFX;
+        landing.volume = datosPersistentes.GetComponent<DatosPersistentes>().volumenSFX;
+        boxesFalling.volume = datosPersistentes.GetComponent<DatosPersistentes>().volumenSFX;
+        aterrizaje.volume = datosPersistentes.GetComponent<DatosPersistentes>().volumenSFX;
+        musicaNivel.volume = datosPersistentes.GetComponent<DatosPersistentes>().volumenMusica;
+        levelExtension.volume = datosPersistentes.GetComponent<DatosPersistentes>().volumenMusica;
         
         }
 
        
 
 
-        if (PlayerMovement.instance.enSuelo && Input.GetKey(KeyCode.Space) || PlayerMovement.instance.enSuelo && PlayerMovement.instance.saltoBuffer)
+        if (this.gameObject.GetComponent<PlayerMovement>().enSuelo && Input.GetKey(KeyCode.Space) || this.gameObject.GetComponent<PlayerMovement>().enSuelo && this.gameObject.GetComponent<PlayerMovement>().saltoBuffer)
         {
             landing.Play();
         }
 
-        if (PlayerMovement.instance.enSuelo)
+        if (this.gameObject.GetComponent<PlayerMovement>().enSuelo)
         {
             viento.Stop();
         }
@@ -101,7 +105,7 @@ public class Sounds : MonoBehaviour
                 
             case 1:
 
-                if (PlayerMovement.instance.botonSaltoMantenido && PlayerMovement.instance.enSuelo)
+                if (this.gameObject.GetComponent<PlayerMovement>().botonSaltoMantenido && this.gameObject.GetComponent<PlayerMovement>().enSuelo)
                 {
                     Debug.Log("cargar salto sonido");
 

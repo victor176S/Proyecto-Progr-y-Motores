@@ -49,7 +49,7 @@ public class PlayerDash : MonoBehaviour
          
 
         
-        if (PlayerMovement.instance.velocidadMovimientoActual > 20 && !dashEnCurso)
+        if (gameObject.GetComponent<PlayerMovement>().velocidadMovimientoActual > 20 && !dashEnCurso)
         {
             player.gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             player.gameObject.GetComponent<PlayerMovement>().velocidadMovimiento = 18f;
@@ -121,7 +121,7 @@ public class PlayerDash : MonoBehaviour
                     player.gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             
                     player.gameObject.GetComponent<PlayerMovement>().velocidadMovimiento = 40f;
-                    AnimationsPlayer.instance.animator.SetTrigger("Dashear");
+                    player.GetComponent<AnimationsPlayer>().animator.SetTrigger("Dashear");
                     yield return new WaitForSeconds(0.01f);
 
                     }

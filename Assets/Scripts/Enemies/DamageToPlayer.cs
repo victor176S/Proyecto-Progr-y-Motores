@@ -12,9 +12,20 @@ public class DamageToPlayer : MonoBehaviour
 
     public int veces = 40;
 
+    GameObject gameManager;
+
+    GameObject player;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    void Awake()
+    {
+        gameManager = GameObject.Find("GameManager");
+
+        player = GameObject.Find("Player");
+    }
     void Start()
     {
         
@@ -51,11 +62,11 @@ public class DamageToPlayer : MonoBehaviour
             {
                 StartCoroutine(HurtPlayer());
 
-                if (gameObject.CompareTag("Pincho"))
+                if (this.gameObject.CompareTag("Pincho"))
                 {
                     Debug.Log("entra a el if del tag");
 
-                    StartCoroutine(Sounds.instance.PlaySound(3,1));
+                    StartCoroutine(player.GetComponent<Sounds>().PlaySound(3,1));
 
                     other.gameObject.GetComponent<PlayerMovement>().jugadorPinchado = true;
                     
@@ -64,14 +75,14 @@ public class DamageToPlayer : MonoBehaviour
 
                 else
                 {
-                    StartCoroutine(Sounds.instance.PlaySound(2,1));
+                    StartCoroutine(player.GetComponent<Sounds>().PlaySound(2,1));
 
                     StartCoroutine(QuitarJugadorGolpeado(other.gameObject));
                 }
  
                 StartCoroutine(PlayerImpulseOnHurt());
 
-                AnimationsPlayer.instance.animator.SetTrigger("HurtToFall");
+                player.GetComponent<AnimationsPlayer>().animator.SetTrigger("HurtToFall");
 
 
                 
@@ -85,7 +96,7 @@ public class DamageToPlayer : MonoBehaviour
 
                     StartCoroutine(HurtPlayer());
 
-                    StartCoroutine(Sounds.instance.PlaySound(2,1));
+                    StartCoroutine(player.GetComponent<Sounds>().PlaySound(2,1));
 
                     var gameManager = GameObject.Find("GameManager");
 
@@ -99,7 +110,7 @@ public class DamageToPlayer : MonoBehaviour
                         SceneManager.LoadScene("EscenaMuerteGolpeado");
                     }  
 
-                    Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), PlayerEventTrigger.instance.GetComponent<Collider>()); 
+                    Physics.IgnoreCollision(other.gameObject.GetComponent<Collider>(), player.GetComponent<PlayerEventTrigger>().GetComponent<Collider>()); 
 
                 }
 
@@ -118,7 +129,7 @@ public class DamageToPlayer : MonoBehaviour
 
         Debug.Log($"Hurt Cooldown Timer HurtPlayer (entrada): {hurtCoolDownTimer}");
         //esto falla
-        GameManager.instance.DecreasePlayerLives();
+        gameManager.GetComponent<GameManager>().DecreasePlayerLives();
         Debug.Log($"Hurt Cooldown Timer HurtPlayer (salida): {hurtCoolDownTimer}");
         hurtCoolDownTimer = 2f;
         
@@ -143,24 +154,24 @@ public class DamageToPlayer : MonoBehaviour
 
     private IEnumerator PlayerImpulseOnHurt()
     {
-        AnimationsPlayer.instance.animator.SetBool("Hurted", true);
-        AnimationsPlayer.instance.animator.SetTrigger("CaidaInesperada");
+        player.GetComponent<AnimationsPlayer>().animator.SetBool("Hurted", true);
+        player.GetComponent<AnimationsPlayer>().animator.SetTrigger("CaidaInesperada");
         
         for (int i = 0; i <= (veces * 4); i++)
         {
             
-            GameManager.instance.player.gameObject.transform.position += valorDeIncremento * Time.deltaTime * 50;
+            gameManager.GetComponent<GameManager>().player.gameObject.transform.position += valorDeIncremento * Time.deltaTime * 50;
 
-            PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
-            PlayerMovement.instance.rb.gravityScale = 0f;
+            player.GetComponent<PlayerMovement>().rb.linearVelocity = Vector2.zero;
+            player.GetComponent<PlayerMovement>().rb.gravityScale = 0f;
 
             yield return new WaitForSeconds (0.001f);
         }
 
-        PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
-        PlayerMovement.instance.rb.gravityScale = 4f;
+        player.GetComponent<PlayerMovement>().rb.linearVelocity = Vector2.zero;
+        player.GetComponent<PlayerMovement>().rb.gravityScale = 4f;
 
-        AnimationsPlayer.instance.animator.SetBool("Hurted", false);
+        player.GetComponent<AnimationsPlayer>().animator.SetBool("Hurted", false);
         
 
         yield return new WaitForSeconds (0.001f);

@@ -10,11 +10,15 @@ public class ArrowsAnim : MonoBehaviour
 
     public int vecesQueSeMueve;
 
+    GameObject gameManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Awake()
     {
         instance = this;
+
+        gameManager = GameObject.Find("GameManager");
     }
     void Start()
     {
@@ -34,8 +38,8 @@ public class ArrowsAnim : MonoBehaviour
 
         for (int i = 0; i < vecesQueSeMueve; i++) //works
         {
-            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -5f, 0) * velocidad;
-            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -5f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -5f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -5f, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
@@ -49,32 +53,32 @@ public class ArrowsAnim : MonoBehaviour
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -1f, 0) * velocidad;
-            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -1f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -1f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -1f, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 1f, 0) * velocidad;
-            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 1f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 1f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 1f, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -1f, 0) * velocidad;
-            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -1f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -1f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -1f, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 1f, 0) * velocidad;
-            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 1f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 1f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 1f, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
@@ -83,8 +87,8 @@ public class ArrowsAnim : MonoBehaviour
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 5f, 0) * velocidad;
-            GameManager.instance.TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 5f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().TopToBottomArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 5f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().TopToBottomArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 5f, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
@@ -96,8 +100,8 @@ public class ArrowsAnim : MonoBehaviour
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (5f, 0, 0) * velocidad;
-            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (5f, 0, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (5f, 0, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (5f, 0, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
@@ -111,32 +115,32 @@ public class ArrowsAnim : MonoBehaviour
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (1f, 0, 0) * velocidad;
-            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (1f, 0, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (1f, 0, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (1f, 0, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (-1f, 0, 0) * velocidad;
-            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (-1f, 0, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (-1f, 0, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (-1f, 0, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (1f, 0, 0) * velocidad;
-            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (1f, 0, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (1f, 0, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (1f, 0, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (-1f, 0, 0) * velocidad;
-            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (-1f, 0, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (-1f, 0, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (-1f, 0, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
@@ -145,8 +149,8 @@ public class ArrowsAnim : MonoBehaviour
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (-5f, 0, 0) * velocidad;
-            GameManager.instance.LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (-5f, 0, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().LeftToRightArrows.gameObject.transform.GetChild(0).position += new Vector3 (-5f, 0, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().LeftToRightArrows.gameObject.transform.GetChild(1).position += new Vector3 (-5f, 0, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
@@ -160,8 +164,8 @@ public class ArrowsAnim : MonoBehaviour
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 5f, 0) * velocidad;
-            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 5f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 5f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 5f, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
@@ -175,32 +179,32 @@ public class ArrowsAnim : MonoBehaviour
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 1f, 0) * velocidad;
-            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 1f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 1f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 1f, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -1f, 0) * velocidad;
-            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -1f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -1f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -1f, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 1f, 0) * velocidad;
-            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 1f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, 1f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, 1f, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -1f, 0) * velocidad;
-            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -1f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -1f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -1f, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
@@ -209,8 +213,8 @@ public class ArrowsAnim : MonoBehaviour
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -5f, 0) * velocidad;
-            GameManager.instance.BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -5f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().BottomToTopArrows.gameObject.transform.GetChild(0).position += new Vector3 (0, -5f, 0) * velocidad;
+            gameManager.GetComponent<GameManager>().BottomToTopArrows.gameObject.transform.GetChild(1).position += new Vector3 (0, -5f, 0) * velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }

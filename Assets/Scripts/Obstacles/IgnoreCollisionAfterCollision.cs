@@ -22,14 +22,14 @@ public class IgnoreCollisionAfterCollision : MonoBehaviour
         {
             StartCoroutine(QuitarColliderCristal());
 
-            gameObject.GetComponent<DamageToPlayer>().enCaida = false;
+            this.gameObject.GetComponent<DamageToPlayer>().enCaida = false;
         }
 
         if ((collision.transform.CompareTag("Suelo") || collision.transform.CompareTag("Enemy")) && !gameObject.name.Contains("CristalRebote"))
         {
             StartCoroutine(QuitarOtrosColliders());
 
-            gameObject.GetComponent<DamageToPlayer>().enCaida = false;
+            this.gameObject.GetComponent<DamageToPlayer>().enCaida = false;
         }
         
     }
@@ -38,17 +38,17 @@ public class IgnoreCollisionAfterCollision : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
 
-        gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
 
-        gameObject.GetComponent<SpriteRenderer>().sortingOrder = -10;
+        this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = -10;
     }
 
     IEnumerator QuitarOtrosColliders()
     {
         yield return new WaitForSeconds(0.2f);
 
-         gameObject.GetComponent<BoxCollider2D>().enabled = false;
+         this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
-         gameObject.GetComponent<SpriteRenderer>().sortingOrder = -10;
+         this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = -10;
     }
 }

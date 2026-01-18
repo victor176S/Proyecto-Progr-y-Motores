@@ -65,9 +65,18 @@ public class Eventos : MonoBehaviour
     private bool enCaida;
     private float speedY = -18;
 
+    GameObject gameManager;
+
+    GameObject eventHandler;
+    
+
     void Awake()
     {
         instance = this;
+
+        gameManager = GameObject.Find("GameManager");
+        
+        eventHandler = GameObject.Find("EventHandler");
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -111,10 +120,10 @@ public class Eventos : MonoBehaviour
 
                 player.transform.position = pos;
 
-                if (PlayerMovement.instance.enSuelo)
+                if (player.GetComponent<PlayerMovement>().enSuelo)
                 {
-                    PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
-                    PlayerMovement.instance.rb.gravityScale = 4f;
+                    player.GetComponent<PlayerMovement>().rb.linearVelocity = Vector2.zero;
+                    player.GetComponent<PlayerMovement>().rb.gravityScale = 4f;
 
                     enCaida = false;
                 }
@@ -437,11 +446,11 @@ public class Eventos : MonoBehaviour
     {
         yield return new WaitForSeconds(0.00001f);
 
-        StartCoroutine(ReOrganizeUI.instance.UIFromRightToTop());
+        StartCoroutine(eventHandler.GetComponent<ReOrganizeUI>().UIFromRightToTop());
 
-        StartCoroutine(ReOrganizeUI.instance.UIFromTopToLeft());
+        StartCoroutine(eventHandler.GetComponent<ReOrganizeUI>().UIFromTopToLeft());
 
-        StartCoroutine(ReOrganizeUI.instance.UIFromLeftToBottom());
+        StartCoroutine(eventHandler.GetComponent<ReOrganizeUI>().UIFromLeftToBottom());
         
         StartCoroutine(Shake1(1000, 0.02f, 1));
 
@@ -570,20 +579,16 @@ public class Eventos : MonoBehaviour
 
             player.GetComponent<PlayerMovement>().enSuelo = false;
 
-            AnimationsPlayer.instance.animator.SetTrigger("CaidaInesperada");
+            player.GetComponent<AnimationsPlayer>().animator.SetTrigger("CaidaInesperada");
 
-                //StartCoroutine(AnimationsPlayer.instance.TriggerRecompostura());
-
-            CameraMovement.instance.Movement(2);
+            camaras[0].gameObject.GetComponent<CameraMovement>().Movement(2);
                 //ESTO SI CAMBIA LA GRAVEDAD
 
-            PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
-            PlayerMovement.instance.rb.gravityScale = 0f;
-            PlayerMovement.instance.rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+            player.GetComponent<PlayerMovement>().rb.linearVelocity = Vector2.zero;
+            player.GetComponent<PlayerMovement>().rb.gravityScale = 0f;
+            player.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezePositionY;
 
-            Debug.Log($"Gravedad: {PlayerMovement.instance.rb.gravityScale}");
-
-            CameraRotation.instance.tiltAnimation = true;
+            camaras[0].gameObject.GetComponent<CameraRotation>().tiltAnimation = true;
 
             enCaida = true; 
 

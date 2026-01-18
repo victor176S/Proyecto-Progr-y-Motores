@@ -11,12 +11,16 @@ public class ReOrganizeUI : MonoBehaviour
     public int vecesQueSeMueve = 1;
     
     private float velocidad; //esto no hace nada, poner desde el editor
+
+    GameObject gameManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Awake()
     {
         //SI NO SE PONE EL SCRIPT A UN OBJETO, ESTO DA ERROR
         instance = this;
+
+        gameManager = GameObject.Find("GameManager");
     }
     void Start()
     {
@@ -41,13 +45,13 @@ public class ReOrganizeUI : MonoBehaviour
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-            GameManager.instance.LivesUI.transform.position += new Vector3 (-15f, 2.5f, 0) *velocidad;
+            gameManager.GetComponent<GameManager>().LivesUI.transform.position += new Vector3 (-15f, 2.5f, 0) *velocidad;
 
-            GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (-28, 5f, 0) *velocidad;
+            gameManager.GetComponent<GameManager>().porcentajeSaltoText.transform.position += new Vector3 (-28, 5f, 0) *velocidad;
 
-            GameManager.instance.DashCharge.transform.position += new Vector3 (-3, 8, 0) *velocidad;
+            gameManager.GetComponent<GameManager>().DashCharge.transform.position += new Vector3 (-3, 8, 0) *velocidad;
 
-            GameManager.instance.textoPuntos.transform.position += new Vector3 (-15f, 8.5f, 0) *velocidad;
+            gameManager.GetComponent<GameManager>().textoPuntos.transform.position += new Vector3 (-15f, 8.5f, 0) *velocidad;
 
             yield return new WaitForSeconds (0.02f);
         }
@@ -62,11 +66,11 @@ public class ReOrganizeUI : MonoBehaviour
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-        GameManager.instance.LivesUI.transform.position += new Vector3 (8, -2.5f, 0) *velocidad;
+        gameManager.GetComponent<GameManager>().LivesUI.transform.position += new Vector3 (8, -2.5f, 0) *velocidad;
 
-        GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (15, -2.5f, 0) *velocidad;
+        gameManager.GetComponent<GameManager>().porcentajeSaltoText.transform.position += new Vector3 (15, -2.5f, 0) *velocidad;
 
-        GameManager.instance.DashCharge.transform.position += new Vector3 (0, -5, 0) *velocidad;
+        gameManager.GetComponent<GameManager>().DashCharge.transform.position += new Vector3 (0, -5, 0) *velocidad;
 
         yield return new WaitForSeconds (0.02f);
 
@@ -80,13 +84,13 @@ public class ReOrganizeUI : MonoBehaviour
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-        GameManager.instance.LivesUI.transform.position += new Vector3 (-13, -7f, 0) *velocidad;
+        gameManager.GetComponent<GameManager>().LivesUI.transform.position += new Vector3 (-13, -7f, 0) *velocidad;
 
-        GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (-1, -2f, 0) *velocidad;
+        gameManager.GetComponent<GameManager>().porcentajeSaltoText.transform.position += new Vector3 (-1, -2f, 0) *velocidad;
 
-        GameManager.instance.DashCharge.transform.position += new Vector3 (-26.5f, -10f, 0) *velocidad;
+        gameManager.GetComponent<GameManager>().DashCharge.transform.position += new Vector3 (-26.5f, -10f, 0) *velocidad;
 
-        GameManager.instance.textoPuntos.transform.position += new Vector3 (-14, -11, 0) *velocidad;
+        gameManager.GetComponent<GameManager>().textoPuntos.transform.position += new Vector3 (-14, -11, 0) *velocidad;
 
         yield return new WaitForSeconds (0.02f);
 
@@ -100,13 +104,13 @@ public class ReOrganizeUI : MonoBehaviour
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-        GameManager.instance.LivesUI.transform.position += new Vector3 (14, -9f, 0) *velocidad;
+        gameManager.GetComponent<GameManager>().LivesUI.transform.position += new Vector3 (14, -9f, 0) *velocidad;
 
-        GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (1, -13f, 0) *velocidad;
+        gameManager.GetComponent<GameManager>().porcentajeSaltoText.transform.position += new Vector3 (1, -13f, 0) *velocidad;
 
-        GameManager.instance.DashCharge.transform.position += new Vector3 (26f, -6f, 0) *velocidad;
+        gameManager.GetComponent<GameManager>().DashCharge.transform.position += new Vector3 (26f, -6f, 0) *velocidad;
 
-        GameManager.instance.textoPuntos.transform.position += new Vector3 (14, -1f, 0) *velocidad;
+        gameManager.GetComponent<GameManager>().textoPuntos.transform.position += new Vector3 (14, -1f, 0) *velocidad;
 
         yield return new WaitForSeconds (0.02f);
 
@@ -121,13 +125,13 @@ public class ReOrganizeUI : MonoBehaviour
 
         for (int i = 0; i < vecesQueSeMueve; i++)
         {
-        GameManager.instance.LivesUI.transform.position += new Vector3 (14, 13.5f, 0) *velocidad;
+        gameManager.GetComponent<GameManager>().LivesUI.transform.position += new Vector3 (14, 13.5f, 0) *velocidad;
 
-        GameManager.instance.porcentajeSaltoText.transform.position += new Vector3 (28, 10f, 0) *velocidad;
+        gameManager.GetComponent<GameManager>().porcentajeSaltoText.transform.position += new Vector3 (28, 10f, 0) *velocidad;
 
-        GameManager.instance.DashCharge.transform.position += new Vector3 (3.5f, 8f, 0) *velocidad;
+        gameManager.GetComponent<GameManager>().DashCharge.transform.position += new Vector3 (3.5f, 8f, 0) *velocidad;
 
-        GameManager.instance.textoPuntos.transform.position += new Vector3 (15, 3.5f, 0) *velocidad;
+        gameManager.GetComponent<GameManager>().textoPuntos.transform.position += new Vector3 (15, 3.5f, 0) *velocidad;
 
         yield return new WaitForSeconds (0.02f);
 

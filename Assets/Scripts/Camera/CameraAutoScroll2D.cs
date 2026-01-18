@@ -21,16 +21,23 @@ public class CameraAutoScroll2D : MonoBehaviour
 
     public GameObject puntoDeControl;
 
+    GameObject camara;
+
     //"instance = this" en awake me deja usar valores de este script en otros
     private void Awake()
     {
         instance = this;
+
+        
     }
 
 
     private void LateUpdate()
     {
-        Vector3 pos = transform.position;
+        camara = GameObject.Find("Main Camera");
+
+        
+        Vector3 pos = this.transform.position;
 
         // X: auto-scroll si está activo
         if (scrollActivo)
@@ -41,11 +48,14 @@ public class CameraAutoScroll2D : MonoBehaviour
         // Y: sigue al jugador
         if (player != null)
         {
-            float targetY = player.position.y + CameraMovement.instance.camYextra + yOffset;
+            camara = GameObject.Find("Main Camera");
+
+
+            float targetY = player.position.y + yOffset;
             pos.y = Mathf.SmoothDamp(pos.y, targetY, ref velY, smoothTimeY);
         }
 
         // Z lo dejamos como esté (normalmente -10)
-        transform.position = pos;
+        camara.transform.position = pos;
     }
 }

@@ -37,7 +37,7 @@ public class FireSpriteRandomizer : MonoBehaviour
 
                 yield return new WaitForSeconds(0.1f);
 
-                gameObject.GetComponent<SpriteRenderer>().sprite = sprite1;
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = sprite1;
 
                 break;
 
@@ -45,7 +45,7 @@ public class FireSpriteRandomizer : MonoBehaviour
 
                 yield return new WaitForSeconds(0.1f);
 
-                gameObject.GetComponent<SpriteRenderer>().sprite = sprite2;
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = sprite2;
 
                 break;
 
@@ -53,7 +53,7 @@ public class FireSpriteRandomizer : MonoBehaviour
 
                 yield return new WaitForSeconds(0.1f);
 
-                gameObject.GetComponent<SpriteRenderer>().sprite = sprite3;
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = sprite3;
 
                 break;
             }

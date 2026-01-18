@@ -34,19 +34,19 @@ public class SpikesSpriteRandomizer : MonoBehaviour
         {
             case 0:
 
-                gameObject.GetComponent<SpriteRenderer>().sprite = sprite1;
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = sprite1;
 
                 break;
 
             case 1:
 
-                gameObject.GetComponent<SpriteRenderer>().sprite = sprite2;
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = sprite2;
 
                 break;
 
             case 2:
 
-                gameObject.GetComponent<SpriteRenderer>().sprite = sprite3;
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = sprite3;
 
                 break;
         }

@@ -13734,6 +13734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
+  - component: {fileID: 519420040}
   - component: {fileID: 519420033}
   - component: {fileID: 519420035}
   - component: {fileID: 519420036}
@@ -14079,6 +14080,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.2050552, y: 114.61902}
   m_EdgeRadius: 0
+--- !u!114 &519420040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d457a8c04decfb438d006b30bfabe09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraMovement
+  camYextra: 0
+  vecesQueSeMueve: 0
 --- !u!1 &519767651
 GameObject:
   m_ObjectHideFlags: 0
@@ -35239,6 +35254,93 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1344234341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1344234346}
+  - component: {fileID: 1344234345}
+  - component: {fileID: 1344234344}
+  - component: {fileID: 1344234343}
+  - component: {fileID: 1344234342}
+  m_Layer: 3
+  m_Name: EventHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1344234342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344234341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37475e42497025b4b9d953388192c599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlatformMovement
+  valorDeIncremento: {x: 0, y: 0.5, z: 0}
+  veces: 400
+--- !u!114 &1344234343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344234341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9bb3efe9abf88b4d87d5fe956535b12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ArrowsAnim
+  vecesQueSeMueve: 10
+--- !u!114 &1344234344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344234341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf3ca0094c324941a95e6cfc6d756ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReOrganizeUI
+  vecesQueSeMueve: 10
+--- !u!114 &1344234345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344234341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24aeb41ebb252247a9851e645fccc6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WarningsAnimation
+--- !u!4 &1344234346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344234341}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 709.86176, y: 1506.9, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1344438308
 GameObject:
   m_ObjectHideFlags: 0
@@ -50800,7 +50902,7 @@ MonoBehaviour:
   volumenMusica: 100
   volumenSFX: 100
   textoInput: 
-  codigoLyrics: 0
+  debugTeclas: 0
   fueraDelMenu: 0
   numeroEscena: 2
   puntos: 7
@@ -53941,6 +54043,7 @@ MonoBehaviour:
   enCaida: 0
   veces: 40
   valorDeIncremento: {x: 0, y: 0, z: 0}
+  camara: {fileID: 0}
 --- !u!212 &4532517939603072678
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -55872,7 +55975,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 67f63788b43978243a80e209e86f0627, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -56059,6 +56162,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2070196290}
+  - {fileID: 1344234346}
   - {fileID: 1639592409984336210}
   - {fileID: 387509114}
   - {fileID: 561862955}

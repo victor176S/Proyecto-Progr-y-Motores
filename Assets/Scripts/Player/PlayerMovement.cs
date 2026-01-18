@@ -175,11 +175,11 @@ public class PlayerMovement : MonoBehaviour
 
         
 
-        if (!Sounds.instance.Reproduciendo)
+        if (!this.gameObject.GetComponent<Sounds>().Reproduciendo)
         {
-            Sounds.instance.Reproduciendo = true;
+            this.gameObject.GetComponent<Sounds>().Reproduciendo = true;
 
-             StartCoroutine(Sounds.instance.PlaySound(1,1));
+             StartCoroutine(this.gameObject.GetComponent<Sounds>().PlaySound(1,1));
         }
 
        
@@ -357,8 +357,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void EnemyBumpOnHit()
     {
-        gameObject.transform.position += 2f * Vector3.right;
+        this.gameObject.transform.position += 2f * Vector3.right;
 
-        gameObject.transform.position += 0.05f * Vector3.up;
+        this.gameObject.transform.position += 0.05f * Vector3.up;
     }
 }

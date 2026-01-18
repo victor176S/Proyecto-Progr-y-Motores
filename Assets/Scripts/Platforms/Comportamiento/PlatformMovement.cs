@@ -9,10 +9,14 @@ public class PlatformMovement : MonoBehaviour
     public Vector3 valorDeIncremento = new Vector3(0,0.5f,0);
 
     public int veces = 400; //cambiar desde el inspector (duracion)
+
+    GameObject gameManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-      instance = this;  
+      instance = this;
+
+      gameManager = GameObject.Find("GameManager");
     }
 
     // Update is called once per frame
@@ -28,7 +32,7 @@ public class PlatformMovement : MonoBehaviour
         {
             gameObject.transform.localPosition += valorDeIncremento * Time.deltaTime * 10;
 
-            GameManager.instance.player.GetComponent<Transform>().position += valorDeIncremento * Time.deltaTime * 10;
+            gameManager.GetComponent<GameManager>().player.GetComponent<Transform>().position += valorDeIncremento * Time.deltaTime * 10;
 
             yield return new WaitForSeconds (0.001f);
         }

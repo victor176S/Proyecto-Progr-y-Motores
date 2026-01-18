@@ -10,9 +10,13 @@ public class FallingObjectSpawn : MonoBehaviour
 
     public GameObject fallingProp, fallingProp2, fallingProp3;
 
+    GameObject gameManager;
+
     void Awake()
     {
         instance = this;
+
+        gameManager = GameObject.Find("GameManager");
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,9 +43,9 @@ public class FallingObjectSpawn : MonoBehaviour
 
             Debug.Log("Switch FallingBoxes");
 
-                var objeto1 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (-18,42,0), Quaternion.identity);
-                var objeto2 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (-19.5f,40,0), Quaternion.identity);
-                var objeto3 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (-16.5f,40,0), Quaternion.identity);
+                var objeto1 = Instantiate(fallingProp, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (-18,42,0), Quaternion.identity);
+                var objeto2 = Instantiate(fallingProp, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (-19.5f,40,0), Quaternion.identity);
+                var objeto3 = Instantiate(fallingProp, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (-16.5f,40,0), Quaternion.identity);
 
                 objeto1.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
@@ -54,9 +58,9 @@ public class FallingObjectSpawn : MonoBehaviour
             case 1:
 
                 // 3 cajas en el centro a la izq
-                var objeto4 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (-8,42,0), Quaternion.identity);
-                var objeto5 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (-9.5f,40,0), Quaternion.identity);
-                var objeto6 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (-6.5f,40,0), Quaternion.identity);
+                var objeto4 = Instantiate(fallingProp, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (-8,42,0), Quaternion.identity);
+                var objeto5 = Instantiate(fallingProp, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (-9.5f,40,0), Quaternion.identity);
+                var objeto6 = Instantiate(fallingProp, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (-6.5f,40,0), Quaternion.identity);
 
                 objeto4.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
@@ -74,9 +78,9 @@ public class FallingObjectSpawn : MonoBehaviour
 
             case 2:
 
-                var objeto7 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (2,42,0), Quaternion.identity);
-                var objeto8 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (0.5f,40,0), Quaternion.identity);
-                var objeto9 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (3.5f,40,0), Quaternion.identity);
+                var objeto7 = Instantiate(fallingProp, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (2,42,0), Quaternion.identity);
+                var objeto8 = Instantiate(fallingProp, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (0.5f,40,0), Quaternion.identity);
+                var objeto9 = Instantiate(fallingProp, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (3.5f,40,0), Quaternion.identity);
 
                 objeto7.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
@@ -94,9 +98,9 @@ public class FallingObjectSpawn : MonoBehaviour
 
             case 3:
 
-                var objeto10 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (12,42,0), Quaternion.identity);
-                var objeto11 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (10.5f,40,0), Quaternion.identity);
-                var objeto12 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (13.5f,40,0), Quaternion.identity);
+                var objeto10 = Instantiate(fallingProp, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (12,42,0), Quaternion.identity);
+                var objeto11 = Instantiate(fallingProp, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (10.5f,40,0), Quaternion.identity);
+                var objeto12 = Instantiate(fallingProp, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (13.5f,40,0), Quaternion.identity);
 
                 objeto10.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
@@ -114,9 +118,9 @@ public class FallingObjectSpawn : MonoBehaviour
 
             case 4:
 
-                var objeto13 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (22,42,0), Quaternion.identity);
-                var objeto14 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (20.5f,40,0), Quaternion.identity);
-                var objeto15 = Instantiate(fallingProp, GameManager.instance.player.transform.position + new Vector3 (23.5f,40,0), Quaternion.identity);
+                var objeto13 = Instantiate(fallingProp, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (22,42,0), Quaternion.identity);
+                var objeto14 = Instantiate(fallingProp, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (20.5f,40,0), Quaternion.identity);
+                var objeto15 = Instantiate(fallingProp, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (23.5f,40,0), Quaternion.identity);
 
                 objeto13.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
@@ -149,7 +153,7 @@ public class FallingObjectSpawn : MonoBehaviour
 
             
 
-                var objeto1 = Instantiate(fallingProp2, GameManager.instance.player.transform.position + new Vector3 (-18,40,0), Quaternion.identity);
+                var objeto1 = Instantiate(fallingProp2, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (-18,40,0), Quaternion.identity);
 
                 objeto1.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
@@ -160,7 +164,7 @@ public class FallingObjectSpawn : MonoBehaviour
             case 1:
 
                 // 3 cajas en el centro a la izq
-                var objeto2 = Instantiate(fallingProp2, GameManager.instance.player.transform.position + new Vector3 (-8,40,0), Quaternion.identity);
+                var objeto2 = Instantiate(fallingProp2, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (-8,40,0), Quaternion.identity);
                 
                 objeto2.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
@@ -170,7 +174,7 @@ public class FallingObjectSpawn : MonoBehaviour
 
             case 2:
 
-                var objeto3 = Instantiate(fallingProp2, GameManager.instance.player.transform.position + new Vector3 (2,42,0), Quaternion.identity);
+                var objeto3 = Instantiate(fallingProp2, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (2,42,0), Quaternion.identity);
 
                 objeto3.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
@@ -180,7 +184,7 @@ public class FallingObjectSpawn : MonoBehaviour
 
             case 3:
 
-                var objeto4 = Instantiate(fallingProp2, GameManager.instance.player.transform.position + new Vector3 (12,42,0), Quaternion.identity);
+                var objeto4 = Instantiate(fallingProp2, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (12,42,0), Quaternion.identity);
 
                 objeto4.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
@@ -190,7 +194,7 @@ public class FallingObjectSpawn : MonoBehaviour
 
             case 4:
 
-                var objeto5 = Instantiate(fallingProp2, GameManager.instance.player.transform.position + new Vector3 (22,42,0), Quaternion.identity);
+                var objeto5 = Instantiate(fallingProp2, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (22,42,0), Quaternion.identity);
 
                 objeto5.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
@@ -216,7 +220,7 @@ public class FallingObjectSpawn : MonoBehaviour
             case 0:
 
                 // 3 cajas en el centro a la izq
-                var objeto2 = Instantiate(fallingProp3, GameManager.instance.player.transform.position + new Vector3 (0,40,0), Quaternion.identity);
+                var objeto2 = Instantiate(fallingProp3, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (0,40,0), Quaternion.identity);
                 
                 objeto2.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
@@ -226,7 +230,7 @@ public class FallingObjectSpawn : MonoBehaviour
 
             case 1:
 
-                var objeto3 = Instantiate(fallingProp3, GameManager.instance.player.transform.position + new Vector3 (10,42,0), Quaternion.identity);
+                var objeto3 = Instantiate(fallingProp3, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (10,42,0), Quaternion.identity);
 
                 objeto3.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
@@ -236,7 +240,7 @@ public class FallingObjectSpawn : MonoBehaviour
 
             case 2:
 
-                var objeto4 = Instantiate(fallingProp3, GameManager.instance.player.transform.position + new Vector3 (-10,42,0), Quaternion.identity);
+                var objeto4 = Instantiate(fallingProp3, gameManager.GetComponent<GameManager>().player.transform.position + new Vector3 (-10,42,0), Quaternion.identity);
 
                 objeto4.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 
@@ -251,11 +255,11 @@ public class FallingObjectSpawn : MonoBehaviour
         
         //var es un tipo de variable global, osea, guarda de todo, pero se borra en la primera asignacion que haces
 
-                //var objeto = Instantiate(GameManager.instance.fallingProp2, transform.position + new Vector3 (8,40,0), Quaternion.identity); //Despues del quaternion se puede poner el padre del objeto
+                //var objeto = Instantiate(gameManager.GetComponent<GameManager>().fallingProp2, transform.position + new Vector3 (8,40,0), Quaternion.identity); //Despues del quaternion se puede poner el padre del objeto
 
                 
 
-                //var objeto4 = Instantiate(GameManager.instance.fallingProp, transform.position + new Vector3 (0,40,0), Quaternion.identity);
+                //var objeto4 = Instantiate(gameManager.GetComponent<GameManager>().fallingProp, transform.position + new Vector3 (0,40,0), Quaternion.identity);
 
                 //objeto.gameObject.GetComponent<Rigidbody2D>().AddTorque(-90, ForceMode2D.Impulse);
 

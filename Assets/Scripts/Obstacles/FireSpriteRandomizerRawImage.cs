@@ -38,7 +38,7 @@ public class FireSpriteRandomizerRawImage : MonoBehaviour
 
                 yield return new WaitForSeconds(0.1f);
 
-                gameObject.GetComponent<RawImage>().texture = imagen1;
+                this.gameObject.GetComponent<RawImage>().texture = imagen1;
 
                 break;
 
@@ -46,7 +46,7 @@ public class FireSpriteRandomizerRawImage : MonoBehaviour
 
                 yield return new WaitForSeconds(0.1f);
 
-                gameObject.GetComponent<RawImage>().texture = imagen2;
+                this.gameObject.GetComponent<RawImage>().texture = imagen2;
 
                 break;
 
@@ -54,7 +54,7 @@ public class FireSpriteRandomizerRawImage : MonoBehaviour
 
                 yield return new WaitForSeconds(0.1f);
 
-                gameObject.GetComponent<RawImage>().texture = imagen3;
+                this.gameObject.GetComponent<RawImage>().texture = imagen3;
 
                 break;
             }

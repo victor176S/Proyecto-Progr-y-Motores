@@ -8,11 +8,16 @@ public class WarningsAnimation : MonoBehaviour
 
     int i;
 
+    GameObject gameManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Awake()
     {
         instance = this;
+
+        gameManager = GameObject.Find("GameManager");
+
     }
     void Start()
     {
@@ -31,27 +36,27 @@ public class WarningsAnimation : MonoBehaviour
         if (Left)
         {
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             
@@ -59,27 +64,27 @@ public class WarningsAnimation : MonoBehaviour
 
         if (LeftCent)
         {
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             
@@ -87,27 +92,27 @@ public class WarningsAnimation : MonoBehaviour
 
         if (Cent)
         {
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(2).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(2).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(2).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(2).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(2).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(2).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(2).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(2).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(2).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(2).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(2).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(2).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             
@@ -115,27 +120,27 @@ public class WarningsAnimation : MonoBehaviour
 
         if (RightCent)
         {
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(3).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(3).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(3).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(3).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(3).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(3).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(3).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(3).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(3).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(3).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(3).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(3).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             
@@ -143,27 +148,27 @@ public class WarningsAnimation : MonoBehaviour
 
         if (Right)
         {
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(4).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(4).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(4).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(4).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(4).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(4).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(4).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(4).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(4).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(4).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(4).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(4).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             
@@ -177,27 +182,27 @@ public class WarningsAnimation : MonoBehaviour
 
         if (Left)
         {
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             
@@ -205,27 +210,27 @@ public class WarningsAnimation : MonoBehaviour
 
         if (LeftCent)
         {
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             
@@ -233,27 +238,27 @@ public class WarningsAnimation : MonoBehaviour
 
         if (Cent)
         {
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             
@@ -262,27 +267,27 @@ public class WarningsAnimation : MonoBehaviour
         if (RightCent)
         {
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             
@@ -291,27 +296,27 @@ public class WarningsAnimation : MonoBehaviour
         if (Right)
         {
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(4).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(4).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(4).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(4).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(4).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(4).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(4).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(4).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(4).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(4).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(4).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(4).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             
@@ -328,11 +333,11 @@ public class WarningsAnimation : MonoBehaviour
             for (i = 1; i < repeat; i++)
             {
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
 
@@ -344,11 +349,11 @@ public class WarningsAnimation : MonoBehaviour
         {
             for (i = 1; i < repeat; i++)
             {
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             }
@@ -358,11 +363,11 @@ public class WarningsAnimation : MonoBehaviour
         {   
             for (i = 1; i < repeat; i++)
             {
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(2).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(2).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(2).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(2).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             }
@@ -373,11 +378,11 @@ public class WarningsAnimation : MonoBehaviour
         {
             for (i = 1; i < repeat; i++)
             {
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(3).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(3).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(3).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(3).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             }
@@ -388,11 +393,11 @@ public class WarningsAnimation : MonoBehaviour
         {
             for (i = 1; i < repeat; i++)
             {
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(4).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(4).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(4).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(0).GetChild(4).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             }
@@ -409,11 +414,11 @@ public class WarningsAnimation : MonoBehaviour
         {
             for (i = 1; i < repeat; i++)
             {
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(0).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             }
@@ -425,11 +430,11 @@ public class WarningsAnimation : MonoBehaviour
         {
             for (i = 1; i < repeat; i++)
             {
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             }
@@ -440,11 +445,11 @@ public class WarningsAnimation : MonoBehaviour
         {
             for (i = 1; i < repeat; i++)
             {
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(2).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             }
@@ -455,11 +460,11 @@ public class WarningsAnimation : MonoBehaviour
         {
             for (i = 1; i < repeat; i++)
             {
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(3).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             }
@@ -470,11 +475,11 @@ public class WarningsAnimation : MonoBehaviour
         {
             for (i = 1; i < repeat; i++)
             {
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(4).gameObject.SetActive(true);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(4).gameObject.SetActive(true);
 
             yield return new WaitForSeconds(0.3f);
 
-            GameManager.instance.camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(4).gameObject.SetActive(false);
+            gameManager.GetComponent<GameManager>().camara.gameObject.transform.GetChild(0).GetChild(1).GetChild(4).gameObject.SetActive(false);
 
             yield return new WaitForSeconds(0.3f);
             }

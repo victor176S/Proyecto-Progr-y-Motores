@@ -25,9 +25,18 @@ public class PlayerEventTrigger : MonoBehaviour
     public int veces = 40;
     public Vector3 valorDeIncremento = new Vector3(0f, 0f, 0);
 
+    GameObject gameManager;
+
+    GameObject eventHandler;
+
+    public GameObject camara;
+
     void Awake()
     {
         instance = this;
+
+        eventHandler = GameObject.Find("EventHandler");
+
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -49,10 +58,10 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 transform.position = pos;
 
-                if (PlayerMovement.instance.enSuelo)
+                if (gameObject.GetComponent<PlayerMovement>().enSuelo)
                 {
-                    PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
-                    PlayerMovement.instance.rb.gravityScale = 4f;
+                    gameObject.GetComponent<PlayerMovement>().rb.linearVelocity = Vector2.zero;
+                    gameObject.GetComponent<PlayerMovement>().rb.gravityScale = 4f;
 
                     enCaida = false;
                 }
@@ -88,6 +97,8 @@ public class PlayerEventTrigger : MonoBehaviour
     public void TriggerPuntoDeControl(int i)
     {
 
+        
+
         var nombreEscena = SceneManager.GetActiveScene().name;
 
         Debug.Log($"Nombre escena: {nombreEscena}");
@@ -100,26 +111,26 @@ public class PlayerEventTrigger : MonoBehaviour
 
             case 0:
 
-                AnimationsPlayer.instance.animator.SetTrigger("CaidaInesperada");
+                gameObject.GetComponent<AnimationsPlayer>().animator.SetTrigger("CaidaInesperada");
 
-                StartCoroutine(AnimationsPlayer.instance.TriggerRecompostura());
+                StartCoroutine(gameObject.GetComponent<AnimationsPlayer>().TriggerRecompostura());
 
-                CameraMovement.instance.Movement(2);
+                GameObject camara = GameObject.Find("Main Camera");
+
+                camara.GetComponent<CameraMovement>().Movement(2);
                 //ESTO SI CAMBIA LA GRAVEDAD
 
-                PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
-                PlayerMovement.instance.rb.gravityScale = 0f;
-                PlayerMovement.instance.rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+                gameObject.GetComponent<PlayerMovement>().rb.linearVelocity = Vector2.zero;
+                gameObject.GetComponent<PlayerMovement>().rb.gravityScale = 0f;
+                gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezePositionY;
 
-                Debug.Log($"Gravedad: {PlayerMovement.instance.rb.gravityScale}");
-
-                CameraRotation.instance.tiltAnimation = true;
+                camara.GetComponent<CameraRotation>().tiltAnimation = true;
 
                 enCaida = true;
 
-                StartCoroutine(ArrowsAnim.instance.TopToBottomArrowsAnim());
+                StartCoroutine(eventHandler.GetComponent<ArrowsAnim>().TopToBottomArrowsAnim());
 
-                StartCoroutine(Sounds.instance.PlaySound(0,2)); 
+                StartCoroutine(gameObject.GetComponent<Sounds>().PlaySound(0,2)); 
 
                 puntosDeControl[i].gameObject.SetActive(false);
 
@@ -127,21 +138,24 @@ public class PlayerEventTrigger : MonoBehaviour
 
             case 1:
 
-                CameraRotation.instance.tiltAnimation = false;
-                CameraRotation.instance.target = 0f;
-                CameraRotation.instance.tiltToTheRight = true;
+                camara = GameObject.Find("Main Camera");
+
+                camara.GetComponent<CameraRotation>().tiltAnimation = false;
+                camara.GetComponent<CameraRotation>().target = 0f;
+                camara.GetComponent<CameraRotation>().tiltToTheRight = true;
                 puntosDeControl[i].gameObject.SetActive(false);
 
                 break;
 
             case 2:
 
-                
-                    CameraMovement.instance.Movement(1);
-                    StartCoroutine(CameraShake.instance.ShakeLogic(15, 1, 0.3f));
-                    AnimationsPlayer.instance.animator.SetTrigger("Landing");
+                    camara = GameObject.Find("Main Camera");
 
-                    PlayerMovement.instance.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                    camara.GetComponent<CameraMovement>().Movement(1);
+                    StartCoroutine(camara.GetComponent<CameraShake>().ShakeLogic(15, 1, 0.3f));
+                    gameObject.GetComponent<AnimationsPlayer>().animator.SetTrigger("Landing");
+
+                    gameObject.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                     puntosDeControl[i].gameObject.SetActive(false);
                     
                    
@@ -151,7 +165,7 @@ public class PlayerEventTrigger : MonoBehaviour
 
             case 3:
 
-                StartCoroutine(PlatformMovement.instance.PlatformGoingUp());
+                StartCoroutine(eventHandler.GetComponent<PlatformMovement>().PlatformGoingUp());
 
                 puntosDeControl[i].gameObject.SetActive(false);
 
@@ -161,7 +175,7 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 
 
-                StartCoroutine(ReOrganizeUI.instance.UIFromRightToTop());
+                StartCoroutine(eventHandler.GetComponent<ReOrganizeUI>().UIFromRightToTop());
 
                 puntosDeControl[i].gameObject.SetActive(false);
 
@@ -170,15 +184,19 @@ public class PlayerEventTrigger : MonoBehaviour
 
             case 5:
 
-                CameraAutoScroll2D.instance.scrollActivo = false;
-                CameraMovement.instance.Movement(0);
+                camara = GameObject.Find("Main Camera");
+
+                camara.GetComponent<CameraAutoScroll2D>().scrollActivo = false;
+                camara.GetComponent<CameraMovement>().Movement(0);
 
                 puntosDeControl[i].gameObject.SetActive(false);
                 break;
 
             case 6:
 
-                CameraMovement.instance.Movement(1);
+                camara = GameObject.Find("Main Camera");
+
+                camara.GetComponent<CameraMovement>().Movement(1);
 
                 puntosDeControl[i].gameObject.SetActive(false);
 
@@ -188,14 +206,16 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 Debug.Log("se activo el trigger del prefab");
 
-                FallingObjectSpawn.instance.SpawnFallingGlass(0,8f);
+                GameObject gameManager = GameObject.Find("GameManager");
+
+                gameManager.GetComponent<FallingObjectSpawn>().SpawnFallingGlass(0,8f);
 
                 //avisos de objetos en caida de izq a derecha
-                StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, false));
-                StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
-                StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
-                StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, true, false));
-                StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, false));
+                StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, false, false, false));
+                StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, true, false, false, false));
+                StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, true, false, false));
+                StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, false, true, false));
+                StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, false, false, false));
 
 
                 //StartCoroutine(DeleteFallingProp(objeto));
@@ -222,7 +242,7 @@ public class PlayerEventTrigger : MonoBehaviour
 
             case 11:
 
-                var camara = GameObject.Find("Main Camera");
+                camara = GameObject.Find("Main Camera");
 
                 StartCoroutine(camara.GetComponent<CameraShake>().ShakeLogic(15, 1, 0.02f));
 
@@ -250,11 +270,11 @@ public class PlayerEventTrigger : MonoBehaviour
 
                 finalCanvas.transform.GetChild(0).GetChild(3).gameObject.GetComponent<TextMeshProUGUI>().color += new Color (0,0,0,1);
 
-                var gameManager = GameObject.Find("GameManager");
-
                 var datosPersistentes = GameObject.Find("DatosPersistentes");
 
-                datosPersistentes.GetComponent<DatosPersistentes>().puntos += gameManager.GetComponent<GameManager>().puntos;
+                GameObject gameManager1 = GameObject.Find("GameManager");
+
+                datosPersistentes.GetComponent<DatosPersistentes>().puntos += gameManager1.GetComponent<GameManager>().puntos;
 
                 finalCanvas.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = datosPersistentes.GetComponent<DatosPersistentes>().puntos.ToString();
                 
@@ -332,11 +352,11 @@ public class PlayerEventTrigger : MonoBehaviour
                     
                 case 2:
 
-                    AnimationsPlayer.instance.animator.SetTrigger("Landing");
+                    this.gameObject.GetComponent<AnimationsPlayer>().animator.SetTrigger("Landing");
                     
                     StartCoroutine(Landing());
 
-                    StartCoroutine(Sounds.instance.PlaySound(5,1));
+                    StartCoroutine(gameObject.GetComponent<Sounds>().PlaySound(5,1));
 
                     GameObject fuegosScroll = GameObject.Find("FuegosScroll");
 
@@ -358,7 +378,7 @@ public class PlayerEventTrigger : MonoBehaviour
 
                     StartCoroutine(HurtPlayer());
 
-                    StartCoroutine(Sounds.instance.PlaySound(2,1));
+                    StartCoroutine(gameObject.GetComponent<Sounds>().PlaySound(2,1));
 
                     StartCoroutine(PlayerImpulseOnHurt());
 
@@ -406,7 +426,7 @@ public class PlayerEventTrigger : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
-        AnimationsPlayer.instance.animator.SetTrigger("Still");
+        gameObject.GetComponent<AnimationsPlayer>().animator.SetTrigger("Still");
 
         yield return new WaitForSeconds(0.5f);
 
@@ -540,7 +560,7 @@ public class PlayerEventTrigger : MonoBehaviour
 
         Debug.Log($"Hurt Cooldown Timer HurtPlayer (entrada): {hurtCoolDownTimer}");
         //esto falla
-        GameManager.instance.DecreasePlayerLives();
+        gameManager.GetComponent<GameManager>().DecreasePlayerLives();
         Debug.Log($"Hurt Cooldown Timer HurtPlayer (salida): {hurtCoolDownTimer}");
         hurtCoolDownTimer = 2f;
         
@@ -548,7 +568,7 @@ public class PlayerEventTrigger : MonoBehaviour
 
         }
 
-        if (GameManager.instance.vidasJugador == 0)
+        if (gameManager.GetComponent<GameManager>().vidasJugador == 0)
         {
             SceneManager.LoadScene("EscenaMuerte5");
         }
@@ -556,10 +576,10 @@ public class PlayerEventTrigger : MonoBehaviour
 
     private IEnumerator PlayerImpulseOnHurt()
     {
-        AnimationsPlayer.instance.animator.SetBool("Hurted", true);
-        AnimationsPlayer.instance.animator.SetTrigger("CaidaInesperada");
+        gameObject.GetComponent<AnimationsPlayer>().animator.SetBool("Hurted", true);
+        gameObject.GetComponent<AnimationsPlayer>().animator.SetTrigger("CaidaInesperada");
 
-        PlayerMovement.instance.rb.gravityScale = 0f;
+        gameObject.GetComponent<PlayerMovement>().rb.gravityScale = 0f;
         
         for (int i = 0; i <= 50; i++)
         {
@@ -569,9 +589,9 @@ public class PlayerEventTrigger : MonoBehaviour
             yield return new WaitForSeconds (0.01f);
         }
 
-        PlayerMovement.instance.rb.gravityScale = 4f;
+        gameObject.GetComponent<PlayerMovement>().rb.gravityScale = 4f;
 
-        AnimationsPlayer.instance.animator.SetBool("Hurted", false);
+        gameObject.GetComponent<AnimationsPlayer>().animator.SetBool("Hurted", false);
         
 
         yield return new WaitForSeconds (0.001f);

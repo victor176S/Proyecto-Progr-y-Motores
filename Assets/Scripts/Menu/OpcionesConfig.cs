@@ -6,7 +6,7 @@ public class OpcionesConfig : MonoBehaviour
 {
 
     public static OpcionesConfig instance;
-
+    private GameObject datosPersistentes;
     public Slider volumenMusica;
 
     public Slider volumenSFX;
@@ -19,11 +19,17 @@ public class OpcionesConfig : MonoBehaviour
 
     public string textoInput;
 
+    GameObject canvasMenu;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Awake()
     {
         instance = this;
+
+        datosPersistentes = GameObject.Find("DatosPersistentes");
+
+        canvasMenu = GameObject.Find("CanvasMenu");
     }
 
     void Start()
@@ -35,13 +41,13 @@ public class OpcionesConfig : MonoBehaviour
     void FixedUpdate()
     {
 
-        DatosPersistentes.instance.volumenMusica = volumenMusica.value;
+        datosPersistentes.GetComponent<DatosPersistentes>().volumenMusica = volumenMusica.value;
 
-        DatosPersistentes.instance.volumenSFX = volumenSFX.value;
+        datosPersistentes.GetComponent<DatosPersistentes>().volumenSFX = volumenSFX.value;
 
-        SonidosMenu.instance.SFX_Prueba.volume = volumenSFX.value;
+        canvasMenu.GetComponent<SonidosMenu>().SFX_Prueba.volume = volumenSFX.value;
 
-        SonidosMenu.instance.Musica_Prueba.volume = volumenMusica.value;
+        canvasMenu.GetComponent<SonidosMenu>().Musica_Prueba.volume = volumenMusica.value;
 
         
         volumenMusicaText.text = $"{Mathf.CeilToInt(volumenMusica.GetComponent<Slider>().value *100)} %";
@@ -50,7 +56,7 @@ public class OpcionesConfig : MonoBehaviour
 
         textoInput = codigos.GetComponent<InputField>().text;
 
-        DatosPersistentes.instance.textoInput = textoInput;
+        datosPersistentes.GetComponent<DatosPersistentes>().textoInput = textoInput;
 
         Debug.Log($"InputField {textoInput}");
         

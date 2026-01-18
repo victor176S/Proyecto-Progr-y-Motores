@@ -33096,7 +33096,7 @@ MonoBehaviour:
   speedX: 12
   scrollActivo: 0
   smoothTimeY: 0.2
-  puntoDeControl: {fileID: 0}
+  puntoDeControl: {fileID: 1560553181}
 --- !u!61 &519420034
 BoxCollider2D:
   m_ObjectHideFlags: 0

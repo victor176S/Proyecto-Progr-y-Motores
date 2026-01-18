@@ -28,18 +28,22 @@ public class CameraEventTrigger : MonoBehaviour
 
     private bool enCaida;
 
+    GameObject eventHandler;
+
     [SerializeField] private float speedY = -18f;
 
     void Awake()
     {
         instance = this;
+
+        eventHandler = GameObject.Find("EventHandler");
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
         if (SceneManager.GetActiveScene().name == "Nivel 2")
-        StartCoroutine(ReOrganizeUI.instance.UIFromRightToTop());
+        StartCoroutine(eventHandler.GetComponent<ReOrganizeUI>().UIFromRightToTop());
 
         camara = GameObject.Find("Main Camera");
 
@@ -68,10 +72,10 @@ public class CameraEventTrigger : MonoBehaviour
 
                 player.transform.position = pos;
 
-                if (PlayerMovement.instance.enSuelo)
+                if (player.GetComponent<PlayerMovement>().enSuelo)
                 {
-                    PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
-                    PlayerMovement.instance.rb.gravityScale = 4f;
+                    player.GetComponent<PlayerMovement>().rb.linearVelocity = Vector2.zero;
+                    player.GetComponent<PlayerMovement>().rb.gravityScale = 4f;
 
                     enCaida = false;
                 }
@@ -153,6 +157,8 @@ public class CameraEventTrigger : MonoBehaviour
             {
 
             case 0:
+
+                camara = GameObject.Find("Main Camera");
 
                 camara.GetComponent<CameraAutoScroll2D>().scrollActivo = false;
 
@@ -472,19 +478,25 @@ public class CameraEventTrigger : MonoBehaviour
 
                     StartCoroutine(MoveFire(false, fuegosScroll1));
 
-                    StartCoroutine(PlatformUP(PlatFormLift, 85, 0.0002f));
+                    StartCoroutine(PlatformUP(PlatFormLift, 85, 0.0001f));
 
-                    camara.GetComponent<CameraAutoScroll2D>().yOffset = 28;
+                    camara.GetComponent<CameraAutoScroll2D>().yOffset = 15;
 
-                    StartCoroutine(ArrowsAnim.instance.BottomToTopArrowsAnim());
+                    StartCoroutine(eventHandler.GetComponent<ArrowsAnim>().BottomToTopArrowsAnim());
 
-                    StartCoroutine(ReOrganizeUI.instance.UIFromBottomToRight());
+                    StartCoroutine(eventHandler.GetComponent<ReOrganizeUI>().UIFromBottomToRight());
 
                     puntosDeControl[i].gameObject.SetActive(false);
 
                     break;
 
                 case 4:
+
+                    camara.GetComponent<CameraAutoScroll2D>().enabled = true;
+
+                    camara.GetComponent<CameraAutoScroll2D>().scrollActivo = true;
+
+                    camara.GetComponent<CameraAutoScroll2D>().speedX = 0;
 
                     StartCoroutine(CheckHeight(-565));
 
@@ -604,6 +616,8 @@ public class CameraEventTrigger : MonoBehaviour
 
                 case 16:
 
+                    camara.GetComponent<CameraAutoScroll2D>().yOffset = 0;
+
                     GameObject platform = GameObject.Find("PlataformaLift");
 
                     StartCoroutine(FromUpToNormal());
@@ -616,11 +630,11 @@ public class CameraEventTrigger : MonoBehaviour
 
                     GameObject PlatFormLift1 = GameObject.Find("PlataformaLift1");
 
-                    StartCoroutine(PlatformUP(PlatFormLift1, 120, 0.0002f));
+                    StartCoroutine(PlatformUP(PlatFormLift1, 120, 0.0001f));
 
-                    camara.GetComponent<CameraAutoScroll2D>().yOffset = 28;
+                    camara.GetComponent<CameraAutoScroll2D>().yOffset = 15;
 
-                    StartCoroutine(ArrowsAnim.instance.BottomToTopArrowsAnim());
+                    StartCoroutine(eventHandler.GetComponent<ArrowsAnim>().BottomToTopArrowsAnim());
 
                     camara.GetComponent<CameraAutoScroll2D>().scrollActivo = false;
 
@@ -896,8 +910,6 @@ public class CameraEventTrigger : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
 
-        camara.GetComponent<CameraAutoScroll2D>().yOffset = 10;
-
         camara.GetComponent<CameraAutoScroll2D>().scrollActivo = true;
 
         camara.GetComponent<CameraAutoScroll2D>().speedX = 10;    
@@ -908,12 +920,12 @@ public class CameraEventTrigger : MonoBehaviour
 
         yield return new WaitForSeconds (2f);
 
-        for (int i = 0; i < altura * 100; i++)
+        for (int i = 0; i < altura * 50; i++)
         {
 
-            yield return new WaitForSeconds(secsPerMove);
+            yield return new WaitForSecondsRealtime(secsPerMove);
 
-            platform.transform.position += new Vector3(0, 0.1f, 0);
+            platform.transform.position += new Vector3(0, 0.2f, 0);
 
         }
             
@@ -976,7 +988,7 @@ public class CameraEventTrigger : MonoBehaviour
     IEnumerator AdjustCamera()
     {
 
-        yield return new WaitForSeconds(24.5f);
+        yield return new WaitForSeconds(21f);
 
         for (int i = 0; i < 15; i++)
         {
@@ -1034,31 +1046,31 @@ public class CameraEventTrigger : MonoBehaviour
                 {
                 case 0:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(true, false, false, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(true, false, false, false, false));
 
                     break;
 
                 case 1:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, true, false, false, false));
 
                     break;
 
                 case 2:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, true, false, false));
 
                     break;
 
                 case 3:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, true, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, false, true, false));
 
                     break;
 
                 case 4:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, true));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, false, false, true));
 
                     break;
                 }
@@ -1091,31 +1103,31 @@ public class CameraEventTrigger : MonoBehaviour
                 {
                 case 0:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(true, false, false, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(true, false, false, false, false));
 
                     break;
 
                 case 1:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, true, false, false, false));
 
                     break;
 
                 case 2:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, true, false, false));
 
                     break;
 
                 case 3:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, true, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, false, true, false));
 
                     break;
 
                 case 4:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, true));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, false, false, true));
 
                     break;
                 }
@@ -1137,31 +1149,31 @@ public class CameraEventTrigger : MonoBehaviour
                 {
                 case 0:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(true, false, false, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(true, false, false, false, false));
 
                     break;
 
                 case 1:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, true, false, false, false));
 
                     break;
 
                 case 2:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, true, false, false));
 
                     break;
 
                 case 3:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, true, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, false, true, false));
 
                     break;
 
                 case 4:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, true));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, false, false, true));
 
                     break;
                 }
@@ -1199,31 +1211,31 @@ public class CameraEventTrigger : MonoBehaviour
                 {
                 case 0:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(true, false, false, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(true, false, false, false, false));
 
                     break;
 
                 case 1:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, true, false, false, false));
 
                     break;
 
                 case 2:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, true, false, false));
 
                     break;
 
                 case 3:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, true, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, false, true, false));
 
                     break;
 
                 case 4:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, true));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, false, false, true));
 
                     break;
                 }
@@ -1255,31 +1267,31 @@ public class CameraEventTrigger : MonoBehaviour
                 {
                 case 0:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(true, false, false, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(true, false, false, false, false));
 
                     break;
 
                 case 1:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, true, false, false, false));
 
                     break;
 
                 case 2:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, true, false, false));
 
                     break;
 
                 case 3:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, true, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, false, true, false));
 
                     break;
 
                 case 4:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, true));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, false, false, true));
 
                     break;
                 }
@@ -1301,31 +1313,31 @@ public class CameraEventTrigger : MonoBehaviour
                 {
                 case 0:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(true, false, false, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(true, false, false, false, false));
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, true, false, false, false));
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, true, false, false));
 
                     break;
 
                 case 1:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, true, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, false, true, false));
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, true, false, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, true, false, false, false));
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, true, false, false));
 
                     break;
 
                 case 2:
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, true, false, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, true, false, false));
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, true, false));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, false, true, false));
 
-                    StartCoroutine(WarningsAnimation.instance.WarningAnimationUP(false, false, false, false, true));
+                    StartCoroutine(eventHandler.GetComponent<WarningsAnimation>().WarningAnimationUP(false, false, false, false, true));
 
                     break;
                 }
@@ -1345,26 +1357,24 @@ public class CameraEventTrigger : MonoBehaviour
 
             player.GetComponent<PlayerMovement>().enSuelo = false;
 
-            AnimationsPlayer.instance.animator.SetTrigger("CaidaInesperada");
+            player.GetComponent<AnimationsPlayer>().animator.SetTrigger("CaidaInesperada");
 
                 //StartCoroutine(AnimationsPlayer.instance.TriggerRecompostura());
 
-            CameraMovement.instance.Movement(2);
+            gameObject.GetComponent<CameraMovement>().Movement(2);
                 //ESTO SI CAMBIA LA GRAVEDAD
 
-            PlayerMovement.instance.rb.linearVelocity = Vector2.zero;
-            PlayerMovement.instance.rb.gravityScale = 0f;
-            PlayerMovement.instance.rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+            player.GetComponent<PlayerMovement>().rb.linearVelocity = Vector2.zero;
+            player.GetComponent<PlayerMovement>().rb.gravityScale = 0f;
+            player.GetComponent<PlayerMovement>().rb.constraints = RigidbodyConstraints2D.FreezePositionY;
 
-            Debug.Log($"Gravedad: {PlayerMovement.instance.rb.gravityScale}");
-
-            CameraRotation.instance.tiltAnimation = true;
+            gameObject.GetComponent<CameraRotation>().tiltAnimation = true;
 
             enCaida = true;
 
-            StartCoroutine(ArrowsAnim.instance.TopToBottomArrowsAnim());
+            StartCoroutine(eventHandler.GetComponent<ArrowsAnim>().TopToBottomArrowsAnim());
 
-            StartCoroutine(Sounds.instance.PlaySound(0,2)); 
+            StartCoroutine(player.GetComponent<Sounds>().PlaySound(0,2)); 
 
             puntosDeControl[i].gameObject.SetActive(false);
 

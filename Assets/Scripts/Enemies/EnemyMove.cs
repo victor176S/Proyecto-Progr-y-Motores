@@ -11,11 +11,15 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] private bool scrollActivo = false;
 
     public bool cameraDependent = true;
+
+    GameObject camara;
     // velocidad del scroll
 
     void Awake()
     {
         instance = this;
+
+        camara = GameObject.Find("Main Camera");
     }
     void Start()
     {
@@ -28,7 +32,7 @@ public class EnemyMove : MonoBehaviour
 
         if (cameraDependent)
         {
-            scrollActivo = CameraAutoScroll2D.instance.scrollActivo;
+            scrollActivo = camara.GetComponent<CameraAutoScroll2D>().scrollActivo;
         }
 
         else

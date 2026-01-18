@@ -11,11 +11,15 @@ public class AnimationsPlayer : MonoBehaviour
 
     private bool cargandoSalto;
 
+    GameObject gameManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Awake()
     {
         instance = this;
+        
+        gameManager = GameObject.Find("GameManager");
     }
     void Start()
     {
@@ -26,10 +30,10 @@ public class AnimationsPlayer : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (PlayerMovement.instance.botonSaltoMantenido && PlayerMovement.instance.enSuelo)
+        if (this.gameObject.GetComponent<PlayerMovement>().botonSaltoMantenido && this.gameObject.GetComponent<PlayerMovement>().enSuelo)
         {
             cargandoSalto = true;
-            if (PlayerMovement.instance.velocidadMovimientoActual > 0 || PlayerMovement.instance.velocidadMovimientoActual < 0)
+            if (this.gameObject.GetComponent<PlayerMovement>().velocidadMovimientoActual > 0 || this.gameObject.GetComponent<PlayerMovement>().velocidadMovimientoActual < 0)
             {
                 animator.SetTrigger("CargarSaltoAndar");
             }
@@ -44,15 +48,15 @@ public class AnimationsPlayer : MonoBehaviour
             cargandoSalto = false;
         }
 
-        animator.SetFloat("X", GameManager.instance.player.GetComponent<PlayerMovement>().rb.linearVelocityX);
+        animator.SetFloat("X", gameManager.GetComponent<GameManager>().player.GetComponent<PlayerMovement>().rb.linearVelocityX);
 
-        animator.SetFloat("Y", GameManager.instance.player.GetComponent<PlayerMovement>().rb.linearVelocityY);
+        animator.SetFloat("Y", gameManager.GetComponent<GameManager>().player.GetComponent<PlayerMovement>().rb.linearVelocityY);
 
         animator.SetTrigger("Saltar");
 
-        animator.SetBool("enSuelo", PlayerMovement.instance.enSuelo);
+        animator.SetBool("enSuelo", this.gameObject.GetComponent<PlayerMovement>().enSuelo);
 
-        animator.SetBool("OnDash", PlayerDash.instance.dashEnCurso);
+        animator.SetBool("OnDash", this.gameObject.GetComponent<PlayerDash>().dashEnCurso);
 
         animator.SetBool("CargandoSalto", cargandoSalto);
 

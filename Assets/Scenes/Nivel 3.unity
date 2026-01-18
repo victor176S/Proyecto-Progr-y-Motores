@@ -14978,6 +14978,7 @@ GameObject:
   m_Component:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
+  - component: {fileID: 519420040}
   - component: {fileID: 519420033}
   - component: {fileID: 519420035}
   - component: {fileID: 519420036}
@@ -15342,6 +15343,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.2050552, y: 114.61902}
   m_EdgeRadius: 0
+--- !u!114 &519420040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d457a8c04decfb438d006b30bfabe09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraMovement
+  camYextra: 0
+  vecesQueSeMueve: 0
 --- !u!1 &519767651
 GameObject:
   m_ObjectHideFlags: 0
@@ -19758,60 +19773,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 658212688}
-  - component: {fileID: 658212687}
+  - component: {fileID: 658212691}
+  - component: {fileID: 658212690}
+  - component: {fileID: 658212689}
+  - component: {fileID: 658212692}
   m_Layer: 3
-  m_Name: GameObject
+  m_Name: EventHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &658212687
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658212686}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 5.8092155, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 62.45186, y: 1}
-  m_EdgeRadius: 0
 --- !u!4 &658212688
 Transform:
   m_ObjectHideFlags: 0
@@ -19827,6 +19799,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &658212689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658212686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9bb3efe9abf88b4d87d5fe956535b12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ArrowsAnim
+  vecesQueSeMueve: 10
+--- !u!114 &658212690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658212686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adf3ca0094c324941a95e6cfc6d756ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReOrganizeUI
+  vecesQueSeMueve: 10
+--- !u!114 &658212691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658212686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24aeb41ebb252247a9851e645fccc6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WarningsAnimation
+--- !u!114 &658212692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658212686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37475e42497025b4b9d953388192c599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlatformMovement
+  valorDeIncremento: {x: 0, y: 0.5, z: 0}
+  veces: 400
 --- !u!1 &666050712
 GameObject:
   m_ObjectHideFlags: 0
@@ -55014,7 +55038,7 @@ Transform:
   m_GameObject: {fileID: 1996281603}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 378.3, y: 297.9, z: -10}
+  m_LocalPosition: {x: 378.3, y: 293.8, z: -10}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -57895,7 +57919,7 @@ MonoBehaviour:
   volumenMusica: 100
   volumenSFX: 100
   textoInput: 
-  codigoLyrics: 0
+  debugTeclas: 0
   fueraDelMenu: 0
   numeroEscena: 2
   puntos: 7
@@ -60408,6 +60432,7 @@ MonoBehaviour:
   enCaida: 0
   veces: 40
   valorDeIncremento: {x: 0.05, y: 0.1, z: 0}
+  camara: {fileID: 0}
 --- !u!1 &4837765873026641264
 GameObject:
   m_ObjectHideFlags: 0

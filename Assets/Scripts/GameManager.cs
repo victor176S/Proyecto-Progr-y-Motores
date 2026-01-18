@@ -63,10 +63,14 @@ public class GameManager : MonoBehaviour
         //en codigo los hago aqui
         instance = this;
 
+        datosPersistentes = GameObject.Find("DatosPersistentes");
 
-        if (DatosPersistentes.instance != null)
+
+
+
+        if (datosPersistentes != null)
         {
-            DatosPersistentes.instance.fueraDelMenu = true;
+            datosPersistentes.GetComponent<DatosPersistentes>().fueraDelMenu = true;
         }
     }
 
@@ -188,12 +192,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (DatosPersistentes.instance != null)
-        {
-        Debug.Log($"Datos: {DatosPersistentes.instance.volumenMusica}");
-
-        Debug.Log($"Datos: {DatosPersistentes.instance.volumenSFX}");
-        }
+        
     }
 
     void LogicVidas()
@@ -232,7 +231,7 @@ public class GameManager : MonoBehaviour
 
     void DashText()
     {
-       if (PlayerDash.instance.tiempoCooldownDash < 0f)
+       if (player.GetComponent<PlayerDash>().tiempoCooldownDash < 0f)
         {
             DashCharge.text = $"Dash disponible";
         }
